@@ -1,0 +1,2136 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark" data-fs="md" data-layout="auto">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palliative Care Quick Guide — SI 2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════
+   DARK MODE (default)
+═══════════════════════════ */
+:root {
+  --bg:#0d1117; --surface:#161b22; --surface2:#1c2230;
+  --border:#2a3444; --border2:#354057;
+  --text:#e2e8f0; --text-muted:#7d9bb5; --text-dim:#4a6278;
+  --teal:#14b8a6; --teal-glow:rgba(20,184,166,.12);
+  --amber:#f59e0b; --amber-dim:rgba(245,158,11,.15);
+  --rose:#f43f5e; --rose-dim:rgba(244,63,94,.12);
+  --blue:#60a5fa; --blue-dim:rgba(96,165,250,.12);
+  --green:#4ade80; --green-dim:rgba(74,222,128,.1);
+  --violet:#a78bfa; --violet-dim:rgba(167,139,250,.12);
+  --orange:#fb923c; --orange-dim:rgba(251,146,60,.12);
+  --shadow:rgba(0,0,0,.35);
+  --header-bg:rgba(13,17,23,.93);
+  --fs:15px;
+}
+
+/* ═══════════════════════════
+   LIGHT MODE
+═══════════════════════════ */
+[data-theme="light"] {
+  --bg:#f0f4f8; --surface:#ffffff; --surface2:#f5f8fb;
+  --border:#dde4ec; --border2:#c5d0dc;
+  --text:#1a2535; --text-muted:#4d6887; --text-dim:#94a3b8;
+  --teal:#0d9488; --teal-glow:rgba(13,148,136,.1);
+  --amber:#c2700a; --amber-dim:rgba(194,112,10,.12);
+  --rose:#dc2626; --rose-dim:rgba(220,38,38,.1);
+  --blue:#1d4ed8; --blue-dim:rgba(29,78,216,.1);
+  --green:#15803d; --green-dim:rgba(21,128,61,.1);
+  --violet:#6d28d9; --violet-dim:rgba(109,40,217,.1);
+  --orange:#c2410c; --orange-dim:rgba(194,65,12,.1);
+  --shadow:rgba(0,0,0,.08);
+  --header-bg:rgba(240,244,248,.93);
+}
+
+/* ═══════════════════════════
+   FONT SIZE VARIANTS
+═══════════════════════════ */
+[data-fs="sm"] { --fs:13px; }
+[data-fs="md"] { --fs:15px; }
+[data-fs="lg"] { --fs:17px; }
+[data-fs="xl"] { --fs:19px; }
+
+/* ═══════════════════════════
+   LAYOUT OVERRIDES
+═══════════════════════════ */
+[data-layout="desktop"] .main        { max-width:1200px!important; padding:24px 36px!important; }
+[data-layout="desktop"] .home-grid   { grid-template-columns:repeat(auto-fill,minmax(175px,1fr))!important; }
+[data-layout="desktop"] .grid-2      { grid-template-columns:1fr 1fr!important; }
+[data-layout="desktop"] .tabs        { flex-wrap:wrap; }
+
+[data-layout="mobile"] .main         { padding:10px!important; }
+[data-layout="mobile"] .home-grid    { grid-template-columns:1fr 1fr!important; gap:8px!important; }
+[data-layout="mobile"] .grid-2       { grid-template-columns:1fr!important; }
+[data-layout="mobile"] .drug-table   { font-size:12px!important; }
+[data-layout="mobile"] .drug-table th,
+[data-layout="mobile"] .drug-table td{ padding:6px 7px!important; }
+[data-layout="mobile"] .tb-label     { display:none!important; }
+[data-layout="mobile"] .logo-sub     { display:none!important; }
+
+/* ═══════════════════════════
+   BASE
+═══════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Sarabun',sans-serif;
+  background:var(--bg); color:var(--text);
+  min-height:100vh; font-size:var(--fs); line-height:1.65;
+  transition:background .22s,color .22s;
+}
+
+/* ═══════════════════════════
+   HEADER
+═══════════════════════════ */
+.header{
+  position:sticky;top:0;z-index:100;
+  background:var(--header-bg);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:10px 18px;
+  transition:background .22s,border-color .22s;
+}
+.header-inner{max-width:1280px;margin:0 auto}
+
+/* Row 1 */
+.hrow1{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+
+/* Logo */
+.logo{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.logo-icon{
+  width:30px;height:30px;border-radius:7px;
+  background:linear-gradient(135deg,var(--teal),#0891b2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;flex-shrink:0;box-shadow:0 2px 8px rgba(20,184,166,.3);
+}
+.logo-text{display:flex;flex-direction:column;line-height:1.2}
+.logo-main{color:var(--teal);font-weight:700;font-size:calc(var(--fs) - 1px)}
+.logo-sub{color:var(--text-muted);font-size:calc(var(--fs) - 5px);letter-spacing:.06em}
+
+/* Search */
+.search-wrap{flex:1;position:relative;min-width:160px}
+.search-input{
+  width:100%;padding:8px 34px 8px 36px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;color:var(--text);font-family:'Sarabun',sans-serif;
+  font-size:calc(var(--fs) - 1px);outline:none;
+  transition:border-color .18s,box-shadow .18s,background .22s;
+}
+.search-input:focus{border-color:var(--teal);box-shadow:0 0 0 2px var(--teal-glow)}
+.search-input::placeholder{color:var(--text-dim)}
+.s-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-dim);pointer-events:none;font-size:14px}
+.s-clear{
+  position:absolute;right:9px;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:var(--text-muted);cursor:pointer;
+  font-size:13px;display:none;padding:2px 5px;border-radius:4px;
+}
+.s-clear:hover{color:var(--text)}
+
+/* Toolbar */
+.toolbar{display:flex;align-items:center;gap:5px;flex-shrink:0;flex-wrap:wrap}
+.tb-group{
+  display:flex;align-items:center;gap:1px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;padding:3px;
+  transition:background .22s,border-color .22s;
+}
+.tb-btn{
+  display:flex;align-items:center;gap:3px;
+  padding:5px 9px;border:none;border-radius:5px;cursor:pointer;
+  font-family:'Sarabun',sans-serif;font-size:calc(var(--fs) - 3px);
+  font-weight:600;background:none;color:var(--text-muted);
+  transition:all .14s;white-space:nowrap;
+}
+.tb-btn:hover{background:var(--surface2);color:var(--text)}
+.tb-btn.on{background:var(--teal);color:#fff}
+.tb-btn.theme-icon{font-size:16px;padding:4px 8px}
+.tb-sep{width:1px;height:18px;background:var(--border);margin:0 3px}
+.tb-label{font-size:calc(var(--fs) - 5px);color:var(--text-dim);letter-spacing:.06em;padding:0 3px;font-weight:600}
+
+/* Row 2 — tabs */
+.tabs{display:flex;gap:4px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab-btn{
+  flex-shrink:0;padding:4px 12px;
+  border:1px solid var(--border);border-radius:20px;
+  background:none;color:var(--text-muted);cursor:pointer;
+  font-family:'Sarabun',sans-serif;font-size:calc(var(--fs) - 4px);font-weight:500;
+  transition:all .14s;white-space:nowrap;
+}
+.tab-btn:hover{border-color:var(--border2);color:var(--text)}
+.tab-btn.active{background:var(--teal);border-color:var(--teal);color:#fff;font-weight:700}
+
+/* ═══════════════════════════
+   LAYOUT
+═══════════════════════════ */
+.main{max-width:1200px;margin:0 auto;padding:20px;transition:padding .18s}
+
+/* Sections */
+.section{display:none}
+.section.active{display:block}
+.sec-title{
+  font-size:calc(var(--fs) + 6px);font-weight:700;
+  margin-bottom:4px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.sec-badge{font-size:calc(var(--fs) - 5px);font-weight:600;padding:2px 8px;border-radius:10px}
+.sec-desc{color:var(--text-muted);font-size:calc(var(--fs) - 1px);margin-bottom:18px;line-height:1.55}
+
+/* ═══════════════════════════
+   CARDS
+═══════════════════════════ */
+.card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;margin-bottom:14px;overflow:hidden;
+  box-shadow:0 1px 4px var(--shadow);
+  transition:background .22s,border-color .22s;
+}
+.card-hd{
+  padding:12px 16px;display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid var(--border);cursor:pointer;user-select:none;
+  transition:background .12s;
+}
+.card-hd:hover{background:var(--surface2)}
+.card-ico{font-size:17px;width:26px;text-align:center;flex-shrink:0}
+.card-ttl{font-size:calc(var(--fs));font-weight:600;flex:1}
+.card-chev{color:var(--text-dim);font-size:11px;transition:transform .2s;flex-shrink:0}
+.card.open .card-chev{transform:rotate(180deg)}
+.card-body{padding:16px;display:none}
+.card.open .card-body{display:block}
+
+/* ═══════════════════════════
+   DRUG TABLE
+═══════════════════════════ */
+.dt{width:100%;border-collapse:collapse;font-size:calc(var(--fs) - 2px);margin:8px 0}
+.dt th{
+  background:var(--surface2);padding:7px 10px;text-align:left;
+  font-weight:700;color:var(--text-muted);
+  font-size:calc(var(--fs) - 5px);letter-spacing:.07em;text-transform:uppercase;
+  border-bottom:1px solid var(--border);
+}
+.dt td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55}
+.dt tr:last-child td{border-bottom:none}
+.dt tr:hover td{background:rgba(127,127,127,.04)}
+.dn{font-weight:700;color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:calc(var(--fs) - 3px)}
+.dd{font-family:'IBM Plex Mono',monospace;font-size:calc(var(--fs) - 3px);color:var(--amber)}
+.dnote{font-size:calc(var(--fs) - 3px);color:var(--text-muted);font-style:italic;margin-top:2px}
+.dtag{display:inline-block;background:var(--amber-dim);color:var(--amber);border-radius:4px;padding:1px 6px;font-size:calc(var(--fs) - 5px);font-weight:700;font-family:'IBM Plex Mono',monospace;margin-right:3px}
+.rt{display:inline-block;border-radius:4px;padding:1px 5px;font-size:calc(var(--fs) - 6px);font-weight:700;margin-right:3px}
+.rpo{background:var(--blue-dim);color:var(--blue)}
+.riv{background:var(--rose-dim);color:var(--rose)}
+.rsc{background:var(--violet-dim);color:var(--violet)}
+.rsl{background:var(--green-dim);color:var(--green)}
+.rpr{background:var(--orange-dim);color:var(--orange)}
+.dt-cat{background:var(--surface2)!important;color:var(--text-muted);font-size:calc(var(--fs) - 5px);padding:5px 10px;font-weight:700;letter-spacing:.06em}
+
+/* ═══════════════════════════
+   ALERTS
+═══════════════════════════ */
+.al{border-radius:8px;padding:10px 14px;margin:10px 0;font-size:calc(var(--fs) - 2px);line-height:1.6;display:flex;gap:9px}
+.al-i{font-size:14px;flex-shrink:0;margin-top:1px}
+.al-w{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.35);color:var(--amber)}
+.al-n{background:var(--blue-dim);border:1px solid rgba(96,165,250,.3);color:var(--blue)}
+.al-d{background:var(--rose-dim);border:1px solid rgba(244,63,94,.35);color:var(--rose)}
+.al-s{background:var(--green-dim);border:1px solid rgba(74,222,128,.3);color:var(--green)}
+
+/* ═══════════════════════════
+   MISC
+═══════════════════════════ */
+.sub{font-size:calc(var(--fs) - 4px);font-weight:700;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.sub:first-child{margin-top:0}
+.ul{list-style:none;padding:0;font-size:calc(var(--fs) - 1px);line-height:1.75}
+.ul li{padding:2px 0 2px 16px;position:relative;color:var(--text-muted)}
+.ul li::before{content:"•";position:absolute;left:0;color:var(--teal)}
+.ul li strong{color:var(--text)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.g2{grid-template-columns:1fr}}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.pill{padding:3px 10px;border-radius:14px;font-size:calc(var(--fs) - 3px);font-weight:500;border:1px solid currentColor}
+.conv-g{display:grid;grid-template-columns:1fr auto 1fr;gap:4px 8px;align-items:center;font-size:calc(var(--fs) - 2px)}
+.cf{text-align:right;font-family:'IBM Plex Mono',monospace;color:var(--blue);background:var(--blue-dim);padding:5px 8px;border-radius:4px}
+.ca{color:var(--text-dim);text-align:center;font-size:16px}
+.ct{font-family:'IBM Plex Mono',monospace;color:var(--teal);background:var(--teal-glow);padding:5px 8px;border-radius:4px}
+
+/* Line tags */
+.l1{background:rgba(74,222,128,.14);color:var(--green);border:1px solid rgba(74,222,128,.3);padding:1px 6px;border-radius:9px;font-size:calc(var(--fs) - 6px);font-weight:700;margin-left:5px}
+.l2{background:var(--blue-dim);color:var(--blue);border:1px solid rgba(96,165,250,.3);padding:1px 6px;border-radius:9px;font-size:calc(var(--fs) - 6px);font-weight:700;margin-left:5px}
+.l3{background:var(--violet-dim);color:var(--violet);border:1px solid rgba(167,139,250,.3);padding:1px 6px;border-radius:9px;font-size:calc(var(--fs) - 6px);font-weight:700;margin-left:5px}
+
+/* Home */
+.home-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:12px;margin-bottom:22px}
+.hcard{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;text-align:center;transition:all .16s;box-shadow:0 1px 4px var(--shadow)}
+.hcard:hover{border-color:var(--teal);background:var(--teal-glow);transform:translateY(-2px);box-shadow:0 4px 14px var(--shadow)}
+.hcard-ico{font-size:28px;margin-bottom:7px}
+.hcard-name{font-size:calc(var(--fs));font-weight:700;color:var(--text);margin-bottom:2px}
+.hcard-en{font-size:calc(var(--fs) - 5px);color:var(--text-dim);letter-spacing:.05em}
+
+.banner{background:linear-gradient(135deg,var(--teal-glow),var(--blue-dim));border:1px solid var(--border);border-radius:12px;padding:15px 20px;margin-bottom:20px}
+.banner h2{font-size:calc(var(--fs) - 3px);font-weight:700;color:var(--teal);letter-spacing:.07em;text-transform:uppercase;margin-bottom:7px}
+.banner p{font-size:calc(var(--fs) - 1px);color:var(--text-muted);line-height:1.65}
+
+/* Search */
+#search-results{display:none}
+.sr-hd{font-size:calc(var(--fs) - 3px);color:var(--text-muted);font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding:0 2px}
+
+/* Responsive default */
+@media(max-width:640px){
+  .header{padding:8px 12px}
+  .main{padding:12px}
+  .home-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .logo-sub{display:none}
+  .tb-label{display:none}
+  .hrow1{flex-wrap:nowrap}
+}
+@media(max-width:400px){
+  .tb-btn{padding:4px 6px;font-size:11px}
+  .tb-btn.theme-icon{padding:4px 6px}
+}
+
+
+/* ═══════════════════════════
+   MOBILE MENU FIX — added by ChatGPT
+   Goal: prevent header/menu overflow and make mobile controls fit screen
+═══════════════════════════ */
+@media (max-width: 640px){
+  html, body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+  }
+
+  .header{
+    padding:8px 10px;
+  }
+
+  .header-inner{
+    width:100%;
+    max-width:100%;
+  }
+
+  .hrow1{
+    display:grid !important;
+    grid-template-columns:1fr auto;
+    grid-template-areas:
+      "logo toolbar"
+      "search search";
+    align-items:center;
+    gap:7px;
+    margin-bottom:6px;
+  }
+
+  .logo{
+    grid-area:logo;
+    min-width:0;
+    max-width:100%;
+  }
+
+  .logo-icon{
+    width:28px;
+    height:28px;
+    font-size:14px;
+  }
+
+  .logo-main{
+    display:block;
+    max-width:42vw;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    font-size:13px;
+  }
+
+  .logo-sub,
+  .tb-label,
+  .tb-sep{
+    display:none !important;
+  }
+
+  .search-wrap{
+    grid-area:search;
+    width:100%;
+    min-width:0;
+  }
+
+  .search-input{
+    min-height:38px;
+    padding:8px 32px 8px 34px;
+    font-size:13px;
+    border-radius:10px;
+  }
+
+  .toolbar{
+    grid-area:toolbar;
+    display:flex;
+    align-items:center;
+    gap:4px;
+    max-width:54vw;
+    min-width:0;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:1px 0 3px;
+    justify-content:flex-start;
+    flex-wrap:nowrap !important;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+
+  .toolbar::-webkit-scrollbar{
+    display:none;
+  }
+
+  .tb-group{
+    flex:0 0 auto;
+    padding:2px;
+    gap:1px;
+    border-radius:8px;
+  }
+
+  .tb-btn{
+    min-width:30px;
+    min-height:30px;
+    justify-content:center;
+    padding:4px 7px;
+    font-size:11px;
+    border-radius:6px;
+  }
+
+  .tb-btn.theme-icon{
+    min-width:30px;
+    padding:4px 7px;
+    font-size:14px;
+  }
+
+  .tabs{
+    display:flex;
+    gap:6px;
+    width:100%;
+    max-width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:5px 0 3px;
+    margin:0;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    scroll-snap-type:x proximity;
+  }
+
+  .tabs::-webkit-scrollbar{
+    display:none;
+  }
+
+  .tab-btn{
+    flex:0 0 auto;
+    min-height:34px;
+    padding:6px 11px;
+    font-size:12px;
+    border-radius:999px;
+    scroll-snap-align:start;
+  }
+
+  .main{
+    width:100%;
+    max-width:100%;
+    padding:10px;
+  }
+
+  .banner{
+    padding:13px 14px;
+  }
+
+  .home-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:8px;
+  }
+
+  .hcard{
+    padding:12px 8px;
+  }
+
+  .hcard-ico{
+    font-size:24px;
+  }
+
+  .hcard-name{
+    font-size:13px;
+  }
+
+  .hcard-en{
+    font-size:10px;
+  }
+}
+
+@media (max-width: 420px){
+  .hrow1{
+    grid-template-columns:minmax(0, 1fr);
+    grid-template-areas:
+      "logo"
+      "search"
+      "toolbar";
+  }
+
+  .logo-main{
+    max-width:calc(100vw - 80px);
+  }
+
+  .toolbar{
+    max-width:100%;
+    width:100%;
+  }
+
+  .tb-btn{
+    min-width:29px;
+    padding:4px 6px;
+  }
+
+  .tab-btn{
+    font-size:11.5px;
+    padding:6px 10px;
+  }
+}
+
+
+
+/* ═══════════════════════════
+   MOBILE DROPDOWN MENU
+═══════════════════════════ */
+.mobile-menu-wrap{
+  display:none;
+  width:100%;
+  margin-top:6px;
+  position:relative;
+}
+.mobile-menu-label{
+  display:block;
+  color:var(--text-dim);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.06em;
+  margin:0 0 4px 2px;
+  text-transform:uppercase;
+}
+.mobile-menu-select{
+  width:100%;
+  min-height:42px;
+  padding:8px 42px 8px 12px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--surface);
+  color:var(--text);
+  font-family:'Sarabun',sans-serif;
+  font-size:14px;
+  font-weight:700;
+  outline:none;
+  appearance:none;
+  -webkit-appearance:none;
+  box-shadow:0 1px 4px var(--shadow);
+}
+.mobile-menu-wrap::after{
+  content:"▾";
+  position:absolute;
+  right:14px;
+  bottom:9px;
+  color:var(--teal);
+  font-size:18px;
+  pointer-events:none;
+}
+.mobile-menu-select:focus{
+  border-color:var(--teal);
+  box-shadow:0 0 0 2px var(--teal-glow);
+}
+
+@media (max-width: 640px){
+  .mobile-menu-wrap{display:block;}
+  .tabs{display:none !important;}
+}
+
+@media (min-width: 641px){
+  .mobile-menu-wrap{display:none !important;}
+  .tabs{display:flex;}
+}
+
+/* ═══════════════════════════
+   AUTHORS / CREDITS
+═══════════════════════════ */
+.credit-link{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--teal);color:#fff;
+  padding:8px 14px;border-radius:8px;
+  font-size:calc(var(--fs) - 2px);font-weight:700;
+  cursor:pointer;border:none;margin-top:10px;
+  font-family:'Sarabun',sans-serif;
+  transition:transform .12s,box-shadow .15s;
+  text-decoration:none;
+}
+.credit-link:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(20,184,166,.35)}
+
+.author-list{display:grid;grid-template-columns:1fr;gap:8px;margin-top:8px}
+.author-row{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:10px 12px;background:var(--surface2);
+  border:1px solid var(--border);border-radius:8px;
+}
+.author-num{
+  flex:0 0 auto;
+  width:24px;height:24px;border-radius:50%;
+  background:var(--teal);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:calc(var(--fs) - 4px);font-weight:700;
+}
+.author-info{flex:1;min-width:0}
+.author-name{font-weight:700;color:var(--text);font-size:calc(var(--fs) - 1px);line-height:1.4}
+.author-spec{font-size:calc(var(--fs) - 3px);color:var(--text-muted);margin-top:2px}
+.author-role{font-size:calc(var(--fs) - 3px);color:var(--text-dim);margin-top:3px;font-style:italic}
+
+/* Pitfall warning */
+.pitfall{
+  background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.3);
+  border-left:4px solid var(--rose);
+  border-radius:8px;padding:12px 14px;margin:10px 0;
+}
+.pitfall-hd{
+  font-size:calc(var(--fs) - 3px);font-weight:700;
+  color:var(--rose);letter-spacing:.07em;text-transform:uppercase;
+  margin-bottom:6px;display:flex;align-items:center;gap:6px;
+}
+.pitfall ol{margin:0;padding-left:20px;font-size:calc(var(--fs) - 2px);line-height:1.65;color:var(--text)}
+.pitfall ol li{margin-bottom:4px}
+
+/* WHO Ladder visual */
+.who-ladder{display:grid;gap:8px;margin:10px 0}
+.who-step{
+  display:flex;gap:10px;align-items:flex-start;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:8px;padding:10px 12px;
+}
+.who-num{
+  flex:0 0 auto;width:46px;text-align:center;
+  font-weight:700;font-size:calc(var(--fs) - 4px);
+  background:var(--teal);color:#fff;
+  padding:4px 6px;border-radius:6px;line-height:1.2;
+}
+.who-step.s2 .who-num{background:var(--amber)}
+.who-step.s3 .who-num{background:var(--rose)}
+.who-body{flex:1;min-width:0}
+.who-title{font-weight:700;color:var(--text);font-size:calc(var(--fs) - 1px);margin-bottom:3px}
+.who-desc{font-size:calc(var(--fs) - 2px);color:var(--text-muted);line-height:1.55}
+
+/* Reference list */
+.ref-list{
+  font-size:calc(var(--fs) - 3px);
+  color:var(--text-muted);line-height:1.6;
+  margin:10px 0 0;padding-left:18px;
+}
+.ref-list li{margin-bottom:5px}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+<div class="header-inner">
+
+  <!-- Row 1 -->
+  <div class="hrow1">
+    <div class="logo">
+      <div class="logo-icon">🌿</div>
+      <div class="logo-text">
+        <span class="logo-main">Palliative Care Guide</span>
+        <span class="logo-sub">SIRIRAJ · SI 2025</span>
+      </div>
+    </div>
+
+    <div class="search-wrap">
+      <span class="s-icon">🔍</span>
+      <input class="search-input" id="searchInput" type="text" autocomplete="off"
+        placeholder="ค้นหายา อาการ ขนาดยา… (morphine, ondansetron, ท้องผูก)">
+      <button class="s-clear" id="sClear">✕</button>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+
+      <!-- Theme -->
+      <div class="tb-group">
+        <span class="tb-label">Theme</span>
+        <button class="tb-btn theme-icon on" id="tDark"  onclick="setTheme('dark')"  title="Dark mode">🌙</button>
+        <button class="tb-btn theme-icon"    id="tLight" onclick="setTheme('light')" title="Light mode">☀️</button>
+      </div>
+
+      <div class="tb-sep"></div>
+
+      <!-- Font size -->
+      <div class="tb-group">
+        <span class="tb-label">ขนาด</span>
+        <button class="tb-btn" id="fSm" onclick="setFs('sm')" title="เล็ก">A⁻</button>
+        <button class="tb-btn on" id="fMd" onclick="setFs('md')" title="ปกติ">A</button>
+        <button class="tb-btn" id="fLg" onclick="setFs('lg')" title="ใหญ่">A⁺</button>
+        <button class="tb-btn" id="fXl" onclick="setFs('xl')" title="ใหญ่มาก">A⁺⁺</button>
+      </div>
+
+      <div class="tb-sep"></div>
+
+      <!-- Layout -->
+      <div class="tb-group">
+        <span class="tb-label">หน้าจอ</span>
+        <button class="tb-btn on" id="lAuto"    onclick="setLayout('auto')"    title="Auto">Auto</button>
+        <button class="tb-btn"    id="lMobile"  onclick="setLayout('mobile')"  title="Mobile">📱</button>
+        <button class="tb-btn"    id="lDesktop" onclick="setLayout('desktop')" title="Desktop">🖥️</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Row 2 — tabs -->
+  <div class="tabs" id="tabsBar">
+    <button class="tab-btn active" data-s="home">🏠 หน้าหลัก</button>
+    <button class="tab-btn" data-s="pain">💊 Pain</button>
+    <button class="tab-btn" data-s="dyspnea">🫁 Dyspnea</button>
+    <button class="tab-btn" data-s="delirium">🧠 Delirium</button>
+    <button class="tab-btn" data-s="deathrattle">🔔 Death Rattle</button>
+    <button class="tab-btn" data-s="constipation">🟤 Constipation</button>
+    <button class="tab-btn" data-s="nausea">🤢 Nausea/Vomiting</button>
+    <button class="tab-btn" data-s="gutobs">🔴 Gut Obstruction</button>
+    <button class="tab-btn" data-s="bleeding">🩸 Bleeding</button>
+    <button class="tab-btn" data-s="cough">💨 Cough</button>
+    <button class="tab-btn" data-s="hiccup">〰️ Hiccup</button>
+    <button class="tab-btn" data-s="anorexia">🍽️ Anorexia</button>
+    <button class="tab-btn" data-s="credits">👥 ผู้จัดทำ</button>
+  </div>
+
+  <!-- Mobile dropdown menu -->
+  <div class="mobile-menu-wrap">
+    <label class="mobile-menu-label" for="mobileMenu">เลือกหัวข้อ</label>
+    <select class="mobile-menu-select" id="mobileMenu" aria-label="เลือกหัวข้อ">
+      <option value="home">🏠 หน้าหลัก</option>
+      <option value="pain">💊 Pain</option>
+      <option value="dyspnea">🫁 Dyspnea</option>
+      <option value="delirium">🧠 Delirium</option>
+      <option value="deathrattle">🔔 Death Rattle</option>
+      <option value="constipation">🟤 Constipation</option>
+      <option value="nausea">🤢 Nausea/Vomiting</option>
+      <option value="gutobs">🔴 Gut Obstruction</option>
+      <option value="bleeding">🩸 Bleeding</option>
+      <option value="cough">💨 Cough</option>
+      <option value="hiccup">〰️ Hiccup</option>
+      <option value="anorexia">🍽️ Anorexia</option>
+      <option value="credits">👥 ผู้จัดทำ</option>
+    </select>
+  </div>
+
+</div>
+</div><!-- /header -->
+
+<div class="main">
+
+<!-- Search results -->
+<div id="search-results">
+  <div class="sr-hd" id="srCount"></div>
+  <div id="srList"></div>
+</div>
+
+<!-- ══ HOME ══ -->
+<div class="section active" id="section-home">
+  <div class="banner">
+    <h2>Quick Guide for Symptomatic Management in Palliative Care</h2>
+    <p>จัดทำโดย <strong>ภาควิชาอายุรศาสตร์ คณะแพทยศาสตร์ศิริราชพยาบาล มหาวิทยาลัยมหิดล พ.ศ. 2568</strong><br>
+    เอกสารอ้างอิงสำหรับแพทย์ผู้ดูแลผู้ป่วยแบบประคับประคอง ใช้ค้นหาขนาดยาและวิธีการรักษาอาการทางกายที่พบบ่อย ทั้งโดยใช้ยาและไม่ใช้ยาให้เป็นไปในทิศทางเดียวกัน</p>
+    <button class="credit-link" onclick="go('credits')">👥 ดูรายนามผู้จัดทำ →</button>
+  </div>
+  <div class="home-grid">
+    <div class="hcard" onclick="go('pain')"><div class="hcard-ico">💊</div><div class="hcard-name">ความปวด</div><div class="hcard-en">PAIN</div></div>
+    <div class="hcard" onclick="go('dyspnea')"><div class="hcard-ico">🫁</div><div class="hcard-name">หายใจลำบาก</div><div class="hcard-en">DYSPNEA</div></div>
+    <div class="hcard" onclick="go('delirium')"><div class="hcard-ico">🧠</div><div class="hcard-name">สับสน</div><div class="hcard-en">DELIRIUM</div></div>
+    <div class="hcard" onclick="go('deathrattle')"><div class="hcard-ico">🔔</div><div class="hcard-name">เสียงเสมหะ</div><div class="hcard-en">DEATH RATTLE</div></div>
+    <div class="hcard" onclick="go('constipation')"><div class="hcard-ico">🟤</div><div class="hcard-name">ท้องผูก</div><div class="hcard-en">CONSTIPATION</div></div>
+    <div class="hcard" onclick="go('nausea')"><div class="hcard-ico">🤢</div><div class="hcard-name">คลื่นไส้/อาเจียน</div><div class="hcard-en">NAUSEA & VOMITING</div></div>
+    <div class="hcard" onclick="go('gutobs')"><div class="hcard-ico">🔴</div><div class="hcard-name">ลำไส้อุดตัน</div><div class="hcard-en">GUT OBSTRUCTION</div></div>
+    <div class="hcard" onclick="go('bleeding')"><div class="hcard-ico">🩸</div><div class="hcard-name">เลือดออก</div><div class="hcard-en">BLEEDING</div></div>
+    <div class="hcard" onclick="go('cough')"><div class="hcard-ico">💨</div><div class="hcard-name">ไอ</div><div class="hcard-en">COUGH</div></div>
+    <div class="hcard" onclick="go('hiccup')"><div class="hcard-ico">〰️</div><div class="hcard-name">สะอึก</div><div class="hcard-en">HICCUP</div></div>
+    <div class="hcard" onclick="go('anorexia')"><div class="hcard-ico">🍽️</div><div class="hcard-name">เบื่ออาหาร</div><div class="hcard-en">LOSS OF APPETITE</div></div>
+  </div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📋</span><span class="card-ttl">หลักการรักษาแบบประคับประคอง</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li>หาสาเหตุของอาการเสมอ สามารถแก้ไขด้วยการรักษาจำเพาะได้หรือไม่</li>
+        <li>อธิบายให้ผู้ป่วยและญาติก่อน บันทึกเอกสารข้อบ่งชี้และผลข้างเคียงเสมอ</li>
+        <li>ให้การรักษาที่เหมาะกับผู้ป่วยแต่ละราย ทั้งแบบไม่ใช้ยาและใช้ยา</li>
+        <li>ติดตามประสิทธิภาพและผลข้างเคียงอย่างสม่ำเสมอ ปรับยาให้เหมาะสม</li>
+        <li>ใช้ยาออกฤทธิ์ยาว ลดจำนวนมื้อยา ใช้ยาที่ออกฤทธิ์ได้หลายอย่าง</li>
+        <li>ทบทวนรายการยาบ่อยๆ <strong>หยุดยาที่ไม่มีประโยชน์</strong></li>
+        <li>หยุดการส่งตรวจที่ไม่เปลี่ยนแปลงการรักษา</li>
+        <li>ระยะสุดท้าย: ลดการดูแลที่ทำให้ไม่สุขสบาย เช่น วัด vital signs บ่อยๆ</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAIN ══ -->
+<div class="section" id="section-pain">
+  <div class="sec-title">💊 Pain Management <span class="sec-badge" style="background:var(--teal-glow);color:var(--teal)">WHO Ladder</span></div>
+  <div class="sec-desc">แนวทางการจัดการความปวดในผู้ป่วยประคับประคองที่อยู่ในโรงพยาบาล — ประเมินความปวดให้ครบถ้วน, มีปัญหาทางจิตใจร่วมด้วยไหม, หาสาเหตุที่สามารถแก้ไขได้, หากกินได้ให้เริ่มด้วยยากินก่อน, อาการปวดจากมะเร็งที่เป็นตลอดเวลาควรให้ยา around the clock, ประเมินหลังให้ยาและปรับยาให้เหมาะสม</div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🪜</span><span class="card-ttl">WHO Analgesic Ladder — แนวทางตามระดับความปวด</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <div class="who-ladder">
+        <div class="who-step s1">
+          <div class="who-num">Step 1<br>PS 1-3</div>
+          <div class="who-body">
+            <div class="who-title">ปวดเล็กน้อย — Paracetamol ± NSAIDs ± adjuvant</div>
+            <div class="who-desc">
+              <strong>Paracetamol</strong> max <strong>4 กรัม/วัน</strong> (500 มก./ครั้ง)<br>
+              * ลดเหลือ <strong>max 2-3 กรัม/วัน</strong> เมื่อมี: ทุพโภชนาการ, สูงอายุ, การทำงานของตับบกพร่อง/โรคสุราเรื้อรัง<br>
+              + NSAIDs (ถ้าไม่มีข้อห้าม) + other adjuvant
+            </div>
+          </div>
+        </div>
+        <div class="who-step s2">
+          <div class="who-num">Step 2<br>PS 4-6</div>
+          <div class="who-body">
+            <div class="who-title">ปวดเล็กน้อย-ปานกลาง — Weak Opioids</div>
+            <div class="who-desc">
+              <strong>Codeine</strong> 15-60 มก. q 4-6 ชม. (max <strong>240-360 mg/day</strong>) หรือ<br>
+              <strong>Tramadol</strong> 50-100 มก. q 6-8 ชม. (max <strong>400 mg/day</strong>)<br>
+              ⚠️ ลดเหลือ max <strong>200 mg/day</strong> เมื่อ: อายุ &gt; 75 ปี, CrCl &lt; 30 mL/min, โรคตับ<br>
+              SE: มึนงง ง่วงนอน คลื่นไส้ อาเจียน ท้องผูก<br>
+              <em>หรือใช้ ultracet 37.5/325 (tramadol+paracetamol) + NSAIDs + adjuvant</em><br>
+              💡 สามารถข้ามไปใช้ <strong>strong opioids low dose</strong> ได้ (oral morphine &lt; 20 mg/day)<br>
+              * พิจารณาสั่งยาระบายและยาต้านอาเจียน
+            </div>
+          </div>
+        </div>
+        <div class="who-step s3">
+          <div class="who-num">Step 3<br>PS 7-10</div>
+          <div class="who-body">
+            <div class="who-title">ปวดปานกลาง-รุนแรง — Strong Opioids</div>
+            <div class="who-desc">
+              ให้เป็น <strong>oral sustained-release</strong> ตั้งแต่แรก + prn for BTP หรือคุมอาการได้ 24 ชม. แล้วจึงปรับเป็น long acting<br>
+              <strong>ผู้ป่วยทั่วไป:</strong> Morphine IR/syrup <strong>5-10 มก. ทุก 4 ชม.</strong> + BTP prn<br>
+              <strong>ผู้ป่วยสูงอายุ:</strong> Morphine IR/syrup <strong>2.5-5 มก. ทุก 4-6 ชม.</strong> + BTP prn<br>
+              <strong>BTP dose</strong> = 10-20% หรือ 1/6 ของ morphine/day, ให้ได้ทุก 1-2 ชม.<br>
+              + paracetamol/NSAIDs (ถ้าไม่มีข้อห้าม) + adjuvant<br>
+              * พิจารณาสั่งยาระบายและยาต้านอาเจียน
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔴</span><span class="card-ttl">NSAIDs</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>ชื่อยา</th><th>ขนาด (mg)</th><th>ความถี่</th><th>Max/day</th></tr>
+        <tr><td colspan="4" class="dt-cat">TRADITIONAL NSAIDs</td></tr>
+        <tr><td><span class="dn">Ibuprofen</span></td><td><span class="dd">200, 400, 600</span></td><td>q 4-6 hr</td><td><span class="dtag">2,400 mg</span></td></tr>
+        <tr><td><span class="dn">Diclofenac</span></td><td><span class="dd">25, 50</span></td><td>q 8 hr</td><td><span class="dtag">150 mg</span></td></tr>
+        <tr><td><span class="dn">Indomethacin</span></td><td><span class="dd">25</span></td><td>q 8-12 hr</td><td><span class="dtag">200 mg</span></td></tr>
+        <tr><td><span class="dn">Naproxen</span></td><td><span class="dd">250</span></td><td>q 12 hr</td><td><span class="dtag">1,000 mg</span></td></tr>
+        <tr><td><span class="dn">Piroxicam</span></td><td><span class="dd">10, 20</span></td><td>q 24 hr</td><td><span class="dtag">20 mg</span></td></tr>
+        <tr><td colspan="4" class="dt-cat">PREFERENTIAL COX-2 INHIBITORS</td></tr>
+        <tr><td><span class="dn">Meloxicam</span></td><td><span class="dd">7.5</span></td><td>q 12-24 hr</td><td><span class="dtag">15 mg</span></td></tr>
+        <tr><td colspan="4" class="dt-cat">COXIBS</td></tr>
+        <tr><td><span class="dn">Celecoxib</span></td><td><span class="dd">200, 400</span></td><td>q 12 hr</td><td><span class="dtag">400 mg</span></td></tr>
+        <tr><td><span class="dn">Etoricoxib</span></td><td><span class="dd">30, 60, 90, 120</span></td><td>q 24 hr</td><td><span class="dtag">120 mg</span> <span class="dnote">(ขนาด 120 mg ใช้ติดต่อกันไม่เกิน 8 วัน)</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💉</span><span class="card-ttl">Opioid Preparations & Onset</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>รูปแบบ</th><th>ความแรง</th><th>Onset</th><th>Duration</th></tr>
+        <tr><td><span class="dn">Mo IR</span><span class="rt rpo">PO</span></td><td><span class="dd">10 mg/tab</span></td><td>15-30 min</td><td>4-6 hr</td></tr>
+        <tr><td><span class="dn">Mo Syrup</span><span class="rt rpo">PO</span></td><td><span class="dd">2 mg/mL</span></td><td>15-30 min</td><td>4-6 hr</td></tr>
+        <tr><td><span class="dn">MST</span><span class="rt rpo">PO</span></td><td><span class="dd">10, 30, 60 mg</span></td><td>1-2 hr</td><td>8-12 hr</td></tr>
+        <tr><td><span class="dn">Kapanol</span><span class="rt rpo">PO</span></td><td><span class="dd">20, 50, 100 mg</span></td><td>1-2 hr</td><td>24 hr</td></tr>
+        <tr><td><span class="dn">Morphine SC</span><span class="rt rsc">SC</span></td><td><span class="dd">10 mg/mL</span></td><td>&lt;5 min</td><td>3-6 hr</td></tr>
+        <tr><td><span class="dn">Morphine IV</span><span class="rt riv">IV</span></td><td><span class="dd">10 mg/mL</span></td><td>&lt;5 min</td><td>3-6 hr</td></tr>
+        <tr><td><span class="dn">Fentanyl Patch</span></td><td><span class="dd">12, 25, 50, 100 µg/hr</span></td><td>12-24 hr</td><td>48-72 hr</td></tr>
+        <tr><td><span class="dn">Fentanyl IV</span><span class="rt riv">IV</span></td><td><span class="dd">10, 50 µg/mL</span></td><td>&lt;1 min</td><td>1-2 hr</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔄</span><span class="card-ttl">Opioid Conversion Ratios</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <div class="conv-g">
+        <div class="cf">Tramadol IV</div><div class="ca">→</div><div class="ct">Tramadol PO ×1.5</div>
+        <div class="cf">Tramadol PO</div><div class="ca">→</div><div class="ct">Morphine PO ÷5</div>
+        <div class="cf">Codeine PO</div><div class="ca">→</div><div class="ct">Morphine PO ÷10</div>
+        <div class="cf">Morphine PO</div><div class="ca">→</div><div class="ct">Morphine IV/SC ÷3</div>
+        <div class="cf">Morphine PO</div><div class="ca">→</div><div class="ct">Fentanyl ÷100 (mg→µg)</div>
+        <div class="cf">Morphine PO 60 mg/day</div><div class="ca">→</div><div class="ct">Fentanyl patch 25 µg/hr</div>
+      </div>
+      <div class="al al-w" style="margin-top:10px"><span class="al-i">⚠️</span><div>ระวัง unit mg vs µg — Morphine PO : Fentanyl = 100 : 1 (aware mg, mcg)</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🩺</span><span class="card-ttl">Renal Dose Adjustment</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>GFR (mL/min)</th><th>Morphine</th><th>Fentanyl</th></tr>
+        <tr><td>&gt; 50</td><td style="color:var(--green)">100%</td><td style="color:var(--green)">100%</td></tr>
+        <tr><td>10–50</td><td style="color:var(--amber)">50-75%</td><td style="color:var(--amber)">75-100%</td></tr>
+        <tr><td>&lt; 10 ESRD</td><td style="color:var(--rose)">Not recommended</td><td style="color:var(--amber)">50%</td></tr>
+      </table>
+      <div class="al al-n" style="margin-top:8px"><span class="al-i">ℹ️</span><div><strong>Fentanyl</strong> ใช้ได้ใน renal/liver impairment และผลข้างเคียงเรื่องท้องผูกน้อยกว่า morphine</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🧬</span><span class="card-ttl">Common Types of Pain — แยกประเภทและการเลือกยา</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>ชนิดความปวด</th><th>ตัวอย่าง</th><th>ลักษณะ</th><th>Initial</th><th>Adjuvant</th><th>Consider</th></tr>
+        <tr>
+          <td><strong>Deep Somatic</strong></td>
+          <td>Bone metastases</td>
+          <td>Gnawing aching แย่ลงเมื่อขยับ/ลงน้ำหนัก</td>
+          <td>WHO Ladder</td>
+          <td>NSAIDs<br>Gabapentin</td>
+          <td>Radiotherapy<br>Surgery<br>Bisphosphonate</td>
+        </tr>
+        <tr>
+          <td><strong>Visceral</strong></td>
+          <td>Liver, lung, bowel</td>
+          <td>Sharp ache / deep throbbing แย่ลงเมื่อโน้มตัว/หายใจ</td>
+          <td>WHO Ladder</td>
+          <td>Corticosteroid<br>NSAIDs</td>
+          <td>Nerve block<br>Surgery</td>
+        </tr>
+        <tr>
+          <td><strong>Neuropathic in cancer</strong></td>
+          <td>Nerve compression / damage / bone mets</td>
+          <td>Burning, Shooting, Sensory disturbance</td>
+          <td>WHO Ladder</td>
+          <td>Opioids<br>TCA (nortriptyline)<br>Anti-epileptic (gabapentin/pregabalin)<br>SSRI (fluoxetine)<br>Corticosteroid</td>
+          <td>Radiotherapy<br>TENS/PENS<br>Topical capsaicin</td>
+        </tr>
+        <tr>
+          <td><strong>Smooth muscle spasm</strong></td>
+          <td>Bowel obstruction<br>Bladder spasm</td>
+          <td>Deep, twisting, colicky (waves)</td>
+          <td>May be sensitive to opioid</td>
+          <td>Anticholinergic (hyoscine butylbromide for bowel colic)</td>
+          <td>Surgical relief of obstruction</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📐</span><span class="card-ttl">การปรับยา Morphine — Titration</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li>เริ่มขนาดต่ำและเพิ่มอย่างช้าๆ ในผู้ป่วยอ่อนแอ/สูงอายุ/ตับไตบกพร่อง</li>
+        <li>Frail / elderly / ตับไตบกพร่อง / moderate pain → <strong>ลด dose 50%</strong></li>
+        <li>ESRD GFR &lt; 15 → <strong>ลด dose 75%</strong> (เหลือ 25%)</li>
+        <li>ขนาดที่น้อยสุด <strong>ไม่ควรต่ำกว่า 4-8 mg/day</strong></li>
+        <li>BTP &gt; 3 ครั้ง/วัน → <strong>Old ATC + Old BTP = New ATC + New BTP (10-20% ของ New ATC)</strong></li>
+        <li>กรณีผู้ป่วยไม่ขอยา prn:
+          <ul style="margin:4px 0 0 14px;list-style:disc">
+            <li>ปวดปานกลาง PS 4-6 → <strong>เพิ่ม 30-50%</strong></li>
+            <li>ปวดรุนแรง PS 7-10 → <strong>เพิ่ม 50-100%</strong></li>
+          </ul>
+        </li>
+        <li>Stable pain → เปลี่ยนเป็น <strong>Morphine MR (MST/Kapanol)</strong></li>
+        <li><strong>ไม่มี maximum dose</strong> ของ strong opioids — ปรับตามประสิทธิภาพและผลข้างเคียง</li>
+        <li><strong>ห้ามหักบดเม็ด MST</strong> — Kapanol สามารถแกะ pellet ใน NG tube เบอร์ 14-16 (เบอร์เล็กจะทำให้สายตัน)</li>
+        <li>กินไม่ได้ → SC หรือ IV โดย <strong>oral : parenteral = 3 : 1</strong></li>
+      </ul>
+      <div class="sub">ผลข้างเคียง Morphine</div>
+      <table class="dt">
+        <tr><th>ผลข้างเคียง</th><th>แนวทาง</th></tr>
+        <tr><td>ท้องผูก</td><td>พบตลอดการใช้ยา — ให้ยาระบายเสมอ</td></tr>
+        <tr><td>ง่วงซึม</td><td>2-3 วันแรก อาจลดขนาด 25% ประเมิน sedation score เสมอ</td></tr>
+        <tr><td>คลื่นไส้/อาเจียน</td><td>ดีขึ้นใน 1 สัปดาห์ ให้ antiemetic ร่วม</td></tr>
+        <tr><td>คัน</td><td>Antihistamine</td></tr>
+        <tr><td>Urinary retention</td><td>ลดขนาดยา</td></tr>
+        <tr><td>Delirium</td><td>ลด 30% หรือให้ haloperidol/risperidone ร่วมด้วย</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🩹</span><span class="card-ttl">Fentanyl Patch</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <div class="al al-w"><span class="al-i">⚠️</span><div>ใช้ในผู้ป่วยกินยาไม่ได้ + ได้ strong opioid อื่นที่ <strong>คุมปวดได้คงที่แล้ว</strong> — ออกฤทธิ์ช้า ประเมินหลังแปะ 48-72 ชม.</div></div>
+      <ul class="ul" style="margin-top:10px">
+        <li>หลังแปะ ลด morphine 50% ใน 12 ชม.แรก → <strong>off morphine</strong> เมื่อครบ 12 ชม.</li>
+        <li>ตำแหน่ง: หน้าอกบน, ต้นแขน, ต้นขา, เอว (ที่มี subcutaneous fat) <strong>ห้ามแปะบนกระดูก</strong></li>
+        <li>เปลี่ยนแผ่นใหม่ → ย้ายตำแหน่งใหม่</li>
+        <li>ระวัง: ไข้/อักเสบ → ดูดซึมมากกว่าปกติ</li>
+        <li>ตัดครึ่งแผ่นได้ เก็บส่วนที่เหลือใช้ภายหลัง</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">➕</span><span class="card-ttl">Adjuvant Drugs</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <p style="color:var(--text-muted);margin-bottom:8px;font-size:calc(var(--fs) - 2px)">
+        Paracetamol/NSAIDs ใช้ได้ดีใน <strong>bone pain, liver pain</strong><br>
+        Antidepressant/anticonvulsant สำหรับ <strong>neuropathic pain</strong>
+      </p>
+      <div class="sub">Neuropathic Pain</div>
+      <table class="dt">
+        <tr><th>ยา</th><th>ขนาด</th><th>หมายเหตุ</th></tr>
+        <tr><td><span class="dn">Nortriptyline</span><br>(TCA)</td><td><span class="dd">10 mg hs → +10 mg/1-2 wk<br>Max 75 mg/day</span></td><td>นิยมกว่า amitriptyline (SE น้อยกว่า)<br>SE: สับสน, hypotension; ระวังโรคหัวใจหลอดเลือด</td></tr>
+        <tr><td><span class="dn">Gabapentin</span></td><td><span class="dd">300 mg/day → +300 mg q 3 days → 300 mg TID<br>→ +300 mg q 3-7 days<br>Max 1,800 mg/day</span></td><td>Elderly: 100 mg/day<br>ESRD: 100 mg วันเว้นวัน (HD: กินหลังทำ)<br>SE: ง่วงซึม, สั่น, สับสน</td></tr>
+        <tr><td><span class="dn">Pregabalin</span><br>(ใช้กรณี gabapentin ไม่ได้ผล/มี SE)</td><td><span class="dd">75 mg BID → +75 mg BID q 3-7 days<br>Max 300 mg BID</span></td><td>Switch: dose pregabalin = dose gabapentin ÷ 6</td></tr>
+      </table>
+      <div class="al al-n" style="margin-top:8px"><span class="al-i">ℹ️</span><div>Amitriptyline และ gabapentin ประสิทธิภาพไม่แตกต่างกัน — สามารถให้ adjuvant drugs ที่ออกฤทธิ์คนละกลไกร่วมกันได้</div></div>
+
+      <div class="sub">Corticosteroid — Dexamethasone</div>
+      <table class="dt">
+        <tr><th>ข้อบ่งชี้</th><th>Dose</th></tr>
+        <tr><td>ภาวะความดันในสมองเพิ่มสูงขึ้น (Raised ICP)</td><td><span class="dd">16 mg/day</span></td></tr>
+        <tr><td>Neuropathic pain (รุนแรง) — ช่วงแรก</td><td><span class="dd">4-8 mg/day</span></td></tr>
+        <tr><td>ปวดจาก Liver capsule stretch</td><td><span class="dd">4-8 mg/day</span></td></tr>
+      </table>
+      <div class="al al-n" style="margin-top:8px"><span class="al-i">ℹ️</span><div>ให้ช่วงเช้า ลดขนาดให้น้อยที่สุดที่ได้ผล พิจารณา PPI ติดตาม blood sugar</div></div>
+
+      <div class="sub">Other Modalities</div>
+      <ul class="ul">
+        <li>TENS (Transcutaneous Electrical Nerve Stimulation), Nerve block, Radiotherapy, Surgery</li>
+        <li>Bisphosphonates (สำหรับ bone pain)</li>
+        <li>Ketamine — ผู้เชี่ยวชาญใช้</li>
+        <li>ยาหย่อนกล้ามเนื้อลายหรือกล้ามเนื้อเรียบ</li>
+      </ul>
+      <div class="al al-d" style="margin-top:8px"><span class="al-i">🚫</span><div><strong>ยาระบาย:</strong> ไม่แนะนำกลุ่ม bulk forming (psyllium husk, methylcellulose) สำหรับท้องผูกจาก strong opioids — เสี่ยง gut obstruction</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">⚠️</span><span class="card-ttl">Pitfalls — ข้อผิดพลาดที่พบบ่อย</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <div class="pitfall">
+        <div class="pitfall-hd">⚠️ ระวัง</div>
+        <ol>
+          <li>ผู้ป่วย <strong>cancer pain</strong> ที่อาการ moderate-to-severe และเป็นตลอดเวลา/เกือบตลอดเวลา แพทย์มักสั่ง morphine IV prn เท่านั้น ผู้ป่วยไม่กล้าขอพยาบาลบ่อยๆ ทำให้คุมปวดไม่ได้ — <strong>ควรให้เป็น around the clock</strong> และถ้ากินได้ ควรให้เป็นยากินก่อน</li>
+          <li>ผู้ป่วย cancer pain ที่อาการ moderate-to-severe ให้ยาไม่เหมาะกับระดับความปวด เช่น ให้ <strong>paracetamol around the clock แทน opioid</strong></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📚</span><span class="card-ttl">References</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ol class="ref-list">
+        <li>WHO Guidelines for the Pharmacological and Radiotherapeutic Management of Cancer Pain in Adults and Adolescents, 2018</li>
+        <li>Update Handbook of Palliative care guidelines, NHS, UK, ศูนย์การุณรักษ์ โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</li>
+        <li>Davies AN, Dickman A, Reid C, Stevens AM, Zeppetella G. The management of cancer-related breakthrough pain: Recommendations of a task group of the Science Committee of the Association for Palliative Medicine of Great Britain and Ireland. Eur J Pain. 2009;13(4):331-338</li>
+        <li>Maltoni M, Scarpi E, Modonesi C, et al. A validation study of the WHO analgesic ladder: A two-step vs three-step strategy. Support Care Cancer. 2005;13(11):888-894</li>
+        <li>Symptom management in palliative care workshop มิถุนายน 2568. ศูนย์การุณรักษ์ โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DYSPNEA ══ -->
+<div class="section" id="section-dyspnea">
+  <div class="sec-title">🫁 Dyspnea / Breathlessness</div>
+  <div class="sec-desc">แนวทางการให้ยารักษาภาวะหายใจหอบเหนื่อยลำบากในผู้ป่วยประคับประคองและในผู้ป่วยระยะสุดท้าย</div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔍</span><span class="card-ttl">ประเมินอาการ & การดูแลรักษา</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li>ซักประวัติ ตรวจร่างกาย ส่งตรวจห้องปฏิบัติการที่จำเป็น</li>
+        <li>รักษาตามสาเหตุเท่าที่จะแก้ไขได้: เจาะน้ำจากปอด, ฉายแสงก้อนกดเบียดหลอดลม, พ่นยาขยายหลอดลม</li>
+        <li>Non-pharmacological + Drug treatments</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🛏️</span><span class="card-ttl">Non-pharmacological Management</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li><strong>Breath training:</strong> Pursed lip breathing</li>
+        <li>พัดลมตั้งโต๊ะหรือมือจับ + ท่านั่งตรง สามารถบรรเทาได้</li>
+        <li>O₂ supplement เมื่อ SpO₂ &lt; 92% หรือซีดรุนแรง</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💨</span><span class="card-ttl">Nebulized Medications</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>ยา</th><th>ขนาด</th><th>หมายเหตุ</th></tr>
+        <tr><td><span class="dn">0.9% NaCl</span></td><td><span class="dd">5 mL prn q 4 hr</span></td><td>Hydrate สารคัดหลั่งที่ข้นเหนียว</td></tr>
+        <tr><td><span class="dn">Salbutamol nebules</span></td><td><span class="dd">2.5-5 mg prn q 4 hr</span></td><td>ขยายหลอดลม</td></tr>
+      </table>
+      <div class="al al-w" style="margin-top:8px"><span class="al-i">⚠️</span><div>เฝ้าระวังอาการไม่พึงประสงค์ พิจารณาหยุดยาหลังจากใช้ <strong>3 วัน</strong> แล้วไม่ตอบสนอง</div></div>
+    </div>
+  </div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">Opioids — ยาตัวแรกที่แนะนำ</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <div class="al al-n"><span class="al-i">ℹ️</span><div><strong>ขนาดยาเริ่มต้น = ครึ่งหนึ่ง</strong> ของขนาดลดปวด (กรณีไม่เคยได้ opioid มาก่อน)</div></div>
+
+      <div class="sub">1. Dyspnea on exertion (Opioid-naïve)</div>
+      <table class="dt">
+        <tr><th>กลุ่มผู้ป่วย</th><th>ขนาด</th></tr>
+        <tr><td>ผู้ป่วยทั่วไป</td><td><span class="dn">Morphine IR/syrup</span> <span class="dd">2.5-5 mg PO prn q 4-6 hr</span></td></tr>
+        <tr><td>สูงอายุ / ไตวาย</td><td><span class="dn">Morphine IR/syrup</span> <span class="dd">1-2 mg PO prn q 6-8 hr</span></td></tr>
+      </table>
+      <p style="font-size:calc(var(--fs) - 2px);color:var(--text-muted);margin-top:6px">
+        ถ้าผู้ป่วยต้องการ &gt; 3 doses → ปรับเป็น <strong>around the clock (ATC) + prn</strong> (ขนาด prn = 10-20% หรือ 1/6 ของ total dose/day)
+      </p>
+
+      <div class="sub">2. Dyspnea at rest</div>
+      <ul class="ul">
+        <li>ATC + prn q 2 hr (ทั่วไป) / prn q 4 hr (สูงอายุ/ไตวาย)</li>
+        <li>หรือ continuous drip</li>
+      </ul>
+
+      <div class="sub">เคยได้รับ / กำลังได้ Opioid</div>
+      <ul class="ul">
+        <li>ยังเหนื่อยอยู่ → เพิ่มช้าๆ ทีละ <strong>30-50%</strong> ของขนาดที่ได้ประจำต่อวัน (ปรับเหมือน pain control)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">😌</span><span class="card-ttl">Benzodiazepines — ใช้เมื่อมีวิตกกังวล/Panic เท่านั้น</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <div class="al al-w"><span class="al-i">⚠️</span><div><strong>การให้ BZD เพียงตัวเดียว ไม่ช่วยลดอาการหอบเหนื่อย</strong> — ใช้เมื่อมีวิตกกังวล/panic attack ที่กระตุ้นอาการหอบเหนื่อย</div></div>
+      <table class="dt" style="margin-top:8px">
+        <tr><th>ยา</th><th>ขนาด</th><th>หมายเหตุ</th></tr>
+        <tr><td><span class="dn">Lorazepam</span></td><td><span class="dd">0.5-2 mg SL prn q 4-6 hr</span></td><td>Onset 5-10 นาที</td></tr>
+        <tr><td><span class="dn">Diazepam</span></td><td><span class="dd">2-5 mg PO hs</span></td><td>วิตกกังวลต่อเนื่องนาน</td></tr>
+        <tr><td><span class="dn">Midazolam</span></td><td><span class="dd">2-5 mg SC/IV prn q 4-6 hr</span></td><td>กรณีให้ PO/SL ไม่ได้</td></tr>
+      </table>
+      <div class="al al-d" style="margin-top:8px"><span class="al-i">🚫</span><div>
+        <strong>SE:</strong> sedation<br>
+        <strong>Contraindications:</strong> Acute severe pulmonary insufficiency, untreated sleep apnea syndrome, severe hepatic impairment, myasthenia gravis
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">Corticosteroids</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <p style="font-size:calc(var(--fs) - 2px);color:var(--text-muted);margin-bottom:8px">เลือกให้ช่วงเช้า/บ่าย เพื่อหลีกเลี่ยงนอนไม่หลับ</p>
+      <table class="dt">
+        <tr><th>ข้อบ่งชี้</th><th>Dexamethasone</th></tr>
+        <tr><td><strong>SVC obstruction</strong></td><td><span class="dd">16 mg PO/IV/SC day</span></td></tr>
+        <tr><td><strong>Stridor</strong></td><td><span class="dd">8-16 mg PO/day</span></td></tr>
+        <tr><td><strong>Lymphangitis carcinomatosis / Radiation pneumonitis / Bronchospasm</strong></td><td><span class="dd">8 mg PO/day</span></td></tr>
+      </table>
+      <ul class="ul" style="margin-top:8px">
+        <li>Review หลังให้ยาไป <strong>5 วัน</strong> ว่าตอบสนองดีหรือไม่</li>
+        <li>ดีขึ้น → ปรับขนาดยาลงช้าๆ จนได้ขนาดต่ำสุดที่คุมอาการได้</li>
+        <li>ไม่ดีขึ้น → หยุดยา หรือ maintenance ขนาดเดิม</li>
+        <li>ใช้ติดต่อกัน &gt; 3 สัปดาห์ → <strong>taper off</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">👨‍👩‍👧</span><span class="card-ttl">ข้อแนะนำผู้ป่วยและผู้ดูแล</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li>หอบเหนื่อยเมื่อออกแรง <strong>ไม่ใช่อันตราย</strong> หายไปไม่นานหลังพัก</li>
+        <li>รักษาระดับกิจกรรมในชีวิตประจำวัน เพื่อลดอาการหอบ</li>
+        <li>อยู่ในที่อากาศถ่ายเท เปิดหน้าต่าง พัดลมพัดผ่านใบหน้า</li>
+        <li>ค่อยๆอธิบายว่า ความกังวล/กลัว ขณะหอบ ไม่ทำให้อันตรายหรืออาการทรุด</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">⏰</span><span class="card-ttl">Last Days of Life — Episodic Dyspnea (กินยาไม่ได้)</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>สถานการณ์</th><th>ยา & ขนาด</th></tr>
+        <tr><td>ใช้ regular opioid อยู่แล้ว</td><td>ใช้ขนาด BTP เดิม <span class="rt riv">IV</span></td></tr>
+        <tr><td>Opioid-naïve</td><td><span class="dn">Morphine</span> <span class="dd">2 mg IV prn q 2 hr</span><br>ตับ/ไตวาย: <span class="dn">Fentanyl</span> <span class="dd">25 µg IV prn q 1 hr</span></td></tr>
+        <tr><td>prn &gt; 3 ครั้ง/วัน</td><td>เปลี่ยนเป็น continuous drip หรือ ATC (คำนวณจาก prn ใน 24 ชม.)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔴</span><span class="card-ttl">Persistent Dyspnea — Morphine Drip</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>ขั้นตอน</th><th>คำสั่งยา</th></tr>
+        <tr><td>Loading</td><td><span class="dn">Morphine</span> <span class="dd">2-3 mg IV push</span></td></tr>
+        <tr><td>Drip เริ่มต้น</td><td><span class="dd">0.5-1 mg/hr IV drip</span></td></tr>
+        <tr><td>BTP ระหว่าง drip</td><td><span class="dn">Morphine</span> <span class="dd">1-2 mg IV prn q 15 min</span><br>หรือ <span class="dn">Fentanyl</span> <span class="dd">25 µg IV prn q 15 min</span></td></tr>
+        <tr><td>ปรับ rate</td><td>ทีละ <span class="dd">0.5-1 mg/hr</span> ทุก 30-60 min (หลัง purge 3 ครั้งไม่ดีขึ้น)</td></tr>
+      </table>
+      <div class="al al-w" style="margin-top:8px"><span class="al-i">⚠️</span><div>ปรับ BTP ก่อน แล้วค่อยปรับ rate — เพิ่ม rate เร็วเสี่ยง overdose<br>
+      <em>ตัวอย่าง:</em> เดิม Mo IV drip 1 mg/hr (= IV 24 mg/day = oral 72 mg/day) → เพิ่มเป็น 2 mg/hr (= IV 48 mg/day = oral 144 mg/day)</div></div>
+      <div class="sub">ตับ/ไตวาย → Fentanyl</div>
+      <table class="dt"><tr><td><span class="dn">Fentanyl</span> <span class="dd">25 µg IV push → drip 10 µg/hr</span> ปรับ +5-10 µg/hr q 15-60 min</td></tr></table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">😴</span><span class="card-ttl">Palliative Sedation (ปรึกษาศูนย์บริรักษ์)</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <div class="al al-d"><span class="al-i">🔴</span><div>ใช้ช่วง <strong>last days of life</strong> เมื่อให้ morphine เต็มที่แล้วไม่ดีขึ้น<br>ต้องพูดคุยกับผู้ป่วย/ญาติ + เซ็น <strong>informed consent</strong> ก่อน</div></div>
+      <table class="dt" style="margin-top:8px">
+        <tr><td><span class="dn">Midazolam</span></td><td><span class="dd">1-2 mg IV/SC prn q 1-2 hr → drip 0.5 mg/hr</span><br>ปรับเพิ่มครั้งละ 0.5 mg q 1 hr ตามอาการ</td></tr>
+      </table>
+      <p style="font-size:calc(var(--fs) - 2px);color:var(--text-muted);margin-top:6px">หากได้ morphine อยู่แล้ว ให้ drip ยา morphine ต่อ — purge prn จะได้ผลเร็วกว่าปรับ rate</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💡</span><span class="card-ttl">Oxygen & HFNC</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li>SpO₂ &lt; 92% → ให้ O₂ ได้ แต่อาการหายใจไม่อิ่มอาจไม่สัมพันธ์กับ SpO₂</li>
+        <li><strong>Nasal cannula ทนได้ดีกว่า mask</strong> — ไม่ใช้ SpO₂ เป็นตัวตัดสินอาการเพียงอย่างเดียว</li>
+        <li><strong>HFNC:</strong> ปรับ FiO₂ ตาม target SpO₂ (อ้างอิงโรคเดิม ไม่จำเป็น 100%), ปรับ flow ตามความเหนื่อย</li>
+        <li>ดีขึ้น → เปลี่ยนเป็น O₂ cannula/mask (HFNC ลมแรง อาจไม่สบาย)</li>
+        <li>ผู้ป่วยใกล้เสียชีวิต — ไม่ต้องลด setting คงให้ผู้ป่วยสบาย</li>
+        <li><strong>HFNC ไม่เหมาะสำหรับกลับบ้าน</strong> — หา O₂ flow สูงลำบาก ควรใช้ O₂ cannula/mask แล้วปรับยาให้ดี</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">⚠️</span><span class="card-ttl">Pitfall</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <div class="pitfall">
+        <div class="pitfall-hd">⚠️ ระวัง</div>
+        <ol>
+          <li>เมื่อเริ่ม <strong>Morphine IV drip</strong> แล้ว ไม่ได้ monitor ใกล้ชิด — ขนาดเริ่มต้นอาจไม่พอ ผู้ป่วยยังเหนื่อย หรือเพิ่ม Morphine drip มาก/เร็วเกินไป → <strong>drug overdose</strong></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📚</span><span class="card-ttl">References</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ol class="ref-list">
+        <li>Update Handbook of Palliative care guidelines, NHS, UK, ศูนย์การุณรักษ์ โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</li>
+        <li>NHS, Scottish Palliative Care Guidelines. Breathlessness</li>
+        <li>Allard P, Lamontagne C, Bernard P, Tremblay C. How effective are supplementary doses of opioids for dyspnea in terminally ill cancer patients? J Pain Symptom Manage. 1999;17(4):256-65</li>
+        <li>Simon ST, Bausewein C, Schildmann E, et al. Episodic breathlessness in patients with advanced disease: a systematic review. J Pain Symptom Manage. 2013;45(3):561-78</li>
+        <li>Simon ST, Higginson I, Booth S, et al. Benzodiazepines for the relief of breathlessness in advanced malignant and non-malignant diseases in adults. 2016</li>
+        <li>Twycross R, Wilcock A, Howard P. Palliative Care Formulary PCF4. 4th ed. England: Pharmaceutical Press; 2011</li>
+        <li>Symptom management in palliative care workshop มิถุนายน 2568. ศูนย์การุณรักษ์ โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DELIRIUM ══ -->
+<div class="section" id="section-delirium">
+  <div class="sec-title">🧠 Delirium</div>
+  <div class="sec-desc">แนวทางการให้ยาในภาวะ Delirium ในผู้ป่วยประคับประคอง</div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📋</span><span class="card-ttl">สาเหตุ — DELIRIUM Mnemonic</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <div class="pills">
+        <span class="pill" style="color:var(--blue)">D — Dehydration / Dementia / Deoxygenation</span>
+        <span class="pill" style="color:var(--teal)">E — Electrolyte imbalance</span>
+        <span class="pill" style="color:var(--violet)">L — Liver impairment</span>
+        <span class="pill" style="color:var(--amber)">I — Infection / Illness / Injury (Pain) / Immobility</span>
+        <span class="pill" style="color:var(--orange)">R — Renal impairment</span>
+        <span class="pill" style="color:var(--rose)">I — Intracranial causes</span>
+        <span class="pill" style="color:var(--rose)">U — Urinary retention / Constipation</span>
+        <span class="pill" style="color:var(--green)">M — Medication / Multiple drugs</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🛏️</span><span class="card-ttl">Non-pharmacological Management</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li>อธิบายสาเหตุ/สิ่งที่น่าจะเป็นสาเหตุให้ผู้ป่วย ญาติ ผู้ดูแลทราบ</li>
+        <li>จัดสิ่งแวดล้อม: <strong>แสงสว่างเพียงพอ สงบ เสียงรบกวนน้อย</strong> มีนาฬิกา</li>
+        <li>จัดหา: แว่นตา, เครื่องช่วยฟัง, อุปกรณ์ที่ผู้ป่วยเคยใช้</li>
+        <li>สื่อสารอ่อนโยน หลีกเลี่ยงโต้เถียง ช่วยกระตุ้นความจำ บอกสถานที่ วัน เวลา</li>
+        <li><strong>หลีกเลี่ยงการผูกมัดโดยไม่จำเป็น</strong> — ทำเฉพาะช่วงเสี่ยงอันตราย แล้วรีบปลด</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🎯</span><span class="card-ttl">การรักษาตามสาเหตุที่แก้ไขได้</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>สาเหตุ</th><th>การรักษา</th></tr>
+        <tr><td><strong>Drug related</strong><br>(Opioids, Steroids, BZD, Anticholinergic ที่ผ่าน BBB)</td><td>Reduce / Stop / Switch ยาที่สงสัย</td></tr>
+        <tr><td><strong>Withdrawal:</strong> Alcohol, Nicotine, BZD, Opioids</td><td>อาจให้ผู้ป่วยใช้ยาเดิมต่อ; <strong>Nicotine patch</strong> อาจช่วย</td></tr>
+        <tr><td><strong>Metabolic:</strong> Respiratory failure, Liver failure, Renal failure, Hypo/Hyperglycemia, Hypercalcemia, Adrenal/Thyroid/Pituitary, Infection, Nutrition</td><td>รักษาสาเหตุที่ reversible</td></tr>
+        <tr><td><strong>Raised Intracranial Pressure</strong></td><td><span class="dn">Dexamethasone</span> <span class="dd">8-16 mg/day</span> หรือ <span class="dd">6.6-13.2 mg SC</span> (3.3 mg/mL) × 1 สัปดาห์ → ลดใน 2-4 สัปดาห์ จนถึงขนาดต่ำสุดที่คุม<br><em>ถ้าได้ฉายแสง: คงสเตียรอยด์ต่อจนถึง 1 สัปดาห์หลัง treatment แล้วค่อยลด</em></td></tr>
+        <tr><td><strong>Other:</strong> Dehydration, Shock, Anemia, Pain, Constipation, Urinary retention, Sleep, Environment</td><td>รักษาที่ reversible</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📌</span><span class="card-ttl">หลักการสำคัญ</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <div class="al al-w"><span class="al-i">⚠️</span><div>
+        <strong>1.</strong> Antipsychotic อาจเพิ่มอัตราการเสียชีวิตและผลข้างเคียง โดยเฉพาะผู้สูงอายุที่มีสมองเสื่อม — ใช้เมื่อจำเป็น <strong>เริ่มจากขนาดต่ำๆ</strong><br>
+        <strong>2.</strong> ทบทวนยาที่ใช้สม่ำเสมอ <strong>หยุดยาให้เร็วที่สุด</strong> เมื่อผู้ป่วยอาการดีขึ้น
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">Sedation Undesirable (ไม่ต้องการให้ง่วง)</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>ยา</th><th>ขนาด</th><th>หมายเหตุ</th></tr>
+        <tr><td><span class="dn">Haloperidol</span><span class="l1">1st</span></td><td><span class="dd">0.5-1 mg PO at night หรือ BID</span><br>หรือ <span class="dd">0.25-0.5 mg PO/SC prn q 1 hr</span> + regular dose</td><td>Max <strong>10 mg/24hr</strong><br>EPS ที่ dose สูง</td></tr>
+        <tr><td><span class="dn">Lorazepam</span><br><span class="dnote">alcohol withdrawal</span></td><td><span class="dd">0.5-1 mg PO/SC</span></td><td>—</td></tr>
+        <tr><td><span class="dn">Midazolam</span></td><td><span class="dd">2-5 mg SC q 1-2 hr</span></td><td>—</td></tr>
+        <tr><td><span class="dn">Diazepam</span></td><td><span class="dd">5 mg PO/rectal q 8-12 hr</span></td><td>—</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔴</span><span class="card-ttl">Agitated Delirium — Sedation Beneficial</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>ยา</th><th>ขนาด</th><th>SE / หมายเหตุ</th></tr>
+        <tr><td><span class="dn">Quetiapine</span></td><td><span class="dd">12.5-25 mg PO prn q 6 hr</span></td><td>SE: orthostatic hypotension</td></tr>
+        <tr><td><span class="dn">Olanzapine</span></td><td><span class="dd">2.5-5 mg PO/SL OD หรือ BID</span></td><td>Less sedating กว่า levomepromazine<br>แต่กระตุ้น delirium ได้มากกว่ายาอื่น</td></tr>
+        <tr><td><span class="dn">Risperidone</span></td><td><span class="dd">0.25-1 mg PO q 12-24 hr</span><br>Max <strong>4 mg/day</strong></td><td>EPS ที่ dose &gt; 6 mg/day<br>Orthostatic hypotension</td></tr>
+        <tr><td><span class="dn">Levomepromazine</span></td><td><span class="dd">12.5-25 mg PO/SC q 6-8 hr</span></td><td>&gt; 2 doses/24hr → <strong>ปรึกษาผู้เชี่ยวชาญ</strong></td></tr>
+      </table>
+      <div class="al al-n" style="margin-top:8px"><span class="al-i">ℹ️</span><div>หากให้ยาแล้วไม่ดีขึ้น/ใกล้เสียชีวิต → พิจารณา <strong>palliative sedation (Midazolam first-line)</strong> — refractory delirium เป็น 1 ใน 3 ข้อบ่งชี้ที่พบบ่อย</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🚨</span><span class="card-ttl">Acute Disturbed / Violent / Aggressive</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><td><span class="dn">Haloperidol</span></td><td><span class="dd">1.5-5 mg SC/IM</span> ซ้ำได้หลัง 20-30 min<br><span class="dnote">Dose &lt; 2 mg สามารถให้ <strong>IV</strong> ได้ — ความเสี่ยง arrhythmia ต่ำ<br>Dose สูงกว่านี้ <strong>หลีกเลี่ยง IV</strong> เพราะเสี่ยง <strong>Torsades de Pointes</strong> — ถ้าจำเป็นจริงๆ ตรวจ EKG ก่อน-หลังให้ยา</span></td></tr>
+      </table>
+      <div class="al al-d" style="margin-top:8px"><span class="al-i">🚫</span><div><strong>Avoid antipsychotics</strong> ใน Parkinson's disease / Dementia with Lewy bodies</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📚</span><span class="card-ttl">References</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ol class="ref-list">
+        <li>Update Handbook for Palliative Care Guidelines NHS, U.K. ศูนย์การุณรักษ์ โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</li>
+        <li>Siriraj Palliative การดูแลประคับประคอง ศูนย์บริรักษ์ ศิริราช</li>
+        <li>NICE Clinical Guideline CG103 (2010) Delirium: prevention, diagnosis and management</li>
+        <li>SIGN guidelines 157 - Risk reduction and management of delirium</li>
+        <li>NHS, Scottish Palliative Care Guidelines. Delirium 2017</li>
+        <li>British Geriatrics Society 2013. The prevention, diagnosis and management of delirium in older people</li>
+        <li>Symptom management in palliative care workshop มิถุนายน 2568. ศูนย์การุณรักษ์ โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DEATH RATTLE ══ -->
+<div class="section" id="section-deathrattle">
+  <div class="sec-title">🔔 Death Rattle</div>
+  <div class="sec-desc">เสียงดังครืดคราดในลำคอจากสารคัดหลั่งใน upper airways ในผู้ป่วยระยะสุดท้ายก่อนเสียชีวิต — ผู้ป่วยไม่สามารถกำจัดสารคัดหลั่งได้</div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">ℹ️</span><span class="card-ttl">ข้อมูลสำคัญ — แจ้งครอบครัว</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <div class="al al-n"><span class="al-i">ℹ️</span><div>
+        <strong>Death rattle เป็น 1 ในสัญญาณของการตาย</strong> — บอกว่าผู้ป่วยเหลือเวลาน้อยมาก<br>
+        <strong>ไม่ทำให้ airway obstruction</strong> และ <strong>ไม่ใช่สาเหตุการเสียชีวิต</strong><br>
+        ควรอธิบายให้ครอบครัวทราบ เพราะมักกังวลในเรื่องนี้
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔬</span><span class="card-ttl">แบ่งเป็น 2 ชนิด</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>ชนิด</th><th>กลไก</th><th>หมายเหตุ</th></tr>
+        <tr><td><strong>Type 1</strong></td><td>สารคัดหลั่งที่ผลิตมากเกินจาก <strong>salivary glands</strong></td><td>ตอบสนองดีต่อ anticholinergic</td></tr>
+        <tr><td><strong>Type 2</strong></td><td><strong>Bronchial secretions</strong> จาก respiratory pathology<br>(การติดเชื้อในปอด, สำลัก, pulmonary edema)</td><td>รักษา/บรรเทาได้ยากกว่า — มักไม่ตอบสนองต่อยาบรรเทาอาการตามแนว palliative</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🛏️</span><span class="card-ttl">Non-pharmacological Management</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li><strong>Limit / discontinue IV fluids</strong></li>
+        <li>ให้จิบน้ำได้ถ้าผู้ป่วยยังตื่นรู้ตัวและกลืนได้บ้าง</li>
+        <li>ทำความสะอาดช่องปาก</li>
+        <li>จัดท่า: ศีรษะต่ำ หรือตะแคงข้างให้ปอดที่มีพยาธิสภาพอยู่ด้านล่าง</li>
+        <li><strong>หลีกเลี่ยงการดูดเสมหะ</strong> ถ้าไม่จำเป็น — ทำให้ผู้ป่วยไม่สุขสบาย กังวล อีกทั้งไม่มีประสิทธิภาพถ้าสารคัดหลั่งอยู่ใต้ oropharynx และอาจกระตุ้นให้เสมหะมากขึ้น</li>
+        <li>ยกเว้นกรณีมี <strong>tracheostomy</strong> อยู่แล้ว → ดูดเสมหะตามแนวทางการดูแลอย่างต่อเนื่อง</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">Pharmacological Management — Anticholinergics</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <div class="al al-w"><span class="al-i">⚠️</span><div>ยังไม่มีหลักฐานว่าการรักษาด้วยยาชนิดใดมีประโยชน์มากกว่า placebo — ให้ยากรณีเสียงดัง หรือสร้างความกังวลให้ครอบครัว<br>Anticholinergic เป็นที่นิยมใช้ แม้ไม่มีหลักฐานรองรับมาก</div></div>
+      <table class="dt" style="margin-top:8px">
+        <tr><th>ลำดับ</th><th>ยา</th><th>ขนาด</th><th>หมายเหตุ</th></tr>
+        <tr><td><span class="l1">1st</span></td><td><span class="dn">Hyoscine butylbromide</span><br><span class="dnote">Buscopan</span></td><td><span class="dd">20-40 mg SC prn q 4 hr</span><br>Max <strong>300 mg/24hr</strong></td><td>ใช้ใน terminal dyspnea เพื่อป้องกัน death rattle ได้<br>(ห้ามใช้ในผู้ที่ยังไม่ใช่ระยะสุดท้าย → เสมหะเหนียว obstruction)<br><strong>Does not cross BBB</strong> — CNS SE น้อย</td></tr>
+        <tr><td><span class="l2">2nd</span></td><td><span class="dn">Glycopyrrolate</span></td><td><span class="dd">0.2-0.4 mg SC prn q 4-6 hr</span></td><td><strong>ลด dose ครึ่งหนึ่งใน ESRD</strong><br>Less CNS adverse — does not cross BBB</td></tr>
+        <tr><td><span class="l3">3rd</span></td><td><span class="dn">Hyoscine hydrobromide</span><br><span class="dnote">Scopolamine</span></td><td><span class="dd">0.4-0.6 mg SC q 4-6 hr</span></td><td>Sedative effect<br><strong>Avoid in ESRD</strong> — เพิ่มความเสี่ยง delirium</td></tr>
+        <tr><td>—</td><td><span class="dn">Atropine</span><br><span class="dnote">1% ophthalmic drops, off-label SL</span></td><td><span class="dd">1-4 drops (0.5 mg/drop) SL q 2-4 hr</span></td><td>Effectiveness ยังไม่มีหลักฐาน<br>Off-label indication<br>แนะนำหยอดตาถ้าเยื่อบุตาแห้ง</td></tr>
+      </table>
+      <div class="al al-w" style="margin-top:8px"><span class="al-i">⚠️</span><div>
+        <strong>SE:</strong> ปากแห้ง, ปัสสาวะค้างในกระเพาะปัสสาวะ, ตาพร่ามัว, อาจสับสนได้<br>
+        พิจารณาหยุดยาถ้าไม่ตอบสนองใดๆเลย<br>
+        <strong>การให้ออกซิเจน ไม่ได้ benefit</strong> ในภาวะ pulmonary congestion
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📚</span><span class="card-ttl">References</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ol class="ref-list">
+        <li>Update Handbook of Palliative care guidelines, NHS, UK, ศูนย์การุณรักษ์ โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</li>
+        <li>Dudgeon D. Dyspnea, death rattle and cough. 2016. In: Care of the Imminently Dying. Oxford University Press</li>
+        <li>Bennett M, Lucas V, Brennan M, et al. Using anti-muscarinic drugs in the management of death rattle. Palliat Med. 2002;16(5):369-74</li>
+        <li>Wildiers H, Dhaenekint C, Demeulenaere P, et al. Atropine, hyoscine butylbromide, or scopolamine are equally effective for the treatment of death rattle in terminal care. J Pain Symptom Manage. 2009;38(1):124-33</li>
+        <li>Clark K, Currow DC, Agar M, et al. A pilot phase II randomized study of octreotide vs hyoscine hydrobromide. J Pain Palliat Care Pharmoacother. 2008;22(2):131-8</li>
+        <li>Bascom PB. Inadvertent Ophthalmic Administration of Atropine Drops in a Hospice Patient. Am J Hosp Palliat Med. 2013;30(8):793-4</li>
+        <li>Symptom management in palliative care workshop มิ.ย. 2568. ศูนย์การุณรักษ์ โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONSTIPATION ══ -->
+<div class="section" id="section-constipation">
+  <div class="sec-title">🟤 Constipation</div>
+  <div class="sec-desc">แนวทางการให้ยารักษาอาการท้องผูกในผู้ป่วยประคับประคอง</div>
+  <div class="al al-w"><span class="al-i">⚠️</span><div>เมื่อเริ่ม opioids <strong>ต้องให้ยาระบายทุกวัน</strong> — ไม่แนะนำ bulk-forming laxatives เพราะเสี่ยง gut obstruction</div></div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔍</span><span class="card-ttl">สาเหตุของท้องผูกในผู้ป่วยประคับประคอง</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li><strong>ยา</strong>: opioids, antacids ที่มี aluminium, diuretics, iron, 5HT3 antagonists</li>
+        <li><strong>ภาวะขาดน้ำ</strong> / กินอาหารกากใยน้อย / เคลื่อนไหวน้อย</li>
+        <li><strong>มะเร็งกดเบียด</strong>หรืออุดทางเดินอาหาร</li>
+        <li><strong>Metabolic</strong>: hypercalcemia, hypokalemia, hypothyroidism, uremia</li>
+        <li><strong>โรคร่วม</strong>: diverticular disease, anal fissure, hemorrhoid, spinal cord compression</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">ยาระบายตามสถานการณ์</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>Clinical Situation</th><th>ยา & ขนาด</th><th>หมายเหตุ</th></tr>
+        <tr><td><strong>Soft bulky</strong></td><td><span class="dn">Bisacodyl</span> <span class="dd">5-20 mg hs</span><br><span class="dn">Senna</span> <span class="dd">7.5 mg hs → 15 mg → 30 mg BID</span><br><span class="dn">Sodium picosulfate</span> <span class="dd">5-10 mg hs → max 30 mg/day</span><br><span class="dn">Lactulose</span> <span class="dd">30-60 mL/day</span><br><span class="dn">MOM</span> <span class="dd">30-60 mL hs</span></td><td>หลีกเลี่ยง stimulants ถ้ามี colic</td></tr>
+        <tr><td><strong>Colon full, no colic</strong></td><td><span class="dn">Senna + Docusate</span></td><td>combination เป็นทางเลือก</td></tr>
+        <tr><td><strong>Colic</strong></td><td><span class="dn">Macrogols (PEG)</span> <span class="dd">1 sachet ละลายน้ำ 125 mL → 2-3 sachets/day</span></td><td>ต้องดื่มน้ำให้เพียงพอ; ระวังในผู้ป่วยหัวใจ (limit 2 sachets/hr)</td></tr>
+        <tr><td><strong>Hard dry</strong></td><td><span class="dn">Docusate sodium</span> <span class="dd">200-500 mg/day</span></td><td>stool softener; ใช้ร่วม stimulant ได้</td></tr>
+        <tr><td><strong>Hard, full rectum</strong></td><td>1st: <span class="dn">Bisacodyl/Senna</span> + <span class="dn">Docusate</span><br>2nd: <span class="dn">Macrogols</span> 2-3 sachets/day<br>3rd: Suppository, Enema</td><td>step-up ตามการตอบสนอง</td></tr>
+        <tr><td><strong>Fecal Impaction</strong></td><td>1st: <span class="dn">Arachis oil enema</span> ค้างคืน + <span class="dn">Phosphate enema</span> เช้า<br>2nd: <span class="dn">Macrogols</span> <span class="dd">8 sachets ละลายน้ำ 1 L ภายใน &lt;6 hr</span></td><td><strong>แพ้ถั่ว → ห้ามใช้ Arachis oil</strong></td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📌</span><span class="card-ttl">หลักปฏิบัติ (Practice points)</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li>เป้าหมาย: ผู้ป่วยถ่ายอุจจาระได้ใกล้เคียงปกติ <strong>≥1 ครั้งทุก 1-2 วัน</strong> โดยไม่เบ่งและไม่เจ็บ</li>
+        <li>ทบทวนยาที่ทำให้ท้องผูกและพิจารณาหยุด/ลดถ้าทำได้</li>
+        <li>เมื่อเริ่ม opioids → สั่ง stimulant + softener <strong>คู่กันเสมอ</strong></li>
+        <li>ตรวจ PR ก่อนให้ยาระบายในกรณีสงสัย fecal impaction; ถ้า rectum ว่างต้อง work up obstruction</li>
+        <li>หลีกเลี่ยง bulk-forming laxatives (psyllium) ในผู้ป่วยที่ดื่มน้ำได้น้อยหรือมีความเสี่ยง obstruction</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📚</span><span class="card-ttl">References</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ref-list">
+        <li>Twycross R, Wilcock A, Howard P. Palliative Care Formulary (PCF). 8th ed. 2024.</li>
+        <li>Larkin PJ, et al. ESMO Clinical Practice Guidelines: diagnosis, assessment and management of constipation in advanced cancer. Ann Oncol. 2018;29(Suppl 4):iv111–iv125.</li>
+        <li>Oxford Textbook of Palliative Medicine. 6th ed. 2021.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NAUSEA ══ -->
+<div class="section" id="section-nausea">
+  <div class="sec-title">🤢 Nausea & Vomiting</div>
+  <div class="sec-desc">แนวทางการให้ยารักษาอาการคลื่นไส้อาเจียน ตามกลไกสาเหตุ</div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🌿</span><span class="card-ttl">Non-pharmacological & สิ่งแวดล้อม</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li>กินอาหาร <strong>ปริมาณน้อย ๆ บ่อย ๆ</strong> เลือกอาหารเย็น/รสเปรี้ยว</li>
+        <li>อาหาร <strong>โปรตีนสูง ไขมันต่ำ กากใยต่ำ</strong></li>
+        <li>หลีกเลี่ยง <strong>กลิ่นแรง</strong> เช่น น้ำหอม กลิ่นอาหารปรุง กลิ่นบุหรี่</li>
+        <li>เฝ้าระวังและรักษา <strong>ท้องผูก</strong> ซึ่งกระตุ้นคลื่นไส้</li>
+        <li>จัดสิ่งแวดล้อมสงบ ห้องอากาศถ่ายเท ลดสิ่งรบกวน</li>
+        <li>ดูแล <strong>สุขภาพช่องปาก</strong> ระวัง oral thrush และฟันผุ</li>
+        <li>ประเมินและดูแล <strong>สภาพจิตใจ</strong> (anxiety, anticipatory nausea)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">⚠️</span><span class="card-ttl">ผลของอาเจียนเรื้อรัง</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li><strong>Dehydration</strong> และ electrolyte imbalance</li>
+        <li><strong>Hypokalemia</strong> → muscle weakness, arrhythmia</li>
+        <li><strong>Fatigue</strong> และ malnutrition</li>
+        <li>เพิ่ม side effects ของยา <strong>NSAIDs / ACEI / diuretics</strong> (กลไก renal hypoperfusion)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">ยาตามสาเหตุ</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>สาเหตุ</th><th>ยาที่เลือก</th></tr>
+        <tr><td><strong>Chemical / Metabolic</strong><br><span class="dnote">Opioids, uremia, chemo</span></td><td><span class="dn">Haloperidol</span> <span class="dd">0.5-1.5 mg PO / 0.5-1 mg SC OD</span><br><span class="dn">Metoclopramide</span> <span class="dd">10 mg QID PO/SC</span><br><span class="dn">Ondansetron</span> <span class="dd">4 mg PO/SC BID</span></td></tr>
+        <tr><td><strong>Motility disorder</strong><br><span class="dnote">Partial obs, gastroparesis</span></td><td><span class="dn">Domperidone</span> <span class="dd">10 mg TID PO</span><br><span class="dn">Metoclopramide</span> <span class="dd">10-20 mg QID / 30-80 mg CSCI</span><br><span class="dn">Dexamethasone</span> <span class="dd">4-8 mg OD</span></td></tr>
+        <tr><td><strong>Raised ICP / Vestibular</strong><br><span class="dnote">Headache, vertigo</span></td><td><span class="dn">Cyclizine</span> <span class="dd">25-50 mg PO/SC TID</span><br><span class="dn">Dexamethasone</span> <span class="dd">8 mg OD</span><br>หูชั้นใน: <span class="dn">Cinnarizine</span> <span class="dd">30 mg → 15 mg TID</span></td></tr>
+        <tr><td><strong>Gastric irritation</strong></td><td><span class="dn">Ranitidine</span> <span class="dd">150 mg BID</span> / <span class="dn">PPI</span></td></tr>
+        <tr><td><strong>Mixed / Unclear</strong></td><td><span class="dn">Metoclopramide</span> <span class="dd">30-80 mg/24hr CSCI</span><br><span class="dn">Levomepromazine</span> <span class="dd">3-6 mg BID PO / 5-15 mg/24hr CSCI</span><br>+ วิตกกังวล: <span class="dn">Lorazepam</span> <span class="dd">0.5-1 mg</span> / <span class="dn">Diazepam</span> <span class="dd">2-5 mg</span></td></tr>
+      </table>
+      <div class="al al-d" style="margin-top:8px"><span class="al-i">🚫</span><div><strong>Metoclopramide</strong> ห้ามใน mechanical bowel obstruction / colic, ห้ามใช้ร่วม cyclizine/antimuscarinic (ฤทธิ์หักล้างกัน)</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">⚡</span><span class="card-ttl">Side effects ของยาแก้คลื่นไส้</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>ยา</th><th>กลไก / กลุ่ม</th><th>SE สำคัญ</th></tr>
+        <tr><td><span class="dn">Cyclizine</span></td><td>H1 + antimuscarinic</td><td>Dry mouth, drowsy, urinary retention, constipation, blurred vision</td></tr>
+        <tr><td><span class="dn">Haloperidol</span></td><td>D2 antagonist</td><td>EPS, akathisia, <strong>QT prolongation</strong>, NMS (rare)</td></tr>
+        <tr><td><span class="dn">Metoclopramide</span></td><td>D2 + 5HT4 agonist</td><td>EPS, akathisia, dystonia (โดยเฉพาะหนุ่มสาว); <strong>ห้าม mech obs</strong></td></tr>
+        <tr><td><span class="dn">Domperidone</span></td><td>peripheral D2</td><td>QT prolongation; ระวังในผู้สูงอายุ/หัวใจ</td></tr>
+        <tr><td><span class="dn">Levomepromazine</span></td><td>broad spectrum</td><td>Sedation, hypotension, dry mouth, EPS</td></tr>
+        <tr><td><span class="dn">Prochlorperazine</span></td><td>D2 antagonist</td><td>EPS, sedation, hypotension</td></tr>
+        <tr><td><span class="dn">Ondansetron</span></td><td>5HT3 antagonist</td><td><strong>Constipation</strong>, headache, QT prolongation</td></tr>
+        <tr><td><span class="dn">Dexamethasone</span></td><td>corticosteroid</td><td>Hyperglycemia, insomnia, agitation, GI upset → ให้ PPI</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📚</span><span class="card-ttl">References</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ref-list">
+        <li>Twycross R, Wilcock A, Howard P. Palliative Care Formulary (PCF). 8th ed. 2024.</li>
+        <li>Walsh D, et al. 2017 updated MASCC/ESMO consensus recommendations: management of nausea and vomiting in advanced cancer. Support Care Cancer. 2017;25(1):333–340.</li>
+        <li>Oxford Textbook of Palliative Medicine. 6th ed. 2021.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ GUT OBSTRUCTION ══ -->
+<div class="section" id="section-gutobs">
+  <div class="sec-title">🔴 Gut Obstruction</div>
+  <div class="sec-desc">แนวทางการดูแลรักษาภาวะ Gut Obstruction ในผู้ป่วยประคับประคอง</div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">⚖️</span><span class="card-ttl">การพิจารณาผ่าตัด</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th style="color:var(--green)">✅ พิจารณาผ่าตัด</th><th style="color:var(--amber)">⚠️ ผ่าตัดอาจไม่ได้ผลดี</th><th style="color:var(--rose)">❌ ข้อห้าม</th></tr>
+        <tr>
+          <td>
+            <ul class="ul">
+              <li>แก้ไขสาเหตุด้วยการผ่าตัดได้</li>
+              <li>Prognosis &gt;12 สัปดาห์</li>
+              <li>Performance status ดี</li>
+            </ul>
+          </td>
+          <td>
+            <ul class="ul">
+              <li>เคย <strong>ฉายแสงช่องท้อง</strong>มาก่อน</li>
+              <li><strong>Multiple sites</strong> ของ small bowel obstruction</li>
+              <li>Extensive disease ในช่องท้อง / distant metastasis</li>
+              <li>Cachexia / malnutrition</li>
+            </ul>
+          </td>
+          <td>
+            <ul class="ul">
+              <li>Carcinomatous peritonei</li>
+              <li>Prognosis &lt;12 สัปดาห์</li>
+              <li>Poor performance status</li>
+              <li>Massive ascites</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🟡</span><span class="card-ttl">Functional / Partial Obstruction</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>ยา</th><th>ขนาด</th><th>หมายเหตุ</th></tr>
+        <tr><td><span class="dn">Dexamethasone</span></td><td><span class="dd">8-16 mg/day IM/IV/SC</span></td><td>ประเมิน 5-7 วัน ลด dose เมื่อดีขึ้น</td></tr>
+        <tr><td><span class="dn">Metoclopramide</span></td><td><span class="dd">30-120 mg/24hr CSCI</span></td><td><strong>ห้ามใน complete obstruction / colic</strong></td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔴</span><span class="card-ttl">Complete Obstruction — NPO</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <div class="al al-d"><span class="al-i">🚫</span><div>NPO เสมอ — หยุด prokinetics, stimulant laxatives</div></div>
+      <table class="dt" style="margin-top:8px">
+        <tr><th>ยา</th><th>ขนาด</th><th>จุดประสงค์</th></tr>
+        <tr><td><span class="dn">Octreotide</span></td><td><span class="dd">150-200 µg SC q 8 hr</span></td><td>ลด GI secretions</td></tr>
+        <tr><td><span class="dn">Cyclizine</span></td><td><span class="dd">75-150 mg/24hr CSCI + 25-50 mg prn q 4-6 hr</span></td><td>Max 200 mg/24hr</td></tr>
+        <tr><td><span class="dn">Haloperidol</span></td><td><span class="dd">0.5-1.5 mg SC hs/CSCI + 0.5 mg prn q 2 hr</span></td><td>Max 5 mg/24hr ร่วมกับ cyclizine</td></tr>
+        <tr><td><span class="dn">Levomepromazine</span></td><td><span class="dd">5-25 mg SC hs + 5 mg prn q 2 hr</span></td><td>Max 25 mg/24hr</td></tr>
+        <tr><td><span class="dn">Hyoscine butylbromide</span><br><span class="dnote">colic</span></td><td><span class="dd">60-120 mg/24hr CSCI</span></td><td>ลด smooth muscle spasm</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🩺</span><span class="card-ttl">Ongoing management</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>ปัญหา</th><th>การจัดการ</th></tr>
+        <tr><td><strong>Constipation precipitating obstruction</strong></td><td><span class="dn">Docusate sodium</span> <span class="dd">max 500 mg/day</span> (ขึ้นถึง 200 mg TID); หลีกเลี่ยง stimulant laxatives</td></tr>
+        <tr><td><strong>Abdominal pain</strong></td><td>Opioids ตามขั้น (PO ถ้ารับได้, ไม่งั้น SC/CSCI); ระวัง opioid-induced constipation</td></tr>
+        <tr><td><strong>Abdominal colic</strong></td><td><span class="dn">Hyoscine butylbromide</span> <span class="dd">40-120 mg/day IV</span> หรือ <span class="dd">60-120 mg/24hr CSCI</span></td></tr>
+        <tr><td><strong>Hydration</strong></td><td>SC fluid (hypodermoclysis) ขึ้นถึง <span class="dd">1-2 L/24 hr</span> เพียงพอป้องกัน dehydration</td></tr>
+        <tr><td><strong>Dietary intake</strong></td><td>อาหารเหลว/อ่อน ปริมาณน้อย ๆ ตามที่ผู้ป่วยทนได้; เน้นความสุขในการกิน ไม่เน้นแคลอรี</td></tr>
+        <tr><td><strong>Stent / NG tube / Gastrostomy</strong></td><td>Stent: high mech obstruction; NG: short-term decompression; <strong>Venting gastrostomy</strong>: refractory vomiting ใน complete obstruction</td></tr>
+        <tr><td><strong>Parenteral nutrition</strong></td><td>พิจารณาเฉพาะกรณี <strong>life expectancy &gt;2 เดือน</strong> และมีเป้าหมายชัดเจน</td></tr>
+      </table>
+      <div class="al al-i" style="margin-top:8px"><span class="al-i">🎯</span><div><strong>Ongoing review</strong>: ทบทวนเป้าหมายการรักษาเป็นระยะ ปรับยาและสารน้ำตามอาการ; สื่อสารกับผู้ป่วย/ครอบครัวเรื่อง prognosis และเป้าหมาย</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📚</span><span class="card-ttl">References</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ref-list">
+        <li>Ripamonti CI, et al. ESMO Clinical Practice Guidelines for the management of malignant bowel obstruction. Ann Oncol. 2018.</li>
+        <li>Twycross R, Wilcock A, Howard P. Palliative Care Formulary (PCF). 8th ed. 2024.</li>
+        <li>Oxford Textbook of Palliative Medicine. 6th ed. 2021.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BLEEDING ══ -->
+<div class="section" id="section-bleeding">
+  <div class="sec-title">🩸 Bleeding Management</div>
+  <div class="sec-desc">แนวทางการให้ยารักษาอาการเลือดออกในผู้ป่วยประคับประคอง</div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔍</span><span class="card-ttl">สาเหตุของเลือดออก</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li><strong>Cancer invasion</strong> เช่น tumor invade vessel, ulcerated mass</li>
+        <li><strong>Treatment-related</strong>: post-radiotherapy, chemotherapy-induced thrombocytopenia, post-surgery</li>
+        <li><strong>Thrombocytopenia</strong> (bone marrow involvement, hypersplenism, ITP)</li>
+        <li><strong>ยา</strong>: LMWH, warfarin, DOACs, ASA, NSAIDs, clopidogrel</li>
+        <li><strong>Coagulation disturbances</strong>: DIC, liver disease, vitamin K deficiency</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🚨</span><span class="card-ttl">Massive Terminal Hemorrhage</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <div class="al al-d"><span class="al-i">🔴</span><div>สื่อสารกับผู้ป่วย/ครอบครัวล่วงหน้า — เตรียม <strong>ผ้าสีเข้ม</strong>กดห้ามเลือดและ <strong>ห่มผ้า</strong>ให้ผู้ป่วย เพื่อลดความตื่นตระหนกจากเห็นเลือด</div></div>
+      <table class="dt" style="margin-top:8px">
+        <tr><th>ยา</th><th>ขนาด</th><th>Route & Onset</th></tr>
+        <tr><td><span class="dn">Midazolam</span></td><td><span class="dd">10 mg bolus</span></td><td><span class="rt riv">IV</span> &lt;5 min / <span class="rt rsc">SC</span><span class="rt rsl">SL</span><span class="rt rpr">IM</span> 5-15 min</td></tr>
+        <tr><td><span class="dn">Diazepam</span></td><td><span class="dd">10 mg IV หรือ 10 mg rectal</span></td><td><span class="rt riv">IV</span> / <span class="rt rpr">PR</span></td></tr>
+        <tr><td><span class="dn">Ketamine</span></td><td><span class="dd">150-250 mg IV / 500 mg IM</span></td><td>NMDA antagonist</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🩹</span><span class="card-ttl">Minor Bleeding — Skin & Mucosa</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>วิธีการ / ยา</th><th>รายละเอียด</th></tr>
+        <tr><td><span class="dn">Tranexamic acid ผ้าก๊อซ</span></td><td>แช่ TXA <span class="dd">500 mg/5 mL × 10 mL</span> วางกดบริเวณเลือดออก</td></tr>
+        <tr><td><span class="dn">Tranexamic acid บ้วนปาก</span></td><td><span class="dd">5% TXA 10 mL</span> บ้วน 4 ครั้ง/วัน (oral cavity bleeding)</td></tr>
+        <tr><td><span class="dn">Tranexamic acid PO</span></td><td>เริ่ม <span class="dd">1.5 g → 1 g TID PO</span><br>ถ้าไม่ดีขึ้นใน <strong>3 วัน</strong> → เพิ่มเป็น <span class="dd">1.5 g TID</span></td></tr>
+        <tr><td><span class="dn">Tranexamic acid IV</span></td><td><span class="dd">500 mg IV TID</span><br><strong>ลด dose ใน renal impairment</strong>; หยุดยา 1 สัปดาห์หลังเลือดหยุด</td></tr>
+        <tr><td><span class="dn">Sucralfate</span></td><td>ละลาย <span class="dd">2 g / 10 mL</span> บ้วนปาก 2 ครั้ง/วัน หรือกินสำหรับ <strong>esophageal / rectal ulcer</strong></td></tr>
+        <tr><td><span class="dn">Adrenaline 1:1000</span></td><td>ผ้าก๊อซชุบกดห้ามเลือด local</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">👃</span><span class="card-ttl">Nasal bleeding (Epistaxis)</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li>Pinch nose ที่ <strong>soft part</strong> (ใต้กระดูก) นาน 10-15 นาที, นั่งโน้มหน้ามาข้างหน้า</li>
+        <li>ผ้าก๊อซชุบ TXA หรือ adrenaline 1:1000 ใส่จมูก</li>
+        <li>ถ้าควบคุมไม่ได้: <strong>Rapid Rhino</strong> (nasal balloon) → ปรึกษา ENT</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💧</span><span class="card-ttl">Urinary tract bleeding</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li><strong>Bladder irrigation</strong> ด้วย NSS เพื่อล้าง clot</li>
+        <li>Tranexamic acid PO/IV ตามขนาดข้างต้น</li>
+        <li class="al-w-text"><strong>⚠️ ระวัง TXA ใน upper urinary tract bleeding</strong> — clots อาจอุด ureter</li>
+        <li>พิจารณา XRT หรือ embolization ถ้าควบคุมไม่ได้</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🍽️</span><span class="card-ttl">GI bleeding</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li><strong>PPI</strong>: omeprazole 40 mg IV/PO OD-BID หรือ pantoprazole</li>
+        <li><strong>Tranexamic acid</strong> PO/IV ตามขนาดข้างต้น</li>
+        <li><strong>Sucralfate</strong> สำหรับ esophageal / rectal ulcer</li>
+        <li><strong>Vitamin K</strong> (10 mg IV/SC) ถ้าได้ warfarin หรือมี liver disease</li>
+        <li>พิจารณา endoscopy / XRT / embolization ตามเป้าหมายการรักษา</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💨</span><span class="card-ttl">Respiratory tract bleeding</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li>นอนตะแคง <strong>ข้างที่เลือดออกลง</strong> (lateral decubitus เพื่อป้องกัน aspiration ปอดข้างปกติ)</li>
+        <li><strong>Nebulized adrenaline</strong>: 1 mL 1:1000 + 4 mL 0.9%NaCl พ่น 4 ครั้ง/วัน</li>
+        <li>Tranexamic acid PO/IV ตามขนาดข้างต้น</li>
+        <li><strong>XRT</strong> ช่วยควบคุม hemoptysis ได้ ~85%</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🧬</span><span class="card-ttl">Bleeding ใน Hematological cancer</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li>พิจารณา <strong>platelet / FFP / cryoprecipitate transfusion</strong> ตามผลตรวจและเป้าหมาย</li>
+        <li>หลีกเลี่ยงยาที่เพิ่มเสี่ยง: NSAIDs, ASA, antiplatelet (ถ้าทำได้)</li>
+        <li>ปรึกษา <strong>hematologist</strong> สำหรับ targeted therapy เช่น</li>
+        <li class="ml">DIC: rule out และรักษา underlying; transfusion ตาม guideline</li>
+        <li class="ml">APL: ATRA + supportive transfusion</li>
+        <li class="ml">ITP: steroid, IVIG, TPO-RA</li>
+        <li>สื่อสารเป้าหมายการรักษาและความหวังของผู้ป่วย/ครอบครัวเป็นระยะ</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📚</span><span class="card-ttl">References</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ref-list">
+        <li>Twycross R, Wilcock A, Howard P. Palliative Care Formulary (PCF). 8th ed. 2024.</li>
+        <li>Pereira J, Phan T. Management of bleeding in patients with advanced cancer. Oncologist. 2004;9(5):561–570.</li>
+        <li>Oxford Textbook of Palliative Medicine. 6th ed. 2021.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ COUGH ══ -->
+<div class="section" id="section-cough">
+  <div class="sec-title">💨 Cough</div>
+  <div class="sec-desc">แนวทางการให้ยารักษาอาการไอในผู้ป่วยประคับประคอง</div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">Pharmacological Treatment</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>ยา</th><th>ขนาด</th><th>หมายเหตุ</th></tr>
+        <tr><td><span class="dn">Codeine linctus</span></td><td><span class="dd">15 mg/tab; 15-30 mg 3-4 ครั้ง/วัน</span></td><td>ถ้าได้ strong opioid อยู่แล้วไม่จำเป็น</td></tr>
+        <tr><td><span class="dn">Morphine IR</span><br>Opioid-naïve</td><td><span class="dd">2.5-5 mg q 4-6 hr</span><br>fragile: q 6-8 hr</td><td>Start low, go slow</td></tr>
+        <tr><td><span class="dn">Morphine</span><br>เปลี่ยนจาก codeine</td><td><span class="dd">5-10 mg q 4 hr</span></td><td>ปรับขนาดตามอาการ</td></tr>
+        <tr><td><span class="dn">Carbocisteine</span></td><td><span class="dd">750 mg TID → 750 mg BID</span></td><td>ลด sputum viscosity; หยุด 4 สัปดาห์ถ้าไม่ได้ผล</td></tr>
+        <tr><td><span class="dn">0.9% NaCl nebulize</span></td><td><span class="dd">2.5-5 mL q 4 hr prn</span></td><td>wet cough</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🎯</span><span class="card-ttl">การรักษาตามสาเหตุ</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>สาเหตุ</th><th>การรักษา</th></tr>
+        <tr><td>Malignancy</td><td>XRT / Corticosteroid</td></tr>
+        <tr><td>Cardiac failure / Pulmonary edema</td><td>Diuretics / ACEI</td></tr>
+        <tr><td>Pneumonia</td><td>Antibiotics</td></tr>
+        <tr><td>Asthma / COPD</td><td>Bronchodilators / Steroids / Carbocisteine</td></tr>
+        <tr><td>Pleural / Pericardial effusion</td><td><strong>Drainage</strong> (thoracentesis / pericardiocentesis)</td></tr>
+        <tr><td>Pulmonary embolism</td><td><strong>Anticoagulant</strong> ถ้าสอดคล้องเป้าหมายการรักษา</td></tr>
+        <tr><td>Recurrent laryngeal nerve palsy</td><td>ปรึกษา <strong>ENT</strong> (vocal cord medialization)</td></tr>
+        <tr><td>ACEI-induced</td><td>หยุดยา</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📚</span><span class="card-ttl">References</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ref-list">
+        <li>Twycross R, Wilcock A, Howard P. Palliative Care Formulary (PCF). 8th ed. 2024.</li>
+        <li>Wee B, Browning J, et al. Management of chronic cough in patients receiving palliative care. Palliat Med. 2012;26(6):780–787.</li>
+        <li>Oxford Textbook of Palliative Medicine. 6th ed. 2021.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ HICCUP ══ -->
+<div class="section" id="section-hiccup">
+  <div class="sec-title">〰️ Hiccup (Persistent)</div>
+  <div class="sec-desc">แนวทางการให้ยารักษาอาการสะอึกที่คงอยู่นานในผู้ป่วยประคับประคอง</div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">ยาตามสาเหตุ</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>สาเหตุ</th><th>ยา</th><th>ขนาด</th></tr>
+        <tr><td><strong>Gastric stasis / GERD</strong></td><td><span class="dn">Antiflatulent (Simethicone)</span><br><span class="dn">Peppermint water</span><br><span class="dn">Metoclopramide</span><br><span class="dn">Domperidone / PPI</span></td><td>ลด gastric stasis<br><span class="dd">10 mL PO prn</span><br><span class="dd">10 mg TID</span><br><span class="dd">10 mg TID</span></td></tr>
+        <tr><td><strong>Diaphragmatic / Phrenic irritation</strong></td><td><span class="dn">Baclofen</span><br><span class="dn">Gabapentin</span><br><span class="dn">Nifedipine</span></td><td><span class="dd">5-20 mg prn q 8 hr</span><br>มาตรฐาน<br><span class="dd">5-20 mg prn q 8 hr</span> (ระวัง hypotension)</td></tr>
+        <tr><td><strong>Systemic / Metabolic</strong></td><td><span class="dn">Haloperidol</span></td><td><span class="dd">0.5-1 mg PO prn q 8 hr → 1-3 mg hs</span></td></tr>
+        <tr><td><strong>CNS / Meningeal</strong></td><td><span class="dn">Gabapentin / Baclofen</span></td><td>ขนาดมาตรฐาน</td></tr>
+        <tr><td><strong>Hepatic / Mediastinal</strong></td><td><span class="dn">Dexamethasone</span></td><td><span class="dd">4-8 mg PO ช่วงเช้า</span></td></tr>
+        <tr><td><strong>Refractory</strong></td><td><span class="dn">Midazolam</span></td><td>ปรึกษาผู้เชี่ยวชาญ palliative</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">⚠️</span><span class="card-ttl">ข้อควรระวัง (Precautions)</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li><strong>Antiflatulent (simethicone)</strong>: ใช้ในกรณี gastric stasis เท่านั้น</li>
+        <li><strong>Baclofen</strong>: ห้ามหยุดยากะทันหัน — ต้องค่อย ๆ ลดขนาด (เสี่ยง withdrawal seizure, hyperthermia, rebound spasticity)</li>
+        <li><strong>Metoclopramide + Peppermint</strong>: ไม่ใช้ร่วมกันระยะยาว (ฤทธิ์ตรงข้าม — peppermint คลาย LES, metoclopramide เพิ่ม tone)</li>
+        <li><strong>Midazolam</strong>: ใช้ในกรณี refractory เท่านั้น และควร <strong>ปรึกษาผู้เชี่ยวชาญ</strong>ก่อน</li>
+        <li><strong>Dexamethasone</strong>: ถ้าให้ครบ 1 สัปดาห์แล้วไม่ดีขึ้น ให้ <strong>หยุดยา</strong> (ลดความเสี่ยง steroid SE)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💡</span><span class="card-ttl">Non-pharmacological</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li>จิบน้ำเย็นหรือกลืนน้ำแข็งบด</li>
+        <li>หายใจในถุงกระดาษ (rebreathing → hypercapnia)</li>
+        <li>เขี่ยเพดานอ่อนด้วยไม้พันสำลี (vagal stimulation)</li>
+        <li>กลั้นหายใจ / Valsalva maneuver</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📚</span><span class="card-ttl">References</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ref-list">
+        <li>Twycross R, Wilcock A, Howard P. Palliative Care Formulary (PCF). 8th ed. 2024.</li>
+        <li>Calsina-Berna A, et al. Treatment of chronic hiccups in cancer patients: a systematic review. J Palliat Med. 2012;15(10):1142–1150.</li>
+        <li>Oxford Textbook of Palliative Medicine. 6th ed. 2021.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ANOREXIA ══ -->
+<div class="section" id="section-anorexia">
+  <div class="sec-title">🍽️ Loss of Appetite / Anorexia</div>
+  <div class="sec-desc">แนวทางการให้ยารักษาอาการเบื่ออาหารในผู้ป่วยประคับประคอง</div>
+  <div class="al al-w"><span class="al-i">⚠️</span><div>ยาให้ประโยชน์ <strong>ชั่วระยะหนึ่ง</strong> และมีผลข้างเคียง — แจ้งผู้ป่วย/ครอบครัวก่อนสั่งยาทุกครั้ง และทบทวนเป้าหมายเป็นระยะ</div></div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔍</span><span class="card-ttl">สาเหตุที่ควรค้นหาและแก้ไข</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <div class="g2">
+        <div>
+          <div class="sub">ปัจจัยจากผู้ป่วย</div>
+          <ul class="ul">
+            <li>แผลในปาก / oral thrush</li>
+            <li>ปัญหาฟัน / ฟันปลอมไม่พอดี</li>
+            <li>คลื่นไส้-อาเจียน, ท้องผูก</li>
+            <li>การรับรสเปลี่ยน (taste alteration)</li>
+            <li>ปวด, depression, anxiety</li>
+            <li>Early satiety จาก gastroparesis / ascites</li>
+          </ul>
+        </div>
+        <div>
+          <div class="sub">ปัจจัยจากอาหาร</div>
+          <ul class="ul">
+            <li>รสชาติไม่ถูกปาก / ไม่อร่อย</li>
+            <li>อาหารซ้ำซากจำเจ</li>
+            <li>ไม่ใช่อาหารที่ผู้ป่วยชอบ</li>
+            <li>เนื้อสัมผัสแข็ง เคี้ยว/กลืนยาก</li>
+            <li>กลิ่นแรงเกินไป</li>
+            <li>เสิร์ฟร้อน/เย็นเกินไป</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">Appetite Stimulants</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>ยา</th><th>ขนาด</th><th>SE / หมายเหตุ</th></tr>
+        <tr><td><span class="dn">Dexamethasone</span></td><td><span class="dd">4-8 mg/day PO ช่วงเช้า</span><br>หรือ <span class="dn">Prednisolone</span> <span class="dd">10-30 mg/day</span></td><td>ออกฤทธิ์เร็ว แต่ผลลดลงใน <strong>3-4 สัปดาห์</strong><br>ให้ PPI; ติดตาม blood sugar; ระวังกล้ามเนื้ออ่อนแรง</td></tr>
+        <tr><td><span class="dn">Megestrol acetate</span></td><td><span class="dd">160 mg/day PO</span> ประเมิน 2-3 สัปดาห์<br>Max <span class="dd">800 mg/day</span></td><td>ลดยา <strong>ช้า ๆ</strong> ถ้าใช้ &gt;3 สัปดาห์<br>SE: <strong>thromboembolism</strong>, fluid retention, adrenal suppression</td></tr>
+        <tr><td><span class="dn">Metoclopramide / Domperidone</span></td><td><span class="dd">10 mg TID ก่อนอาหาร 30 นาที</span></td><td>เลือกใช้กรณี early satiety / gastroparesis</td></tr>
+        <tr><td><span class="dn">Mirtazapine</span></td><td><span class="dd">15-30 mg hs</span></td><td>มี anti-emetic + sedative effect; ข้อมูลในมะเร็งจำกัด</td></tr>
+      </table>
+      <div class="al al-w" style="margin-top:8px"><span class="al-i">🌿</span><div><strong>Cannabinoids</strong>: การศึกษาในผู้ป่วยมะเร็ง <strong>ไม่พบประโยชน์ชัดเจน</strong> ในการเพิ่มน้ำหนัก/ความอยากอาหาร และมี CNS side effects (somnolence, dizziness, confusion) — <strong>ไม่แนะนำเป็น routine</strong></div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📚</span><span class="card-ttl">References</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ref-list">
+        <li>Twycross R, Wilcock A, Howard P. Palliative Care Formulary (PCF). 8th ed. 2024.</li>
+        <li>Arends J, et al. ESPEN guidelines on nutrition in cancer patients. Clin Nutr. 2017;36(1):11–48.</li>
+        <li>Roeland EJ, et al. Management of cancer cachexia: ASCO guideline. J Clin Oncol. 2020;38(21):2438–2453.</li>
+        <li>Oxford Textbook of Palliative Medicine. 6th ed. 2021.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CREDITS / AUTHORS ══ -->
+<div class="section" id="section-credits">
+  <div class="sec-title">👥 รายนามผู้จัดทำ <span class="sec-badge" style="background:var(--teal-glow);color:var(--teal)">SI 2025</span></div>
+  <div class="sec-desc">Quick Guide for Symptomatic Management in Palliative Care<br>
+  ภาควิชาอายุรศาสตร์ คณะแพทยศาสตร์ศิริราชพยาบาล มหาวิทยาลัยมหิดล · ปีที่จัดทำ พ.ศ. 2568</div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📋</span><span class="card-ttl">เนื้อหา กลุ่มเป้าหมาย และวัตถุประสงค์</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <p style="line-height:1.75;color:var(--text-muted)">
+        แนวทางนี้จัดทำขึ้นเพื่อให้แพทย์ผู้ให้การดูแลผู้ป่วยแบบประคับประคอง มีเอกสารอ้างอิงเพื่อใช้ในการดูแลอาการทางกายที่พบบ่อย ทั้งโดยการใช้ยาและไม่ใช้ยาให้เป็นไปในทิศทางเดียวกัน และสามารถใช้เปิดศึกษาขนาดยาหรือวิธีการรักษาได้ง่ายและรวดเร็ว
+      </p>
+    </div>
+  </div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">✍️</span><span class="card-ttl">คณะผู้จัดทำ</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <div class="author-list">
+        <div class="author-row">
+          <div class="author-num">1</div>
+          <div class="author-info">
+            <div class="author-name">ผศ.พญ.ไกรวิพร เกียรติสุนทร</div>
+            <div class="author-spec">สาขาวิชาวักกะวิทยา</div>
+          </div>
+        </div>
+        <div class="author-row">
+          <div class="author-num">2</div>
+          <div class="author-info">
+            <div class="author-name">ผศ.พญ.บุณฑริกา สุวรรณวิบูลย์</div>
+            <div class="author-spec">สาขาวิชาโลหิตวิทยา</div>
+          </div>
+        </div>
+        <div class="author-row">
+          <div class="author-num">3</div>
+          <div class="author-info">
+            <div class="author-name">ผศ.นพ.ภาณุวัฒน์ พรหมสิน</div>
+            <div class="author-spec">สาขาวิชาเวชบำบัดวิกฤต</div>
+          </div>
+        </div>
+        <div class="author-row">
+          <div class="author-num">4</div>
+          <div class="author-info">
+            <div class="author-name">ผศ.พญ.ฉัตรี หาญทวีพันธุ์</div>
+            <div class="author-spec">สาขาวิชาโลหิตวิทยา</div>
+          </div>
+        </div>
+        <div class="author-row">
+          <div class="author-num">5</div>
+          <div class="author-info">
+            <div class="author-name">ผศ.พญ.จอมจิตต์ จันทรัศมี</div>
+            <div class="author-spec">สาขาวิชาอายุรศาสตร์มะเร็งวิทยา</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🙏</span><span class="card-ttl">กิตติกรรมประกาศ</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <p style="color:var(--text-muted);margin-bottom:10px">ผู้จัดทำขอขอบคุณผู้ที่มีส่วนทำให้เอกสารฉบับนี้เสร็จสมบูรณ์</p>
+      <div class="author-list">
+        <div class="author-row">
+          <div class="author-num" style="background:var(--violet)">A</div>
+          <div class="author-info">
+            <div class="author-name">พญ.ลฎาภา มงคลเสริมพร</div>
+            <div class="author-spec">อายุรแพทย์โรคเลือด</div>
+            <div class="author-role">ช่วยรวบรวมและเรียบเรียงข้อมูล</div>
+          </div>
+        </div>
+        <div class="author-row">
+          <div class="author-num" style="background:var(--violet)">B</div>
+          <div class="author-info">
+            <div class="author-name">อ.นพ.ภิญโญ ศรีวีระชัย</div>
+            <div class="author-spec">อาจารย์ประจำศูนย์บริรักษ์ รพ.ศิริราช</div>
+            <div class="author-role">ช่วยทบทวน แก้ไขเอกสาร และให้คำแนะนำสำหรับการนำมาใช้จริงในเวชปฏิบัติ</div>
+          </div>
+        </div>
+        <div class="author-row">
+          <div class="author-num" style="background:var(--violet)">C</div>
+          <div class="author-info">
+            <div class="author-name">เภสัชกรหญิงผุสดี ปุจฉาการ</div>
+            <div class="author-spec">หัวหน้าหน่วยแพ้ยา ฝ่ายเภสัชกรรม รพ.ศิริราช</div>
+            <div class="author-role">ช่วยทบทวน แก้ไขเอกสาร และให้คำแนะนำวิธีการบริหารยา</div>
+          </div>
+        </div>
+        <div class="author-row">
+          <div class="author-num" style="background:var(--violet)">D</div>
+          <div class="author-info">
+            <div class="author-name">อ.นพ.อรรถกร รักษาสัตย์</div>
+            <div class="author-spec">อาจารย์ประจำศูนย์การุณรักษ์ รพ.ศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</div>
+            <div class="author-role">ช่วยสนับสนุนข้อมูลที่เป็นประโยชน์</div>
+          </div>
+        </div>
+        <div class="author-row">
+          <div class="author-num" style="background:var(--violet)">E</div>
+          <div class="author-info">
+            <div class="author-name">รศ.นพ.กิติพล นาควิโรจน์</div>
+            <div class="author-spec">รองหัวหน้าภาควิชาเวชศาสตร์ครอบครัว คณะแพทยศาสตร์ รพ.รามาธิบดี</div>
+            <div class="author-role">ช่วยสนับสนุนข้อมูลที่เป็นประโยชน์</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+const H = document.documentElement;
+
+/* ── Persist prefs ── */
+function load() {
+  setTheme(localStorage.getItem('pc_th') || 'dark', 1);
+  setFs(localStorage.getItem('pc_fs') || 'md', 1);
+  setLayout(localStorage.getItem('pc_ly') || 'auto', 1);
+}
+
+/* ── THEME ── */
+function setTheme(t, silent) {
+  H.dataset.theme = t;
+  document.getElementById('tDark').classList.toggle('on', t==='dark');
+  document.getElementById('tLight').classList.toggle('on', t==='light');
+  if (!silent) localStorage.setItem('pc_th', t);
+}
+
+/* ── FONT SIZE ── */
+const fsMap = {sm:'fSm', md:'fMd', lg:'fLg', xl:'fXl'};
+function setFs(s, silent) {
+  H.dataset.fs = s;
+  Object.entries(fsMap).forEach(([k,id]) =>
+    document.getElementById(id).classList.toggle('on', k===s));
+  if (!silent) localStorage.setItem('pc_fs', s);
+}
+
+/* ── LAYOUT ── */
+function setLayout(l, silent) {
+  H.dataset.layout = l;
+  document.getElementById('lAuto').classList.toggle('on', l==='auto');
+  document.getElementById('lMobile').classList.toggle('on', l==='mobile');
+  document.getElementById('lDesktop').classList.toggle('on', l==='desktop');
+  if (!silent) localStorage.setItem('pc_ly', l);
+}
+
+/* ── TABS ── */
+function go(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const sec = document.getElementById('section-' + id);
+  const btn = document.querySelector(`[data-s="${id}"]`);
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (sec) sec.classList.add('active');
+  if (btn) { btn.classList.add('active'); btn.scrollIntoView({block:'nearest',inline:'center'}); }
+  if (mobileMenu && mobileMenu.value !== id) mobileMenu.value = id;
+  document.getElementById('search-results').style.display = 'none';
+  document.getElementById('searchInput').value = '';
+  document.getElementById('sClear').style.display = 'none';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+document.querySelectorAll('.tab-btn').forEach(b =>
+  b.addEventListener('click', () => go(b.dataset.s)));
+const mobileMenu = document.getElementById('mobileMenu');
+if (mobileMenu) mobileMenu.addEventListener('change', () => go(mobileMenu.value));
+
+/* ── CARDS ── */
+function tc(hd) { hd.parentElement.classList.toggle('open'); }
+
+/* ── SEARCH ── */
+const SD = [
+  {s:'pain',keys:['morphine','opioid','ความปวด','pain','NSAIDs','ibuprofen','diclofenac','naproxen','celecoxib','etoricoxib','fentanyl','tramadol','codeine','kapanol','MST','breakthrough','BTP','neuropathic','bone','conversion','renal','gabapentin','pregabalin','nortriptyline','amitriptyline','dexamethasone','WHO','adjuvant','ปวด','เส้นประสาท','กระดูก','ระบาย']},
+  {s:'dyspnea',keys:['dyspnea','breathlessness','หายใจ','หอบ','เหนื่อย','morphine drip','midazolam','fentanyl drip','palliative sedation','HFNC','oxygen','BTP dyspnea']},
+  {s:'delirium',keys:['delirium','สับสน','haloperidol','quetiapine','olanzapine','risperidone','levomepromazine','lorazepam','midazolam','diazepam','antipsychotic','agitated','lewy','parkinson']},
+  {s:'deathrattle',keys:['death rattle','เสียง','เสมหะ','ครืดคราด','hyoscine','buscopan','glycopyrrolate','scopolamine','atropine','anticholinergic','BBB','terminal']},
+  {s:'constipation',keys:['constipation','ท้องผูก','senna','bisacodyl','lactulose','macrogol','PEG','docusate','arachis','phosphate','MOM','fecal','laxative','ยาระบาย','picosulfate','glycerol']},
+  {s:'nausea',keys:['nausea','vomiting','คลื่นไส้','อาเจียน','haloperidol','metoclopramide','ondansetron','cyclizine','domperidone','levomepromazine','dexamethasone','cinnarizine','CSCI','antiemetic']},
+  {s:'gutobs',keys:['gut obstruction','ลำไส้','อุดตัน','octreotide','metoclopramide','cyclizine','haloperidol','hyoscine','NPO','bowel','obstruction','corticosteroid','ascites','peritonei']},
+  {s:'bleeding',keys:['bleeding','เลือดออก','hemorrhage','tranexamic','TXA','midazolam','ketamine','sucralfate','adrenaline','silver nitrate','massive hemorrhage','nebulized']},
+  {s:'cough',keys:['cough','ไอ','codeine','carbocisteine','nebulize','bronchodilator','ACEI','sputum','airway']},
+  {s:'hiccup',keys:['hiccup','สะอึก','baclofen','gabapentin','nifedipine','haloperidol','metoclopramide','peppermint','dexamethasone','phrenic','diaphragm']},
+  {s:'anorexia',keys:['anorexia','เบื่ออาหาร','appetite','dexamethasone','megestrol','mirtazapine','prednisolone','metoclopramide','cachexia','thromboembolism','gastroparesis']},
+  {s:'credits',keys:['ผู้จัดทำ','authors','credits','รายนาม','คณะผู้จัดทำ','กิตติกรรมประกาศ','acknowledgment','siriraj','ศิริราช']}
+];
+const SL = {pain:'Pain',dyspnea:'Dyspnea',delirium:'Delirium',deathrattle:'Death Rattle',constipation:'Constipation',nausea:'Nausea/Vomiting',gutobs:'Gut Obstruction',bleeding:'Bleeding',cough:'Cough',hiccup:'Hiccup',anorexia:'Loss of Appetite',credits:'ผู้จัดทำ'};
+
+const sInp = document.getElementById('searchInput');
+const sCl  = document.getElementById('sClear');
+const sRes = document.getElementById('search-results');
+
+sInp.addEventListener('input', function() {
+  const q = this.value.trim().toLowerCase();
+  sCl.style.display = q ? 'block' : 'none';
+  if (!q) {
+    sRes.style.display = 'none';
+    const ab = document.querySelector('.tab-btn.active');
+    if (ab) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      const sec = document.getElementById('section-' + ab.dataset.s);
+      if (sec) sec.classList.add('active');
+    }
+    return;
+  }
+  doSearch(q);
+});
+sCl.addEventListener('click', () => { sInp.value=''; sCl.style.display='none'; sRes.style.display='none'; const ab=document.querySelector('.tab-btn.active'); if(ab){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));const sec=document.getElementById('section-'+ab.dataset.s);if(sec)sec.classList.add('active');} });
+
+function doSearch(q) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  const hits = SD.filter(d => d.keys.some(k => k.toLowerCase().includes(q)));
+  const cEl = document.getElementById('srCount'), lEl = document.getElementById('srList');
+  if (!hits.length) {
+    cEl.textContent = `ไม่พบผลลัพธ์สำหรับ "${q}"`;
+    lEl.innerHTML = '<div style="color:var(--text-muted);font-size:13px;padding:20px 0;text-align:center">ลองคำอื่น หรือเลือก tab ด้านบน</div>';
+  } else {
+    cEl.innerHTML = `พบ <strong style="color:var(--teal)">${hits.length}</strong> หมวด ที่ตรงกับ "<mark>${q}</mark>"`;
+    lEl.innerHTML = hits.map(m => {
+      const kw = m.keys.filter(k => k.toLowerCase().includes(q)).slice(0,5);
+      return `<div class="card" style="cursor:pointer;margin-bottom:10px" onclick="go('${m.s}')"><div class="card-hd" style="border-bottom:none"><span class="card-ico">📂</span><div style="flex:1"><div style="font-weight:700">${SL[m.s]}</div><div style="font-size:calc(var(--fs) - 3px);color:var(--text-muted);margin-top:2px">${kw.map(k=>`<mark>${k}</mark>`).join(' · ')}</div></div><span style="color:var(--teal);font-size:calc(var(--fs)-3px);font-weight:600">เปิดดู →</span></div></div>`;
+    }).join('');
+  }
+  sRes.style.display = 'block';
+}
+
+load();
+</script>
+</body>
+</html>
