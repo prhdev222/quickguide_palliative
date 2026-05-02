@@ -2290,7 +2290,7 @@ const SD = [
   {s:'bleeding',keys:['bleeding','เลือดออก','hemorrhage','tranexamic','TXA','midazolam','ketamine','sucralfate','adrenaline','silver nitrate','massive hemorrhage','nebulized']},
   {s:'cough',keys:['cough','ไอ','codeine','carbocisteine','nebulize','bronchodilator','ACEI','sputum','airway']},
   {s:'hiccup',keys:['hiccup','สะอึก','baclofen','gabapentin','nifedipine','haloperidol','metoclopramide','peppermint','dexamethasone','phrenic','diaphragm']},
-  {s:'anorexia',keys:['anorexia','เบื่ออาหาร','appetite','dexamethasone','megestrol','mirtazapine','prednisolone','metoclopramide','cachexia','thromboembolism','gastroparesis']},
+  {s:'anorexia',keys:['anorexia','เบื่ออาหาร','appetite','dexamethasone','megestrol','prednisolone','metoclopramide','cachexia','thromboembolism','gastroparesis']},
   {s:'credits',keys:['ผู้จัดทำ','authors','credits','รายนาม','คณะผู้จัดทำ','กิตติกรรมประกาศ','acknowledgment','siriraj','ศิริราช']}
 ];
 const SL = {pain:'Pain',dyspnea:'Dyspnea',delirium:'Delirium',deathrattle:'Death Rattle',constipation:'Constipation',nausea:'Nausea/Vomiting',gutobs:'Gut Obstruction',bleeding:'Bleeding',cough:'Cough',hiccup:'Hiccup',anorexia:'Loss of Appetite',credits:'ผู้จัดทำ'};
@@ -2316,18 +2316,29 @@ sInp.addEventListener('input', function() {
 });
 sCl.addEventListener('click', () => { sInp.value=''; sCl.style.display='none'; sRes.style.display='none'; const ab=document.querySelector('.tab-btn.active'); if(ab){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));const sec=document.getElementById('section-'+ab.dataset.s);if(sec)sec.classList.add('active');} });
 
+function esc(s) {
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function sectionHaystack(d) {
+  const sec = document.getElementById('section-' + d.s);
+  return [...d.keys, sec ? sec.textContent : ''].join(' ').toLowerCase();
+}
+
 function doSearch(q) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  const hits = SD.filter(d => d.keys.some(k => k.toLowerCase().includes(q)));
+  const hits = SD.filter(d => sectionHaystack(d).includes(q));
   const cEl = document.getElementById('srCount'), lEl = document.getElementById('srList');
+  const safeQ = esc(q);
   if (!hits.length) {
     cEl.textContent = `ไม่พบผลลัพธ์สำหรับ "${q}"`;
     lEl.innerHTML = '<div style="color:var(--text-muted);font-size:13px;padding:20px 0;text-align:center">ลองคำอื่น หรือเลือก tab ด้านบน</div>';
   } else {
-    cEl.innerHTML = `พบ <strong style="color:var(--teal)">${hits.length}</strong> หมวด ที่ตรงกับ "<mark>${q}</mark>"`;
+    cEl.innerHTML = `พบ <strong style="color:var(--teal)">${hits.length}</strong> หมวด ที่ตรงกับ "<mark>${safeQ}</mark>"`;
     lEl.innerHTML = hits.map(m => {
       const kw = m.keys.filter(k => k.toLowerCase().includes(q)).slice(0,5);
-      return `<div class="card" style="cursor:pointer;margin-bottom:10px" onclick="go('${m.s}')"><div class="card-hd" style="border-bottom:none"><span class="card-ico">📂</span><div style="flex:1"><div style="font-weight:700">${SL[m.s]}</div><div style="font-size:calc(var(--fs) - 3px);color:var(--text-muted);margin-top:2px">${kw.map(k=>`<mark>${k}</mark>`).join(' · ')}</div></div><span style="color:var(--teal);font-size:calc(var(--fs)-3px);font-weight:600">เปิดดู →</span></div></div>`;
+      const matched = kw.length ? kw.map(k=>`<mark>${esc(k)}</mark>`).join(' · ') : `<mark>${safeQ}</mark> พบในเนื้อหา`;
+      return `<div class="card" style="cursor:pointer;margin-bottom:10px" onclick="go('${m.s}')"><div class="card-hd" style="border-bottom:none"><span class="card-ico">📂</span><div style="flex:1"><div style="font-weight:700">${SL[m.s]}</div><div style="font-size:calc(var(--fs) - 3px);color:var(--text-muted);margin-top:2px">${matched}</div></div><span style="color:var(--teal);font-size:calc(var(--fs)-3px);font-weight:600">เปิดดู →</span></div></div>`;
     }).join('');
   }
   sRes.style.display = 'block';
