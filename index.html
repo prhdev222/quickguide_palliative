@@ -624,6 +624,10 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 }
 .ref-list li{margin-bottom:5px}
 
+/* PDF download button */
+.pdf-btn{display:inline-flex;align-items:center;gap:6px;margin:8px 0 4px;padding:7px 16px;background:var(--teal-glow);border:1px solid var(--teal);border-radius:8px;color:var(--teal);font-size:.82rem;font-weight:600;text-decoration:none;transition:background .15s,color .15s}
+.pdf-btn:hover{background:var(--teal);color:#fff}
+
 </style>
 </head>
 <body>
@@ -772,6 +776,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 <div class="section" id="section-pain">
   <div class="sec-title">💊 Pain Management <span class="sec-badge" style="background:var(--teal-glow);color:var(--teal)">WHO Ladder</span></div>
   <div class="sec-desc">แนวทางการจัดการความปวดในผู้ป่วยประคับประคองที่อยู่ในโรงพยาบาล — ประเมินความปวดให้ครบถ้วน, มีปัญหาทางจิตใจร่วมด้วยไหม, หาสาเหตุที่สามารถแก้ไขได้, หากกินได้ให้เริ่มด้วยยากินก่อน, อาการปวดจากมะเร็งที่เป็นตลอดเวลาควรให้ยา around the clock, ประเมินหลังให้ยาและปรับยาให้เหมาะสม</div>
+  <a class="pdf-btn" href="pdf/pain.pdf" target="_blank" rel="noopener">📄 ดาวน์โหลด PDF ต้นฉบับ</a>
 
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">🪜</span><span class="card-ttl">WHO Analgesic Ladder — แนวทางตามระดับความปวด</span><span class="card-chev">▼</span></div>
@@ -1041,6 +1046,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 <div class="section" id="section-dyspnea">
   <div class="sec-title">🫁 Dyspnea / Breathlessness</div>
   <div class="sec-desc">แนวทางการให้ยารักษาภาวะหายใจหอบเหนื่อยลำบากในผู้ป่วยประคับประคองและในผู้ป่วยระยะสุดท้าย</div>
+  <a class="pdf-btn" href="pdf/dyspnea.pdf" target="_blank" rel="noopener">📄 ดาวน์โหลด PDF ต้นฉบับ</a>
 
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔍</span><span class="card-ttl">ประเมินอาการ & การดูแลรักษา</span><span class="card-chev">▼</span></div>
@@ -1238,6 +1244,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 <div class="section" id="section-delirium">
   <div class="sec-title">🧠 Delirium</div>
   <div class="sec-desc">แนวทางการให้ยาในภาวะ Delirium ในผู้ป่วยประคับประคอง</div>
+  <a class="pdf-btn" href="pdf/delirium.pdf" target="_blank" rel="noopener">📄 ดาวน์โหลด PDF ต้นฉบับ</a>
 
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">📋</span><span class="card-ttl">สาเหตุ — DELIRIUM Mnemonic</span><span class="card-chev">▼</span></div>
@@ -1349,6 +1356,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 <div class="section" id="section-deathrattle">
   <div class="sec-title">🔔 Death Rattle</div>
   <div class="sec-desc">เสียงดังครืดคราดในลำคอจากสารคัดหลั่งใน upper airways ในผู้ป่วยระยะสุดท้ายก่อนเสียชีวิต — ผู้ป่วยไม่สามารถกำจัดสารคัดหลั่งได้</div>
+  <a class="pdf-btn" href="pdf/deathrattle.pdf" target="_blank" rel="noopener">📄 ดาวน์โหลด PDF ต้นฉบับ</a>
 
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">ℹ️</span><span class="card-ttl">ข้อมูลสำคัญ — แจ้งครอบครัว</span><span class="card-chev">▼</span></div>
@@ -1425,6 +1433,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 <div class="section" id="section-constipation">
   <div class="sec-title">🟤 Constipation</div>
   <div class="sec-desc">แนวทางการให้ยารักษาอาการท้องผูกในผู้ป่วยประคับประคอง</div>
+  <a class="pdf-btn" href="pdf/constipation.pdf" target="_blank" rel="noopener">📄 ดาวน์โหลด PDF ต้นฉบับ</a>
   <div class="al al-w"><span class="al-i">⚠️</span><div>เมื่อเริ่ม opioids <strong>ต้องให้ยาระบายทุกวัน</strong> — ไม่แนะนำ bulk-forming laxatives เพราะเสี่ยง gut obstruction</div></div>
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔍</span><span class="card-ttl">สาเหตุของท้องผูกในผู้ป่วยประคับประคอง</span><span class="card-chev">▼</span></div>
@@ -1480,6 +1489,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 <div class="section" id="section-nausea">
   <div class="sec-title">🤢 Nausea & Vomiting</div>
   <div class="sec-desc">แนวทางการให้ยารักษาอาการคลื่นไส้อาเจียน ตามกลไกสาเหตุ</div>
+  <a class="pdf-btn" href="pdf/nausea.pdf" target="_blank" rel="noopener">📄 ดาวน์โหลด PDF ต้นฉบับ</a>
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">🌿</span><span class="card-ttl">Non-pharmacological & สิ่งแวดล้อม</span><span class="card-chev">▼</span></div>
     <div class="card-body">
@@ -1551,6 +1561,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 <div class="section" id="section-gutobs">
   <div class="sec-title">🔴 Gut Obstruction</div>
   <div class="sec-desc">แนวทางการดูแลรักษาภาวะ Gut Obstruction ในผู้ป่วยประคับประคอง</div>
+  <a class="pdf-btn" href="pdf/gutobs.pdf" target="_blank" rel="noopener">📄 ดาวน์โหลด PDF ต้นฉบับ</a>
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">⚖️</span><span class="card-ttl">การพิจารณาผ่าตัด</span><span class="card-chev">▼</span></div>
     <div class="card-body">
@@ -1640,6 +1651,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 <div class="section" id="section-bleeding">
   <div class="sec-title">🩸 Bleeding Management</div>
   <div class="sec-desc">แนวทางการให้ยารักษาอาการเลือดออกในผู้ป่วยประคับประคอง</div>
+  <a class="pdf-btn" href="pdf/bleeding.pdf" target="_blank" rel="noopener">📄 ดาวน์โหลด PDF ต้นฉบับ</a>
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔍</span><span class="card-ttl">สาเหตุของเลือดออก</span><span class="card-chev">▼</span></div>
     <div class="card-body">
@@ -1752,6 +1764,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 <div class="section" id="section-cough">
   <div class="sec-title">💨 Cough</div>
   <div class="sec-desc">แนวทางการให้ยารักษาอาการไอในผู้ป่วยประคับประคอง</div>
+  <a class="pdf-btn" href="pdf/cough.pdf" target="_blank" rel="noopener">📄 ดาวน์โหลด PDF ต้นฉบับ</a>
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">Pharmacological Treatment</span><span class="card-chev">▼</span></div>
     <div class="card-body">
@@ -1797,6 +1810,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 <div class="section" id="section-hiccup">
   <div class="sec-title">〰️ Hiccup (Persistent)</div>
   <div class="sec-desc">แนวทางการให้ยารักษาอาการสะอึกที่คงอยู่นานในผู้ป่วยประคับประคอง</div>
+  <a class="pdf-btn" href="pdf/hiccup.pdf" target="_blank" rel="noopener">📄 ดาวน์โหลด PDF ต้นฉบับ</a>
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">ยาตามสาเหตุ</span><span class="card-chev">▼</span></div>
     <div class="card-body">
@@ -1850,6 +1864,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 <div class="section" id="section-anorexia">
   <div class="sec-title">🍽️ Loss of Appetite / Anorexia</div>
   <div class="sec-desc">แนวทางการให้ยารักษาอาการเบื่ออาหารในผู้ป่วยประคับประคอง</div>
+  <a class="pdf-btn" href="pdf/anorexia.pdf" target="_blank" rel="noopener">📄 ดาวน์โหลด PDF ต้นฉบับ</a>
   <div class="al al-w"><span class="al-i">⚠️</span><div>ยาให้ประโยชน์ <strong>ชั่วระยะหนึ่ง</strong> และมีผลข้างเคียง — แจ้งผู้ป่วย/ครอบครัวก่อนสั่งยาทุกครั้ง และทบทวนเป้าหมายเป็นระยะ</div></div>
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔍</span><span class="card-ttl">สาเหตุที่ควรค้นหาและแก้ไข</span><span class="card-chev">▼</span></div>
