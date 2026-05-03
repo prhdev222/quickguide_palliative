@@ -277,6 +277,13 @@ body{
 #search-results{display:none}
 .sr-hd{font-size:calc(var(--fs) - 3px);color:var(--text-muted);font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
 mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding:0 2px}
+.sr-hit{cursor:pointer;margin-bottom:8px}
+.sr-hit .card-hd{border-bottom:none}
+.sr-hit-title{font-weight:700}
+.sr-hit-context{font-size:calc(var(--fs) - 3px);color:var(--text-muted);margin-top:2px;line-height:1.55}
+.sr-hit-go{color:var(--teal);font-size:calc(var(--fs) - 3px);font-weight:600;white-space:nowrap}
+.search-hit{scroll-margin-top:125px}
+.search-hit.focus{background:rgba(245,158,11,.32);color:var(--amber);box-shadow:0 0 0 2px rgba(245,158,11,.18)}
 
 /* Responsive default */
 @media(max-width:640px){
@@ -2257,6 +2264,7 @@ function setLayout(l, silent) {
 
 /* ── TABS ── */
 function go(id) {
+  clearSearchMarks();
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   const sec = document.getElementById('section-' + id);
@@ -2298,11 +2306,15 @@ const SL = {pain:'Pain',dyspnea:'Dyspnea',delirium:'Delirium',deathrattle:'Death
 const sInp = document.getElementById('searchInput');
 const sCl  = document.getElementById('sClear');
 const sRes = document.getElementById('search-results');
+const MAX_SEARCH_HITS = 120;
+let searchHitSeq = 0;
+let searchFocusId = '';
 
 sInp.addEventListener('input', function() {
   const q = this.value.trim().toLowerCase();
   sCl.style.display = q ? 'block' : 'none';
   if (!q) {
+    clearSearchMarks();
     sRes.style.display = 'none';
     const ab = document.querySelector('.tab-btn.active');
     if (ab) {
@@ -2314,31 +2326,108 @@ sInp.addEventListener('input', function() {
   }
   doSearch(q);
 });
-sCl.addEventListener('click', () => { sInp.value=''; sCl.style.display='none'; sRes.style.display='none'; const ab=document.querySelector('.tab-btn.active'); if(ab){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));const sec=document.getElementById('section-'+ab.dataset.s);if(sec)sec.classList.add('active');} });
+sCl.addEventListener('click', () => { sInp.value=''; sCl.style.display='none'; clearSearchMarks(); sRes.style.display='none'; const ab=document.querySelector('.tab-btn.active'); if(ab){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));const sec=document.getElementById('section-'+ab.dataset.s);if(sec)sec.classList.add('active');} });
 
 function esc(s) {
   return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
-function sectionHaystack(d) {
-  const sec = document.getElementById('section-' + d.s);
-  return [...d.keys, sec ? sec.textContent : ''].join(' ').toLowerCase();
+function snippet(text, idx, len) {
+  const start = Math.max(0, idx - 42);
+  const end = Math.min(text.length, idx + len + 42);
+  return `${start ? '…' : ''}${esc(text.slice(start, idx))}<mark>${esc(text.slice(idx, idx + len))}</mark>${esc(text.slice(idx + len, end))}${end < text.length ? '…' : ''}`;
+}
+
+function clearSearchMarks() {
+  document.querySelectorAll('mark.search-hit').forEach(markEl => {
+    const parent = markEl.parentNode;
+    while (markEl.firstChild) parent.insertBefore(markEl.firstChild, markEl);
+    parent.removeChild(markEl);
+    parent.normalize();
+  });
+  searchFocusId = '';
+}
+
+function markTextNode(node, q, sectionId, hits) {
+  const text = node.nodeValue;
+  const lower = text.toLowerCase();
+  let from = 0, idx = lower.indexOf(q);
+  if (idx === -1) return;
+
+  const frag = document.createDocumentFragment();
+  while (idx !== -1 && hits.length < MAX_SEARCH_HITS) {
+    if (idx > from) frag.appendChild(document.createTextNode(text.slice(from, idx)));
+    const hitId = `search-hit-${++searchHitSeq}`;
+    const markEl = document.createElement('mark');
+    markEl.className = 'search-hit';
+    markEl.id = hitId;
+    markEl.textContent = text.slice(idx, idx + q.length);
+    frag.appendChild(markEl);
+    hits.push({sectionId, hitId, context: snippet(text, idx, q.length)});
+    from = idx + q.length;
+    idx = lower.indexOf(q, from);
+  }
+  frag.appendChild(document.createTextNode(text.slice(from)));
+  node.parentNode.replaceChild(frag, node);
+}
+
+function findSearchHits(q) {
+  clearSearchMarks();
+  searchHitSeq = 0;
+  const hits = [];
+  SD.forEach(d => {
+    const sec = document.getElementById('section-' + d.s);
+    if (!sec || hits.length >= MAX_SEARCH_HITS) return;
+    const walker = document.createTreeWalker(sec, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        if (node.parentElement?.closest('script,style,mark.search-hit')) return NodeFilter.FILTER_REJECT;
+        return node.nodeValue.toLowerCase().includes(q) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    const nodes = [];
+    while (walker.nextNode() && hits.length + nodes.length < MAX_SEARCH_HITS) nodes.push(walker.currentNode);
+    nodes.forEach(node => markTextNode(node, q, d.s, hits));
+  });
+  return hits;
+}
+
+function activateSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const sec = document.getElementById('section-' + id);
+  const btn = document.querySelector(`[data-s="${id}"]`);
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (sec) sec.classList.add('active');
+  if (btn) { btn.classList.add('active'); btn.scrollIntoView({block:'nearest',inline:'center'}); }
+  if (mobileMenu && mobileMenu.value !== id) mobileMenu.value = id;
+}
+
+function openSearchHit(sectionId, hitId) {
+  activateSection(sectionId);
+  const hit = document.getElementById(hitId);
+  if (!hit) return;
+  hit.closest('.card')?.classList.add('open');
+  if (searchFocusId) document.getElementById(searchFocusId)?.classList.remove('focus');
+  hit.classList.add('focus');
+  searchFocusId = hitId;
+  hit.scrollIntoView({block:'center', behavior:'smooth'});
 }
 
 function doSearch(q) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  const hits = SD.filter(d => sectionHaystack(d).includes(q));
+  const hits = findSearchHits(q);
+  const sectionCount = new Set(hits.map(h => h.sectionId)).size;
   const cEl = document.getElementById('srCount'), lEl = document.getElementById('srList');
   const safeQ = esc(q);
   if (!hits.length) {
     cEl.textContent = `ไม่พบผลลัพธ์สำหรับ "${q}"`;
     lEl.innerHTML = '<div style="color:var(--text-muted);font-size:13px;padding:20px 0;text-align:center">ลองคำอื่น หรือเลือก tab ด้านบน</div>';
   } else {
-    cEl.innerHTML = `พบ <strong style="color:var(--teal)">${hits.length}</strong> หมวด ที่ตรงกับ "<mark>${safeQ}</mark>"`;
-    lEl.innerHTML = hits.map(m => {
-      const kw = m.keys.filter(k => k.toLowerCase().includes(q)).slice(0,5);
-      const matched = kw.length ? kw.map(k=>`<mark>${esc(k)}</mark>`).join(' · ') : `<mark>${safeQ}</mark> พบในเนื้อหา`;
-      return `<div class="card" style="cursor:pointer;margin-bottom:10px" onclick="go('${m.s}')"><div class="card-hd" style="border-bottom:none"><span class="card-ico">📂</span><div style="flex:1"><div style="font-weight:700">${SL[m.s]}</div><div style="font-size:calc(var(--fs) - 3px);color:var(--text-muted);margin-top:2px">${matched}</div></div><span style="color:var(--teal);font-size:calc(var(--fs)-3px);font-weight:600">เปิดดู →</span></div></div>`;
+    const capped = hits.length >= MAX_SEARCH_HITS ? ` แสดง ${MAX_SEARCH_HITS} รายการแรก` : '';
+    cEl.innerHTML = `พบ <strong style="color:var(--teal)">${hits.length}</strong> ตำแหน่ง ใน <strong style="color:var(--teal)">${sectionCount}</strong> หมวด ที่ตรงกับ "<mark>${safeQ}</mark>"${capped}`;
+    lEl.innerHTML = hits.map((h, i) => {
+      return `<div class="card sr-hit" onclick="openSearchHit('${h.sectionId}','${h.hitId}')"><div class="card-hd"><span class="card-ico">🔎</span><div style="flex:1"><div class="sr-hit-title">${SL[h.sectionId]} <span style="color:var(--text-dim);font-weight:500">#${i + 1}</span></div><div class="sr-hit-context">${h.context}</div></div><span class="sr-hit-go">ไปที่คำ →</span></div></div>`;
     }).join('');
   }
   sRes.style.display = 'block';
