@@ -362,6 +362,89 @@
     font-weight: 500;
   }
 
+
+
+  /* Collapsible reading menu */
+  .menu-toggle {
+    position: fixed;
+    top: 86px;
+    right: 18px;
+    z-index: 260;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(122,31,31,0.28);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, top 0.2s ease;
+  }
+  .menu-toggle:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(122,31,31,0.36);
+  }
+  .menu-toggle .show-text { display: none; }
+  .menu-toggle .hide-text { display: inline; }
+
+  body.menu-collapsed .header {
+    transform: translateY(calc(-100% + 4px));
+    opacity: 0.96;
+    box-shadow: none;
+  }
+  body.menu-collapsed .drug-filter-bar,
+  body.menu-collapsed .filter-bar,
+  body.menu-collapsed .stats {
+    display: none;
+  }
+  body.menu-collapsed .layout {
+    max-width: 1040px;
+    padding-top: 14px;
+  }
+  body.menu-collapsed .drug-list {
+    gap: 18px;
+  }
+  body.menu-collapsed .drug-card.expanded .drug-head {
+    position: sticky;
+    top: 4px;
+    z-index: 50;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--line);
+  }
+  body.menu-collapsed .menu-toggle {
+    top: 12px;
+    background: var(--bg-card);
+    color: var(--accent);
+    border: 1px solid var(--line-strong);
+  }
+  body.menu-collapsed .menu-toggle .show-text { display: inline; }
+  body.menu-collapsed .menu-toggle .hide-text { display: none; }
+
+  @media (max-width: 600px) {
+    .menu-toggle {
+      top: auto;
+      right: 14px;
+      bottom: 82px;
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+    body.menu-collapsed .menu-toggle {
+      top: auto;
+      bottom: 82px;
+    }
+    body.menu-collapsed .layout {
+      padding-top: 10px;
+    }
+    body.menu-collapsed .drug-card.expanded .drug-head {
+      top: 0;
+    }
+  }
+
   /* Content area */
   .content {
     min-width: 0;
@@ -976,6 +1059,10 @@
     </div>
   </div>
 </header>
+<button class="menu-toggle" id="menuToggle" type="button" aria-pressed="false" title="ซ่อน/แสดงเมนูค้นหา">
+  <span class="hide-text">ซ่อนเมนู</span>
+  <span class="show-text">แสดงเมนู</span>
+</button>
 
 <div class="layout">
   <div class="drug-filter-bar">
@@ -1011,7 +1098,7 @@
 </div>
 
 <div class="footer">
-  Palliative Care Drug Reference • <kbd class="kbd">/</kbd> เพื่อค้นหา • <kbd class="kbd">Esc</kbd> เพื่อล้าง • <kbd class="kbd">C</kbd> เปิด converter
+  Palliative Care Drug Reference • <kbd class="kbd">/</kbd> เพื่อค้นหา • <kbd class="kbd">Esc</kbd> เพื่อล้าง • <kbd class="kbd">M</kbd> ซ่อน/แสดงเมนู • <kbd class="kbd">C</kbd> เปิด converter
 </div>
 
 <!-- Floating action button for converter -->
@@ -1111,6 +1198,19 @@ let activeFilter = null;
 let searchQuery = '';
 let selectedDrugIndex = null;
 let expandedSet = new Set();
+let menuCollapsed = false;
+
+
+function setMenuCollapsed(collapsed) {
+  menuCollapsed = !!collapsed;
+  document.body.classList.toggle('menu-collapsed', menuCollapsed);
+  const btn = document.getElementById('menuToggle');
+  if (btn) btn.setAttribute('aria-pressed', String(menuCollapsed));
+}
+
+function shouldCollapseForReading() {
+  return document.querySelector('.drug-card.expanded') !== null || selectedDrugIndex !== null;
+}
 
 // Build filter dropdown
 function buildFilters() {
@@ -1193,6 +1293,7 @@ function setDrug(idx) {
     expandedSet.add(selectedDrugIndex);
   }
   render();
+  if (selectedDrugIndex !== null) setMenuCollapsed(true);
 }
 
 function setFilter(symptom) {
@@ -1341,7 +1442,10 @@ function toggleCard(idx) {
   }
   // Just toggle class, don't re-render whole list
   const card = document.querySelector(`.drug-card[data-idx="${idx}"]`);
-  if (card) card.classList.toggle('expanded');
+  if (card) {
+    card.classList.toggle('expanded');
+    if (card.classList.contains('expanded')) setMenuCollapsed(true);
+  }
 }
 
 function render() {
@@ -1389,6 +1493,8 @@ function render() {
 // Search input
 const searchInput = document.getElementById('searchInput');
 const clearBtn = document.getElementById('clearBtn');
+const menuToggle = document.getElementById('menuToggle');
+menuToggle.addEventListener('click', () => setMenuCollapsed(!menuCollapsed));
 
 searchInput.addEventListener('input', (e) => {
   searchQuery = e.target.value.trim();
@@ -1426,6 +1532,15 @@ document.addEventListener('keydown', (e) => {
       render();
     }
   }
+  // 'm' to hide/show search menu (only when not typing)
+  if ((e.key === 'm' || e.key === 'M') &&
+      document.activeElement.tagName !== 'INPUT' &&
+      document.activeElement.tagName !== 'SELECT' &&
+      document.activeElement.tagName !== 'TEXTAREA') {
+    e.preventDefault();
+    setMenuCollapsed(!menuCollapsed);
+  }
+
   // 'c' to open converter (only when not typing)
   if ((e.key === 'c' || e.key === 'C') &&
       document.activeElement.tagName !== 'INPUT' &&
