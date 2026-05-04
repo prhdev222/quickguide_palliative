@@ -148,6 +148,9 @@ body{
 .tb-btn:hover{background:var(--surface2);color:var(--text)}
 .tb-btn.on{background:var(--teal);color:#fff}
 .tb-btn.theme-icon{font-size:16px;padding:4px 8px}
+.tb-btn.link-btn{text-decoration:none}
+.tb-btn.drug-search{background:var(--teal-glow);color:var(--teal)}
+.tb-btn.drug-search:hover{background:var(--teal);color:#fff}
 .tb-sep{width:1px;height:18px;background:var(--border);margin:0 3px}
 .tb-label{font-size:calc(var(--fs) - 5px);color:var(--text-dim);letter-spacing:.06em;padding:0 3px;font-weight:600}
 
@@ -849,6 +852,13 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 
     <!-- TOOLBAR -->
     <div class="toolbar">
+
+      <!-- Drug Search -->
+      <div class="tb-group">
+        <a class="tb-btn link-btn drug-search" href="Palliative_Drug_Search.html" title="Search ยา">🔎 Search ยา</a>
+      </div>
+
+      <div class="tb-sep"></div>
 
       <!-- Theme -->
       <div class="tb-group">
