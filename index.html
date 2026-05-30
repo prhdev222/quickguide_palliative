@@ -2671,12 +2671,14 @@ function convCalc(){
 }
 function openConv(){document.getElementById('convOverlay').classList.add('show');setTimeout(()=>document.getElementById('convFromDose').focus(),100);}
 function closeConv(){document.getElementById('convOverlay').classList.remove('show');}
-document.getElementById('convClose').addEventListener('click',closeConv);
-document.getElementById('convOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('convOverlay'))closeConv();});
-document.getElementById('convFromDrug').addEventListener('change',()=>{document.getElementById('convFromUnit').dataset.unit=CONV_META[document.getElementById('convFromDrug').value].unit;convCalc();});
-document.getElementById('convToDrug').addEventListener('change',convCalc);
-document.getElementById('convFromDose').addEventListener('input',convCalc);
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('convOverlay').classList.contains('show')){closeConv();}});
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('convClose').addEventListener('click',closeConv);
+  document.getElementById('convOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('convOverlay'))closeConv();});
+  document.getElementById('convFromDrug').addEventListener('change',()=>{document.getElementById('convFromUnit').dataset.unit=CONV_META[document.getElementById('convFromDrug').value].unit;convCalc();});
+  document.getElementById('convToDrug').addEventListener('change',convCalc);
+  document.getElementById('convFromDose').addEventListener('input',convCalc);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('convOverlay').classList.contains('show')){closeConv();}});
+});
 
 </script>
 
