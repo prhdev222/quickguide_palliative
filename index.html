@@ -749,9 +749,12 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
     padding:7px 6px;
   }
 
-  .g2,
-  .conv-g{
+  .g2{
     grid-template-columns:minmax(0, 1fr);
+  }
+
+  .conv-g{
+    grid-template-columns:1fr auto 1fr;
   }
 
   .cf,
@@ -818,8 +821,8 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 }
 [data-layout="mobile"] .dt th,
 [data-layout="mobile"] .dt td{padding:7px 6px}
-[data-layout="mobile"] .g2,
-[data-layout="mobile"] .conv-g{grid-template-columns:minmax(0, 1fr)}
+[data-layout="mobile"] .g2{grid-template-columns:minmax(0, 1fr)}
+[data-layout="mobile"] .conv-g{grid-template-columns:1fr auto 1fr}
 [data-layout="mobile"] .cf,
 [data-layout="mobile"] .ca,
 [data-layout="mobile"] .ct{text-align:left}
@@ -1004,8 +1007,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
             <div class="who-title">ปวดเล็กน้อย — Paracetamol ± NSAIDs ± adjuvant</div>
             <div class="who-desc">
               <strong>Paracetamol</strong> max <strong>4 กรัม/วัน</strong> (500 มก./ครั้ง)<br>
-              * ลดเหลือ <strong>max 2-3 กรัม/วัน</strong> เมื่อมี: ทุพโภชนาการ, สูงอายุ, การทำงานของตับบกพร่อง/โรคสุราเรื้อรัง<br>
-              + NSAIDs (ถ้าไม่มีข้อห้าม) ± other adjuvant
+              * ลดเหลือ <strong>max 2-3 กรัม/วัน</strong> เมื่อมี: ทุพโภชนาการ, สูงอายุ, การทำงานของตับบกพร่อง/โรคสุราเรื้อรัง
             </div>
           </div>
         </div>
@@ -1019,7 +1021,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
               ⚠️ ลดเหลือ max <strong>200 mg/day</strong> เมื่อ: อายุ &gt; 75 ปี, CrCl &lt; 30 mL/min, โรคตับ<br>
               SE: มึนงง ง่วงนอน คลื่นไส้ อาเจียน ท้องผูก<br>
               <em>หรือใช้ ultracet 37.5/325 (tramadol+paracetamol) หรือ NSAIDs (ถ้าไม่มีข้อห้าม) ± other adjuvant</em><br>
-              💡 สามารถข้ามไปใช้ <strong>strong opioids low dose</strong> ได้ (oral morphine &lt; 20 mg/day)<br>
+              💡 สามารถข้ามไปใช้ <strong>strong opioids low dose</strong> ได้ (oral morphine &lt;=20mg/day)<br>
               * พิจารณาสั่งยาระบายและยาต้านอาเจียน
             </div>
           </div>
@@ -1187,9 +1189,9 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
       <div class="al al-w"><span class="al-i">⚠️</span><div>ใช้ในผู้ป่วยกินยาไม่ได้ + ได้ strong opioid อื่นที่ <strong>คุมปวดได้คงที่แล้ว</strong> — ออกฤทธิ์ช้า ประเมินหลังแปะ 48-72 ชม.</div></div>
       <ul class="ul" style="margin-top:10px">
         <li>หลังแปะ ลด morphine 50% ใน 12 ชม.แรก → <strong>off morphine</strong> เมื่อครบ 12 ชม.</li>
-        <li>ตำแหน่ง: หน้าอกบน, ต้นแขน, ต้นขา, เอว (ที่มี subcutaneous fat) <strong>ห้ามแปะบนกระดูก</strong></li>
+        <li>ตำแหน่ง: หน้าอกส่วนบน, ต้นแขน, ต้นขา, เอว (ที่มี subcutaneous fat) <strong>ห้ามแปะบนกระดูก</strong></li>
         <li>เปลี่ยนแผ่นใหม่ → ย้ายตำแหน่งใหม่</li>
-        <li>ระวัง: ไข้/อักเสบ → ดูดซึมมากกว่าปกติ</li>
+        <li>ระวัง: ไข้/บริเวณที่อักเสบ → ดูดซึมมากกว่าปกติ <strong>ห้ามแปะบริเวณที่อักเสบ</strong></li>
         <li>ตัดครึ่งแผ่นได้ เก็บส่วนที่เหลือใช้ภายหลัง</li>
       </ul>
     </div>
@@ -1200,7 +1202,9 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
     <div class="card-body">
       <p style="color:var(--text-muted);margin-bottom:8px;font-size:calc(var(--fs) - 2px)">
         Paracetamol/NSAIDs ใช้ได้ดีใน <strong>bone pain, liver pain</strong><br>
-        Antidepressant/anticonvulsant สำหรับ <strong>neuropathic pain</strong>
+        Antidepressant/anticonvulsant สำหรับ <strong>neuropathic pain</strong><br>
+        Corticosteroid สำหรับ <strong>raised ICP, neuropathic pain, liver capsule stretch</strong><br>
+        อาจให้ adjuvant ที่ออกฤทธิ์คนละกลไกร่วมกันได้ (เพื่อลด SE ยา)
       </p>
       <div class="sub">Neuropathic Pain</div>
       <table class="dt">
@@ -1209,7 +1213,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
         <tr><td><span class="dn">Gabapentin</span></td><td><span class="dd">300 mg/day → +300 mg q 3 days → 300 mg TID<br>→ +300 mg q 3-7 days<br>Max 1,800 mg/day</span></td><td>Elderly: 100 mg/day<br>ESRD: 100 mg วันเว้นวัน (HD: กินหลังทำ)<br>SE: ง่วงซึม, สั่น, สับสน</td></tr>
         <tr><td><span class="dn">Pregabalin</span><br>(ใช้กรณี gabapentin ไม่ได้ผล/มี SE)</td><td><span class="dd">75 mg BID → +75 mg BID q 3-7 days<br>Max 300 mg BID</span></td><td>Switch: dose pregabalin = dose gabapentin ÷ 6</td></tr>
       </table>
-      <div class="al al-n" style="margin-top:8px"><span class="al-i">ℹ️</span><div>Amitriptyline และ gabapentin ประสิทธิภาพไม่แตกต่างกัน — สามารถให้ adjuvant drugs ที่ออกฤทธิ์คนละกลไกร่วมกันได้</div></div>
+      <div class="al al-n" style="margin-top:8px"><span class="al-i">ℹ️</span><div>Amitriptyline และ gabapentin ประสิทธิภาพไม่แตกต่างกัน<br>สามารถให้ adjuvant drugs ที่ออกฤทธิ์คนละกลไกร่วมกันได้ (เพื่อลด side effect ของยา)</div></div>
 
       <div class="sub">Corticosteroid — Dexamethasone</div>
       <table class="dt">
@@ -1310,10 +1314,10 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
         <tr><td>สูงอายุ / ไตวาย</td><td><span class="dn">Morphine IR/syrup</span> <span class="dd">1-2 mg PO prn q 6-8 hr</span></td></tr>
       </table>
       <p style="font-size:calc(var(--fs) - 2px);color:var(--text-muted);margin-top:6px">
-        ถ้าผู้ป่วยต้องการ &gt; 3 doses → ปรับเป็น <strong>around the clock (ATC) + prn</strong> (ขนาด prn = 10-20% หรือ 1/6 ของ total dose/day)
+        ถ้าผู้ป่วยต้องการ &gt;= 3 doses → ปรับเป็น <strong>around the clock (ATC) + prn</strong> (ขนาด prn = 10-20% หรือ 1/6 ของ total dose/day)
       </p>
 
-      <div class="sub">2. Dyspnea at rest</div>
+      <div class="sub">2. Dyspnea at rest (Opioid-naïve)</div>
       <ul class="ul">
         <li>ATC + prn q 2 hr (ทั่วไป) / prn q 4 hr (สูงอายุ/ไตวาย)</li>
         <li>หรือ continuous drip</li>
@@ -1321,7 +1325,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 
       <div class="sub">เคยได้รับ / กำลังได้ Opioid</div>
       <ul class="ul">
-        <li>ยังเหนื่อยอยู่ → เพิ่มช้าๆ ทีละ <strong>30-50%</strong> ของขนาดที่ได้ประจำต่อวัน (ปรับเหมือน pain control)</li>
+        <li>ยังเหนื่อยอยู่ → เพิ่มช้าๆ ทีละ <strong>30-50%</strong> ของขนาด opioid ที่ผู้ป่วยได้รับก่อนหน้าต่อวัน (ปรับเหมือน pain control)</li>
       </ul>
     </div>
   </div>
@@ -1356,7 +1360,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
       <ul class="ul" style="margin-top:8px">
         <li>Review หลังให้ยาไป <strong>5 วัน</strong> ว่าตอบสนองดีหรือไม่</li>
         <li>ดีขึ้น → ปรับขนาดยาลงช้าๆ จนได้ขนาดต่ำสุดที่คุมอาการได้</li>
-        <li>ไม่ดีขึ้น → หยุดยา หรือ maintenance ขนาดเดิม</li>
+        <li>ไม่ดีขึ้น → หยุดยา หรือ maintenance ขนาดเดิมที่ผู้ป่วยได้รับก่อนหน้า</li>
         <li>ใช้ติดต่อกัน &gt; 3 สัปดาห์ → <strong>taper off</strong></li>
       </ul>
     </div>
@@ -1381,7 +1385,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
         <tr><th>สถานการณ์</th><th>ยา & ขนาด</th></tr>
         <tr><td>ใช้ regular opioid อยู่แล้ว</td><td>ใช้ขนาด BTP เดิม <span class="rt riv">IV</span></td></tr>
         <tr><td>Opioid-naïve</td><td><span class="dn">Morphine</span> <span class="dd">2 mg IV prn q 2 hr</span><br>ตับ/ไตวาย: <span class="dn">Fentanyl</span> <span class="dd">25 µg IV prn q 1 hr</span></td></tr>
-        <tr><td>prn &gt; 3 ครั้ง/วัน</td><td>เปลี่ยนเป็น continuous drip หรือ ATC (คำนวณจาก prn ใน 24 ชม.)</td></tr>
+        <tr><td>prn &gt;= 3 ครั้ง/วัน</td><td>เปลี่ยนเป็น continuous drip หรือ purge ATC (คำนวณจาก prn ใน 24 ชม.)</td></tr>
       </table>
     </div>
   </div>
@@ -1393,13 +1397,13 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
         <tr><th>ขั้นตอน</th><th>คำสั่งยา</th></tr>
         <tr><td>Loading</td><td><span class="dn">Morphine</span> <span class="dd">2-3 mg IV push</span></td></tr>
         <tr><td>Drip เริ่มต้น</td><td><span class="dd">0.5-1 mg/hr IV drip</span></td></tr>
-        <tr><td>BTP ระหว่าง drip</td><td><span class="dn">Morphine</span> <span class="dd">1-2 mg IV prn q 15 min</span><br>หรือ <span class="dn">Fentanyl</span> <span class="dd">25 µg IV prn q 15 min</span></td></tr>
+        <tr><td>Dyspnea ระหว่าง drip</td><td><span class="dn">Morphine</span> <span class="dd">1-2 mg IV prn q 15 min</span><br>หรือ <span class="dn">Fentanyl</span> <span class="dd">25 µg IV prn q 15 min</span></td></tr>
         <tr><td>ปรับ rate</td><td>ทีละ <span class="dd">0.5-1 mg/hr</span> ทุก 30-60 min (หลัง purge 3 ครั้งไม่ดีขึ้น)</td></tr>
       </table>
       <div class="al al-w" style="margin-top:8px"><span class="al-i">⚠️</span><div>ปรับ BTP ก่อน แล้วค่อยปรับ rate — เพิ่ม rate เร็วเสี่ยง overdose<br>
       <em>ตัวอย่าง:</em> เดิม Mo IV drip 1 mg/hr (= IV 24 mg/day = oral 72 mg/day) → เพิ่มเป็น 2 mg/hr (= IV 48 mg/day = oral 144 mg/day)</div></div>
       <div class="sub">ตับ/ไตวาย → Fentanyl</div>
-      <table class="dt"><tr><td><span class="dn">Fentanyl</span> <span class="dd">25 µg IV push → drip 10 µg/hr</span> ปรับ +5-10 µg/hr q 15-60 min</td></tr></table>
+      <table class="dt"><tr><td><span class="dn">Fentanyl</span> <span class="dd">25 µg IV push → drip 10 µg/hr</span> ปรับ +5-10 µg/hr q 15-60 min <span class="dnote">(หลัง purge 3 ครั้งไม่ดีขึ้น)</span></td></tr></table>
     </div>
   </div>
 
@@ -1408,9 +1412,8 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
     <div class="card-body">
       <div class="al al-d"><span class="al-i">🔴</span><div>ใช้ช่วง <strong>last days of life</strong> เมื่อให้ morphine เต็มที่แล้วไม่ดีขึ้น<br>ต้องพูดคุยกับผู้ป่วย/ญาติ + เซ็น <strong>informed consent</strong> ก่อน</div></div>
       <table class="dt" style="margin-top:8px">
-        <tr><td><span class="dn">Midazolam</span></td><td><span class="dd">1-2 mg IV/SC prn q 1-2 hr → drip 0.5 mg/hr</span><br>ปรับเพิ่มครั้งละ 0.5 mg q 1 hr ตามอาการ</td></tr>
+        <tr><td><span class="dn">Midazolam</span></td><td><span class="dd">1-2 mg IV/SC prn q 1-2 hr → drip 0.5 mg/hr</span><br>ปรับเพิ่มครั้งละ 0.5 mg q 1 hr ตามอาการ จนดีขึ้น <span class="dnote">(purge prn จะได้ผลเร็วกว่าปรับ rate)</span><br>หากได้ morphine อยู่แล้ว ให้ drip ยา morphine ต่อ</td></tr>
       </table>
-      <p style="font-size:calc(var(--fs) - 2px);color:var(--text-muted);margin-top:6px">หากได้ morphine อยู่แล้ว ให้ drip ยา morphine ต่อ — purge prn จะได้ผลเร็วกว่าปรับ rate</p>
     </div>
   </div>
 
@@ -1421,7 +1424,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
         <li>SpO₂ &lt; 92% → ให้ O₂ ได้ แต่อาการหายใจไม่อิ่มอาจไม่สัมพันธ์กับ SpO₂</li>
         <li><strong>Nasal cannula ทนได้ดีกว่า mask</strong> — ไม่ใช้ SpO₂ เป็นตัวตัดสินอาการเพียงอย่างเดียว</li>
         <li><strong>HFNC:</strong> ปรับ FiO₂ ตาม target SpO₂ (อ้างอิงโรคเดิม ไม่จำเป็น 100%), ปรับ flow ตามความเหนื่อย</li>
-        <li>ดีขึ้น → เปลี่ยนเป็น O₂ cannula/mask (HFNC ลมแรง อาจไม่สบาย)</li>
+        <li>ปรับยาจนดีขึ้น → เปลี่ยนเป็น O₂ cannula/mask (HFNC ลมแรง อาจไม่สบาย)</li>
         <li>ผู้ป่วยใกล้เสียชีวิต — ไม่ต้องลด setting คงให้ผู้ป่วยสบาย</li>
         <li><strong>HFNC ไม่เหมาะสำหรับกลับบ้าน</strong> — หา O₂ flow สูงลำบาก ควรใช้ O₂ cannula/mask แล้วปรับยาให้ดี</li>
       </ul>
@@ -1499,7 +1502,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
         <tr><td><strong>Drug related</strong><br>(Opioids, Steroids, BZD, Anticholinergic ที่ผ่าน BBB)</td><td>Reduce / Stop / Switch ยาที่สงสัย</td></tr>
         <tr><td><strong>Withdrawal:</strong> Alcohol, Nicotine, BZD, Opioids</td><td>อาจให้ผู้ป่วยใช้ยาเดิมต่อ; <strong>Nicotine patch</strong> อาจช่วย</td></tr>
         <tr><td><strong>Metabolic:</strong> Respiratory failure, Liver failure, Renal failure, Hypo/Hyperglycemia, Hypercalcemia, Adrenal/Thyroid/Pituitary, Infection, Nutrition</td><td>รักษาสาเหตุที่ reversible</td></tr>
-        <tr><td><strong>Raised Intracranial Pressure</strong></td><td><span class="dn">Dexamethasone</span> <span class="dd">8-16 mg/day</span> หรือ <span class="dd">6.6-13.2 mg SC</span> (3.3 mg/mL) × 1 สัปดาห์ → ลดใน 2-4 สัปดาห์ จนถึงขนาดต่ำสุดที่คุม<br><em>ถ้าได้ฉายแสง: คงสเตียรอยด์ต่อจนถึง 1 สัปดาห์หลัง treatment แล้วค่อยลด</em></td></tr>
+        <tr><td><strong>Raised Intracranial Pressure</strong></td><td><span class="dn">Dexamethasone</span> <span class="dd">8-16 mg/day</span> หรือ <span class="dd">6.6-13.2 mg SC</span> (3.3 mg/mL) × 1 สัปดาห์ → ลดใน 2-4 สัปดาห์ จนถึงขนาดต่ำสุดที่คุม<br><em>ถ้าได้ฉายแสง: คงสเตียรอยด์ต่อจนถึง 1 สัปดาห์หลังฉายแสง แล้วค่อยลด</em></td></tr>
         <tr><td><strong>Other:</strong> Dehydration, Shock, Anemia, Pain, Constipation, Urinary retention, Sleep, Environment</td><td>รักษาที่ reversible</td></tr>
       </table>
     </div>
@@ -1520,10 +1523,10 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
     <div class="card-body">
       <table class="dt">
         <tr><th>ยา</th><th>ขนาด</th><th>หมายเหตุ</th></tr>
-        <tr><td><span class="dn">Haloperidol</span><span class="l1">1st</span></td><td><span class="dd">0.5-1 mg PO at night หรือ BID</span><br>หรือ <span class="dd">0.25-0.5 mg PO/SC prn q 1 hr</span> + regular dose</td><td>Max <strong>10 mg/24hr</strong><br>EPS ที่ dose สูง</td></tr>
-        <tr><td><span class="dn">Lorazepam</span><br><span class="dnote">alcohol withdrawal</span></td><td><span class="dd">0.5-1 mg PO/SC</span></td><td>—</td></tr>
-        <tr><td><span class="dn">Midazolam</span></td><td><span class="dd">2-5 mg SC q 1-2 hr</span></td><td>—</td></tr>
-        <tr><td><span class="dn">Diazepam</span></td><td><span class="dd">5 mg PO/rectal q 8-12 hr</span></td><td>—</td></tr>
+        <tr><td><span class="dn">Haloperidol</span><span class="l1">1st</span></td><td><span class="dd">0.5-1 mg PO at night หรือ BID</span><br>หรือ <span class="dd">0.25-0.5 mg PO/SC prn q 1 hr</span> +/- regular dose</td><td>Max <strong>10 mg/24hr</strong><br>EPS ที่ dose สูง</td></tr>
+        <tr><td><span class="dn">Lorazepam</span></td><td><span class="dd">0.5-1 mg PO/SC</span></td><td>ใช้กรณีสงสัย alcohol withdrawal</td></tr>
+        <tr><td><span class="dn">Midazolam</span></td><td><span class="dd">2-5 mg SC q 1-2 hr</span></td><td>ใช้กรณีสงสัย alcohol withdrawal</td></tr>
+        <tr><td><span class="dn">Diazepam</span></td><td><span class="dd">5 mg PO/rectal (Suppo) q 8-12 hr</span></td><td>ใช้กรณีสงสัย alcohol withdrawal</td></tr>
       </table>
     </div>
   </div>
@@ -1536,7 +1539,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
         <tr><td><span class="dn">Quetiapine</span></td><td><span class="dd">12.5-25 mg PO prn q 6 hr</span></td><td>SE: orthostatic hypotension</td></tr>
         <tr><td><span class="dn">Olanzapine</span></td><td><span class="dd">2.5-5 mg PO/SL OD หรือ BID</span></td><td>Less sedating กว่า levomepromazine<br>แต่กระตุ้น delirium ได้มากกว่ายาอื่น</td></tr>
         <tr><td><span class="dn">Risperidone</span></td><td><span class="dd">0.25-1 mg PO q 12-24 hr</span><br>Max <strong>4 mg/day</strong></td><td>EPS ที่ dose &gt; 6 mg/day<br>Orthostatic hypotension</td></tr>
-        <tr><td><span class="dn">Levomepromazine</span></td><td><span class="dd">12.5-25 mg PO/SC q 6-8 hr</span></td><td>&gt; 2 doses/24hr → <strong>ปรึกษาผู้เชี่ยวชาญ</strong></td></tr>
+        <tr><td><span class="dn">Levomepromazine</span></td><td><span class="dd">12.5-25 mg PO/SC q 6-8 hr</span></td><td>&gt;= 2 doses/24hr → <strong>ปรึกษาผู้เชี่ยวชาญ</strong></td></tr>
       </table>
       <div class="al al-n" style="margin-top:8px"><span class="al-i">ℹ️</span><div>หากให้ยาแล้วไม่ดีขึ้น/ใกล้เสียชีวิต → พิจารณา <strong>palliative sedation (Midazolam first-line)</strong> — refractory delirium เป็น 1 ใน 3 ข้อบ่งชี้ที่พบบ่อย</div></div>
     </div>
@@ -1616,10 +1619,10 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
       <div class="al al-w"><span class="al-i">⚠️</span><div>ยังไม่มีหลักฐานว่าการรักษาด้วยยาชนิดใดมีประโยชน์มากกว่า placebo — ให้ยากรณีเสียงดัง หรือสร้างความกังวลให้ครอบครัว<br>Anticholinergic เป็นที่นิยมใช้ แม้ไม่มีหลักฐานรองรับมาก</div></div>
       <table class="dt" style="margin-top:8px">
         <tr><th>ลำดับ</th><th>ยา</th><th>ขนาด</th><th>หมายเหตุ</th></tr>
-        <tr><td><span class="l1">1st</span></td><td><span class="dn">Hyoscine butylbromide</span><br><span class="dnote">Buscopan</span></td><td><span class="dd">20-40 mg SC prn q 4 hr</span><br>Max <strong>300 mg/24hr</strong></td><td>ใช้ใน terminal dyspnea เพื่อป้องกัน death rattle ได้<br>(ห้ามใช้ในผู้ที่ยังไม่ใช่ระยะสุดท้าย → เสมหะเหนียว obstruction)<br><strong>Does not cross BBB</strong> — CNS SE น้อย</td></tr>
-        <tr><td><span class="l2">2nd</span></td><td><span class="dn">Glycopyrrolate</span></td><td><span class="dd">0.2-0.4 mg SC prn q 4-6 hr</span></td><td><strong>ลด dose ครึ่งหนึ่งใน ESRD</strong><br>Less CNS adverse — does not cross BBB</td></tr>
-        <tr><td><span class="l3">3rd</span></td><td><span class="dn">Hyoscine hydrobromide</span><br><span class="dnote">Scopolamine</span></td><td><span class="dd">0.4-0.6 mg SC q 4-6 hr</span></td><td>Sedative effect<br><strong>Avoid in ESRD</strong> — เพิ่มความเสี่ยง delirium</td></tr>
-        <tr><td>—</td><td><span class="dn">Atropine</span><br><span class="dnote">1% ophthalmic drops, off-label SL</span></td><td><span class="dd">1-4 drops (0.5 mg/drop) SL q 2-4 hr</span></td><td>Effectiveness ยังไม่มีหลักฐาน<br>Off-label indication<br>แนะนำหยอดตาถ้าเยื่อบุตาแห้ง</td></tr>
+        <tr><td><span class="l1">1st line</span></td><td><span class="dn">Hyoscine butylbromide</span><br><span class="dnote">Buscopan</span></td><td><span class="dd">20-40 mg SC prn q 4 hr</span><br>Max <strong>300 mg/24hr</strong></td><td>ใช้ใน terminal dyspnea เพื่อป้องกัน death rattle ได้<br>(ห้ามใช้ในผู้ที่ยังไม่ใช่ระยะสุดท้าย → เสมหะเหนียว obstruction)<br><strong>Does not cross BBB</strong> — CNS SE น้อย</td></tr>
+        <tr><td><span class="l2">2nd line</span></td><td><span class="dn">Glycopyrrolate</span></td><td><span class="dd">0.2-0.4 mg SC prn q 4-6 hr</span></td><td><strong>ลด dose ครึ่งหนึ่งใน ESRD</strong><br>Less CNS adverse — does not cross BBB</td></tr>
+        <tr><td><span class="l3">3rd line</span></td><td><span class="dn">Hyoscine hydrobromide</span><br><span class="dnote">Scopolamine</span></td><td><span class="dd">0.4-0.6 mg SC q 4-6 hr</span></td><td>Sedative effect<br><strong>Avoid in ESRD</strong> — เพิ่มความเสี่ยง delirium</td></tr>
+        <tr><td>—</td><td><span class="dn">Atropine</span><br><span class="dnote">1% ophthalmic drops</span></td><td><span class="dd">1-4 drops (0.5 mg/drop) SL q 2-4 hr</span></td><td>Effectiveness ยังไม่มีหลักฐาน<br>Off-label indication</td></tr>
       </table>
       <div class="al al-w" style="margin-top:8px"><span class="al-i">⚠️</span><div>
         <strong>SE:</strong> ปากแห้ง, ปัสสาวะค้างในกระเพาะปัสสาวะ, ตาพร่ามัว, อาจสับสนได้<br>
@@ -1654,12 +1657,12 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔍</span><span class="card-ttl">สาเหตุของท้องผูกในผู้ป่วยประคับประคอง</span><span class="card-chev">▼</span></div>
     <div class="card-body">
+      <p style="font-size:calc(var(--fs) - 2px);color:var(--text-muted);margin-bottom:8px">ค้นหาสาเหตุที่สามารถทำให้เกิดท้องผูกเสมอ</p>
       <ul class="ul">
-        <li><strong>ยา</strong>: opioids, antacids ที่มี aluminium, diuretics, iron, 5HT3 antagonists</li>
-        <li><strong>ภาวะขาดน้ำ</strong> / กินอาหารกากใยน้อย / เคลื่อนไหวน้อย</li>
-        <li><strong>มะเร็งกดเบียด</strong>หรืออุดทางเดินอาหาร</li>
-        <li><strong>Metabolic</strong>: hypercalcemia, hypokalemia, hypothyroidism, uremia</li>
-        <li><strong>โรคร่วม</strong>: diverticular disease, anal fissure, hemorrhoid, spinal cord compression</li>
+        <li>ยา: opioids, antacids, diuretics, iron, 5HT3 antagonists</li>
+        <li>ภาวะขาดน้ำ เคลื่อนไหวน้อย รับประทานอาหารน้อย</li>
+        <li>ก้อนมะเร็งกดเบียดลำไส้/gut obstruction</li>
+        <li>Hypercalcemia, hypokalemia, hypothyroidism, diverticular disease, anal fissure, hemorrhoid</li>
       </ul>
     </div>
   </div>
@@ -1668,35 +1671,39 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
     <div class="card-body">
       <table class="dt">
         <tr><th>Clinical Situation</th><th>ยา & ขนาด</th><th>หมายเหตุ</th></tr>
-        <tr><td><strong>Soft bulky</strong></td><td><span class="dn">Bisacodyl</span> <span class="dd">5-20 mg hs</span><br><span class="dn">Senna</span> <span class="dd">7.5 mg hs → 15 mg → 30 mg BID</span><br><span class="dn">Sodium picosulfate</span> <span class="dd">5-10 mg hs → max 30 mg/day</span><br><span class="dn">Lactulose</span> <span class="dd">30-60 mL/day</span><br><span class="dn">MOM</span> <span class="dd">30-60 mL hs</span></td><td>หลีกเลี่ยง stimulants ถ้ามี colic</td></tr>
-        <tr><td><strong>Colon full, no colic</strong></td><td><span class="dn">Senna + Docusate</span></td><td>combination เป็นทางเลือก</td></tr>
-        <tr><td><strong>Colic</strong></td><td><span class="dn">Macrogols (PEG)</span> <span class="dd">1 sachet ละลายน้ำ 125 mL → 2-3 sachets/day</span></td><td>ต้องดื่มน้ำให้เพียงพอ; ระวังในผู้ป่วยหัวใจ (limit 2 sachets/hr)</td></tr>
-        <tr><td><strong>Hard dry</strong></td><td><span class="dn">Docusate sodium</span> <span class="dd">200-500 mg/day</span></td><td>stool softener; ใช้ร่วม stimulant ได้</td></tr>
-        <tr><td><strong>Hard, full rectum</strong></td><td>1st: <span class="dn">Bisacodyl/Senna</span> + <span class="dn">Docusate</span><br>2nd: <span class="dn">Macrogols</span> 2-3 sachets/day<br>3rd: <span class="dn">Glycerol</span> <span class="dd">4 g</span> + <span class="dn">Bisacodyl</span> <span class="dd">10 mg suppository</span>, Enema</td><td>step-up ตามการตอบสนอง</td></tr>
-        <tr><td><strong>Fecal Impaction</strong></td><td>1st: <span class="dn">Arachis oil enema</span> ค้างคืน + <span class="dn">Phosphate enema</span> เช้า<br>2nd: <span class="dn">Macrogols</span> <span class="dd">8 sachets ละลายน้ำ 1 L ภายใน &lt;6 hr</span></td><td><strong>แพ้ถั่ว → ห้ามใช้ Arachis oil</strong><br>Repeat up to <strong>3 days</strong>; heart failure: limit <strong>2 sachets/hr</strong></td></tr>
+        <tr><td><strong>Soft bulky stools</strong><br><span class="dnote">low colonic activity</span></td><td><span class="dtag">Oral stimulant</span><br><span class="dn">Bisacodyl</span> <span class="dd">5-20 mg hs</span><br><span class="dn">Senna</span> <span class="dd">7.5 mg hs → 15 mg → 30 mg BID</span><br><span class="dn">Sodium picosulfate</span> <span class="dd">5-10 mg hs → max 30 mg/day</span><br><span class="dtag">Osmotic</span><br><span class="dn">Lactulose</span> <span class="dd">30-60 mL/day</span><br><span class="dn">MOM</span> <span class="dd">30-60 mL hs</span><br><span class="dn">Bisacodyl suppo</span> หรือ <span class="dn">sodium citrate/phosphate enema</span></td><td>Start with low dose and titrate<br>May cause abdominal cramp<br>Avoid stimulant laxatives in patients with gut obstruction and colicky pain<br>Overdose of MOM can cause hypermagnesemia</td></tr>
+        <tr><td><strong>Colon full, no colic</strong></td><td><span class="dtag">Stimulant +/- softening agent</span><br><span class="dn">Senna + Docusate sodium</span></td><td>Docusate sodium oral solution may cause a bitter aftertaste or burning sensation, minimized by drinking plenty of water after taking</td></tr>
+        <tr><td><strong>Colon full with colic</strong></td><td><span class="dn">Macrogols (PEG)</span> <span class="dd">1 sachet ละลายน้ำ 125 mL → 2-3 sachets/day</span></td><td>Require adequate oral fluids to be effective<br>ระวังการใช้ในผู้ที่ไม่สามารถดื่มน้ำอย่างเพียงพอ</td></tr>
+        <tr><td><strong>Hard dry faeces</strong></td><td><span class="dtag">Softening agents</span><br><span class="dn">Docusate sodium</span> <span class="dd">200 mg up to 500 mg/day (bid)</span></td><td>Useful in sub-acute obstruction<br>Higher doses may stimulate peristalsis</td></tr>
+        <tr><td><strong>Hard faeces – full rectum, colon</strong></td><td><span class="dtag">Stimulant plus softener</span><br><span class="dn">Bisacodyl tablets</span> or <span class="dn">Senna tablets/liquid</span> plus <span class="dn">Docusate sodium</span><br>2nd line – <span class="dn">Macrogols</span> <span class="dd">2-3 sachets/day</span><br>3rd line – <span class="dn">Glycerol</span> <span class="dd">4 g suppository</span> and <span class="dn">Bisacodyl</span> <span class="dd">10 mg suppository</span><br>If ineffective – <span class="dn">Sodium citrate enema</span></td><td>Required adequate oral fluids to be effective</td></tr>
+        <tr><td><strong>Fecal Impaction</strong></td><td><span class="dn">Arachis oil retention enema</span> +/- <span class="dn">Phosphate enema</span><br>2nd line – <span class="dn">Macrogols</span> <span class="dd">8 sachets ใน 1 L water ภายใน &lt;6 hr</span><br>Repeat up to 3 days (limit 2 sachets/hr in heart failure)</td><td>Warm before use<br>สวนน้ำมันถั่วลิสง (Arachis oil enema) ทิ้งไว้ข้ามคืนแล้วตามด้วย phosphate enema ในตอนเช้า<br>ถ้ามีประวัติแพ้ถั่ว ห้ามใช้น้ำมันถั่วลิสง</td></tr>
       </table>
     </div>
   </div>
   <div class="card">
-    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📌</span><span class="card-ttl">หลักปฏิบัติ (Practice points)</span><span class="card-chev">▼</span></div>
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📌</span><span class="card-ttl">ข้อควรปฏิบัติ</span><span class="card-chev">▼</span></div>
     <div class="card-body">
+      <p style="font-weight:700;color:var(--teal);font-size:calc(var(--fs) - 2px);margin-bottom:6px">เป้าหมาย: เพื่อให้สามารถขับถ่ายได้ใกล้เคียงกับภาวะเดิม หรือขับถ่ายโดยไม่ต้องออกแรงเบ่งอย่างน้อย 1 ครั้งทุก 1-2 วัน</p>
       <ul class="ul">
-        <li>เป้าหมาย: ผู้ป่วยถ่ายอุจจาระได้ใกล้เคียงปกติ <strong>≥1 ครั้งทุก 1-2 วัน</strong> โดยไม่เบ่งและไม่เจ็บ</li>
-        <li>ทบทวนยาที่ทำให้ท้องผูกและพิจารณาหยุด/ลดถ้าทำได้</li>
-        <li>เมื่อเริ่ม opioids → สั่ง stimulant + softener <strong>คู่กันเสมอ</strong></li>
-        <li>ตรวจ PR ก่อนให้ยาระบายในกรณีสงสัย fecal impaction; ถ้า rectum ว่างต้อง work up obstruction</li>
-        <li>หลีกเลี่ยง bulk-forming laxatives (psyllium) ในผู้ป่วยที่ดื่มน้ำได้น้อยหรือมีความเสี่ยง obstruction</li>
+        <li>เมื่อเริ่มใช้ opioids จำเป็นต้องใช้ยาระบายทุกวัน เมื่อมีการปรับขนาด opioids ควรทบทวนยาระบาย</li>
+        <li>Lactulose ใช้ได้ผลไม่ดีนัก หากผู้ป่วยดื่มน้ำน้อย อาจทำให้ท้องอืดหรือปวดบิดท้องบางราย</li>
+        <li>ไม่แนะนำให้ใช้กลุ่ม bulk forming เนื่องจากผู้ป่วยมักดื่มน้ำน้อย อาจทำให้อุจจาระแข็งขึ้น</li>
+        <li>ยาเหน็บและยาสวน ใช้เมื่อยากินไม่ได้ผล ระวังในผู้ป่วยที่มีความเสี่ยงเลือดออกง่าย</li>
+        <li>ถ้าอุจจาระแข็งมาก อาจต้องช่วยทำ evacuation</li>
       </ul>
     </div>
   </div>
   <div class="card">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">📚</span><span class="card-ttl">References</span><span class="card-chev">▼</span></div>
     <div class="card-body">
-      <ul class="ref-list">
-        <li>Twycross R, Wilcock A, Howard P. Palliative Care Formulary (PCF). 8th ed. 2024.</li>
-        <li>Larkin PJ, et al. ESMO Clinical Practice Guidelines: diagnosis, assessment and management of constipation in advanced cancer. Ann Oncol. 2018;29(Suppl 4):iv111–iv125.</li>
-        <li>Oxford Textbook of Palliative Medicine. 6th ed. 2021.</li>
-      </ul>
+      <ol class="ref-list">
+        <li>Update Handbook of Palliative care guidelines, NHS, UK, ศูนย์การุณรักษ์ โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</li>
+        <li>การดูแลประคับประคอง ศูนย์บริรักษ์ ศิริราช Siriraj palliative E-book</li>
+        <li>NHS, Scottish Palliative Care Guidelines. Constipation. 2017</li>
+        <li>Connolly M, Larkin P. Managing constipation: a focus on care and treatment in the palliative setting. Br J Community Nurs. 2012;17(2):60, 2-4, 6-7.</li>
+        <li>Clemens KE, Faust M, Jaspers B, Mikus G. Pharmacological treatment of constipation in palliative care. Curr Opin Support Palliat Care. 2013;7(2):183-91.</li>
+        <li>Larkin PJ, Sykes NP, et al. The management of constipation in palliative care: clinical practice recommendations. Palliat Med. 2008;22(7):796-807.</li>
+      </ol>
     </div>
   </div>
 </div>
@@ -1737,7 +1744,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
       <table class="dt">
         <tr><th>สาเหตุ</th><th>ยาที่เลือก</th></tr>
         <tr><td><strong>Chemical / Metabolic</strong><br><span class="dnote">Opioids, uremia, chemo</span></td><td><span class="dn">Haloperidol</span> <span class="dd">0.5-1.5 mg PO / 0.5-1 mg SC OD</span><br><span class="dn">Metoclopramide</span> <span class="dd">10 mg QID PO/SC</span><br><span class="dn">Levomepromazine</span> <span class="dd">2.5-5 mg SC q 12 hr หรือ 5-15 mg SC/24 hr</span><br><span class="dn">Ondansetron</span> <span class="dd">4 mg PO/SC BID</span></td></tr>
-        <tr><td><strong>Motility disorder</strong><br><span class="dnote">Partial obs, gastroparesis</span></td><td><span class="dn">Domperidone</span> <span class="dd">10 mg TID PO</span><br><span class="dn">Metoclopramide</span> <span class="dd">10-20 mg QID / 30-80 mg CSCI</span><br><span class="dn">Dexamethasone</span> <span class="dd">4-8 mg OD</span> <span class="dnote">(ลดยาหลังให้ไป 3 วันจนหยุดยา หรือใช้ขนาดต่ำที่สุดที่คุมอาการได้)</span></td></tr>
+        <tr><td><strong>Motility disorder</strong><br><span class="dnote">Partial obs, gastroparesis</span></td><td><span class="dn">Domperidone</span> <span class="dd">10 mg TID PO</span><br><span class="dn">Metoclopramide</span> <span class="dd">10-20 mg QID / 30-80 mg continuous subcutaneous infusion (CSCI)</span><br><span class="dn">Dexamethasone</span> <span class="dd">4-8 mg OD</span> <span class="dnote">(ลดยาหลังให้ไป 3 วันจนหยุดยา หรือใช้ขนาดต่ำที่สุดที่คุมอาการได้)</span></td></tr>
         <tr><td><strong>Raised ICP / Vestibular</strong><br><span class="dnote">Headache, vertigo</span></td><td><span class="dn">Cyclizine</span> <span class="dd">25-50 mg PO/SC TID</span><br><span class="dn">Dexamethasone</span> <span class="dd">8 mg OD</span> <span class="dnote">(ลดยาหลังให้ไป 3 วันจนหยุดยา หรือใช้ขนาดต่ำที่สุดที่คุมอาการได้)</span><br>หูชั้นใน: <span class="dn">Cinnarizine</span> <span class="dd">30 mg → 15 mg TID</span><br>2nd line: <span class="dn">Levomepromazine</span> <span class="dd">3-6 mg PO OD</span> หรือ <span class="dn">Prochlorperazine</span> <span class="dd">5-15 mg PO / 3 mg buccal</span></td></tr>
         <tr><td><strong>Gastric irritation</strong></td><td><span class="dn">Ranitidine</span> <span class="dd">150 mg BID</span> / <span class="dn">PPI</span></td></tr>
         <tr><td><strong>Mixed / Unclear</strong></td><td><span class="dn">Metoclopramide</span> <span class="dd">30-80 mg/24hr CSCI</span><br><span class="dn">Levomepromazine</span> <span class="dd">3-6 mg BID PO / 2.5-5 mg SC BID / 5-15 mg/24hr CSCI</span><br><span class="dn">Dexamethasone</span> <span class="dd">8 mg OD</span> <span class="dnote">(ลดยาหลังให้ไป 3 วันจนหยุดยา หรือใช้ขนาดต่ำที่สุดที่คุมอาการได้)</span><br>+ วิตกกังวล: <span class="dn">Lorazepam</span> <span class="dd">0.5-1 mg</span> / <span class="dn">Diazepam</span> <span class="dd">2-5 mg</span></td></tr>
@@ -1814,51 +1821,90 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">🟡</span><span class="card-ttl">Functional / Partial Obstruction</span><span class="card-chev">▼</span></div>
     <div class="card-body">
+      <p style="font-size:calc(var(--fs) - 2px);color:var(--text-muted);margin-bottom:8px"><strong>จุดมุ่งหมาย:</strong> ให้ normal gut function กลับมา, เอา NG tube ออกได้, กินน้ำหรืออาหารได้, หยุดยา anticholinergic drugs</p>
       <table class="dt">
         <tr><th>ยา</th><th>ขนาด</th><th>หมายเหตุ</th></tr>
-        <tr><td><span class="dn">Dexamethasone</span></td><td><span class="dd">8-16 mg/day IM/IV/SC</span></td><td>ประเมิน 5-7 วัน ลด dose เมื่อดีขึ้น</td></tr>
-        <tr><td><span class="dn">Metoclopramide</span></td><td><span class="dd">30-120 mg/24hr CSCI</span></td><td><strong>ห้ามใน complete obstruction / colic</strong></td></tr>
+        <tr><td><span class="dn">Dexamethasone</span></td><td><span class="dd">8-16 mg/day IM/IV/SC</span></td><td>ประเมิน 5-7 วัน ลด dose เมื่อดีขึ้น<br>ถ้าไม่ดีขึ้นหรือมี AE → หยุดทันที<br><span class="dnote">อาจช่วยให้ complete obstruction กลายเป็น partial obstruction</span></td></tr>
+        <tr><td><span class="dn">Metoclopramide</span><br><span class="dnote">prokinetic drug</span></td><td><span class="dd">30-120 mg/24hr CSCI</span></td><td><strong>ห้ามใน complete obstruction</strong> (กระตุ้น peristalsis)<br>หยุดยาถ้ามี colic — ให้ antiemetic อื่นแทน<br>ระวัง extrapyramidal SE ถ้าใช้นาน</td></tr>
       </table>
     </div>
   </div>
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔴</span><span class="card-ttl">Complete Obstruction — NPO</span><span class="card-chev">▼</span></div>
     <div class="card-body">
-      <div class="al al-d"><span class="al-i">🚫</span><div>NPO เสมอ — หยุด prokinetics, stimulant laxatives</div></div>
+      <p style="font-size:calc(var(--fs) - 2px);color:var(--text-muted);margin-bottom:8px"><strong>จุดมุ่งหมาย:</strong> ให้ลำไส้ได้พัก, เอา NG tube ออกได้, หยุดยา prokinetics และ stimulant laxatives</p>
+      <div class="al al-d"><span class="al-i">🚫</span><div>NPO เสมอ — ลำไส้บีบตัวมากเกิน bowel ischemia ได้; หยุด prokinetics, stimulant laxatives</div></div>
       <table class="dt" style="margin-top:8px">
-        <tr><th>ยา</th><th>ขนาด</th><th>จุดประสงค์</th></tr>
-        <tr><td><span class="dn">Octreotide</span></td><td><span class="dd">150-200 µg SC q 8 hr</span></td><td>ลด GI secretions</td></tr>
-        <tr><td><span class="dn">Cyclizine</span></td><td><span class="dd">75-150 mg/24hr CSCI + 25-50 mg prn q 4-6 hr</span></td><td>Max 200 mg/24hr</td></tr>
-        <tr><td><span class="dn">Haloperidol</span></td><td><span class="dd">0.5-1.5 mg SC hs/CSCI + 0.5 mg prn q 2 hr</span></td><td>Max 5 mg/24hr ร่วมกับ cyclizine</td></tr>
-        <tr><td><span class="dn">Levomepromazine</span></td><td><span class="dd">5-25 mg SC hs + 5 mg prn q 2 hr</span></td><td>Max 25 mg/24hr</td></tr>
-        <tr><td><span class="dn">Hyoscine butylbromide</span><br><span class="dnote">colic</span></td><td><span class="dd">40-120 mg/day IV</span> หรือ <span class="dd">60-120 mg/24hr CSCI</span></td><td>ลด smooth muscle spasm</td></tr>
+        <tr><th>ยา</th><th>ขนาด</th><th>จุดประสงค์/หมายเหตุ</th></tr>
+        <tr><td><span class="dn">Octreotide</span></td><td><span class="dd">150-200 µg SC q 8 hr</span></td><td>ลด GI secretions<br><span class="dnote">ใช้ได้ดีในผู้ป่วยที่อาเจียนมากจาก obstruction ในลำไส้ส่วนล่าง</span></td></tr>
+        <tr><td><span class="dn">Cyclizine</span></td><td><span class="dd">75-150 mg/24hr continuous subcutaneous infusion (CSCI) + 25-50 mg SC prn q 4-6 hr</span></td><td>Max 200 mg/24hr</td></tr>
+        <tr><td><span class="dn">Haloperidol</span></td><td><span class="dd">0.5-1.5 mg SC hs/CSCI + 0.5 mg SC prn q 2 hr</span></td><td>Max 5 mg/24hr</td></tr>
+        <tr><td colspan="3" style="font-size:calc(var(--fs) - 2px);color:var(--text-muted);padding:4px 10px">• Use cyclizine &amp; haloperidol in combination</td></tr>
+        <tr><td><span class="dn">Levomepromazine</span></td><td><span class="dd">5-25 mg SC hs + 5 mg SC prn q 2 hr</span></td><td>Max 25 mg/24hr<br><span class="dnote">if fail haloperidol</span></td></tr>
+        <tr><td colspan="3" style="color:var(--amber);font-size:calc(var(--fs) - 3px);padding:6px 10px">⚠️ Persistent / high volume vomiting → <strong>พิจารณาปรึกษาผู้เชี่ยวชาญ</strong></td></tr>
       </table>
     </div>
   </div>
   <div class="card">
-    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🩺</span><span class="card-ttl">Ongoing management</span><span class="card-chev">▼</span></div>
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🩺</span><span class="card-ttl">การบรรเทาอาการอื่นๆ</span><span class="card-chev">▼</span></div>
     <div class="card-body">
       <table class="dt">
         <tr><th>ปัญหา</th><th>การจัดการ</th></tr>
-        <tr><td><strong>Constipation precipitating obstruction</strong></td><td><span class="dn">Docusate sodium</span> <span class="dd">max 500 mg/day</span> (ขึ้นถึง 200 mg TID); หลีกเลี่ยง stimulant laxatives</td></tr>
-        <tr><td><strong>Abdominal pain</strong></td><td>Opioids ตามขั้น (PO ถ้ารับได้, ไม่งั้น SC/CSCI); ระวัง opioid-induced constipation</td></tr>
-        <tr><td><strong>Abdominal colic</strong></td><td><span class="dn">Hyoscine butylbromide</span> <span class="dd">40-120 mg/day IV</span> หรือ <span class="dd">60-120 mg/24hr CSCI</span></td></tr>
-        <tr><td><strong>Hydration</strong></td><td>SC fluid (hypodermoclysis) ขึ้นถึง <span class="dd">1-2 L/24 hr</span> เพียงพอป้องกัน dehydration</td></tr>
-        <tr><td><strong>Dietary intake</strong></td><td>อาหารเหลว/อ่อน ปริมาณน้อย ๆ ตามที่ผู้ป่วยทนได้; เน้นความสุขในการกิน ไม่เน้นแคลอรี</td></tr>
-        <tr><td><strong>Stent / NG tube / Gastrostomy</strong></td><td>Stent: high mech obstruction; NG: short-term decompression; <strong>Venting gastrostomy</strong>: refractory vomiting ใน complete obstruction</td></tr>
-        <tr><td><strong>Parenteral nutrition</strong></td><td>พิจารณาเฉพาะกรณี <strong>life expectancy &gt;2 เดือน</strong> และมีเป้าหมายชัดเจน</td></tr>
+        <tr><td><strong>Constipation precipitating obstruction</strong></td><td>
+          <span class="dn">Docusate sodium</span> <span class="dd">max 500 mg/day</span> (ขึ้นถึง 200 mg TID)<br>
+          <span class="dn">Lactulose</span> มักให้ผลดี<br>
+          พิจารณา <span class="dn">Macrogols (PEG)</span> กรณีมี fecal impaction<br>
+          <span class="dnote">⚠️ ยา laxatives อาจกระตุ้น colicky pain; ใน mechanical obstruction หลีกเลี่ยงยาเพิ่มการบีบตัวลำไส้ เช่น senna, bisacodyl</span>
+        </td></tr>
+        <tr><td><strong>Abdominal pain</strong></td><td>ตาม pain control guidelines; ใช้ <strong>non-oral route</strong></td></tr>
+        <tr><td><strong>Abdominal colic</strong></td><td>
+          <span class="dn">Hyoscine butylbromide</span> <span class="dd">40-120 mg/day IV</span> หรือ <span class="dd">60-120 mg/24hr CSCI</span><br>
+          <span class="dn">Morphine IV/SC</span> หรือ <span class="dn">Fentanyl patch</span> (ท้องผูกน้อยกว่า morphine)<br>
+          <span class="dnote">หยุด prokinetic drugs; bulk-forming, osmotic หรือ stimulant laxatives</span>
+        </td></tr>
+        <tr><td><strong>Hydration</strong></td><td>พิจารณาให้ IV หรือ SC สารน้ำตามผู้ป่วยแต่ละราย<br>SC fluid ให้ได้ถึง <span class="dd">1-2 L/24 hr</span></td></tr>
+        <tr><td><strong>Dietary intake</strong></td><td>ให้ผู้ป่วยอมน้ำแข็ง ทานน้ำ หรืออาหารกากใยต่ำปริมาณน้อยๆ ได้</td></tr>
       </table>
-      <div class="al al-i" style="margin-top:8px"><span class="al-i">🎯</span><div><strong>Ongoing review</strong>: ทบทวนเป้าหมายการรักษาเป็นระยะ ปรับยาและสารน้ำตามอาการ; สื่อสารกับผู้ป่วย/ครอบครัวเรื่อง prognosis และเป้าหมาย</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔧</span><span class="card-ttl">Parenteral Nutrition & Procedural Options</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <table class="dt">
+        <tr><th>วิธี</th><th>หมายเหตุ</th></tr>
+        <tr><td><strong>Parenteral nutrition</strong></td><td>การให้สารอาหารทางหลอดเลือดดำนั้นอาจไม่มีประโยชน์ในผู้ป่วยมะเร็งระยะลุกลามหรือมี poor performance status อย่างไรก็ตาม พิจารณาให้ตามความเหมาะสมในผู้ป่วยบางรายที่มีการพยากรณ์โรคนาน และควรเป็นการตัดสินใจร่วมกันระหว่าง multidisciplinary team<br><span class="dnote">พิจารณาในผู้ที่ life expectancy &gt;2 เดือน หรือมีโอกาสเสียชีวิตจาก starvation มากกว่าสาเหตุอื่น</span></td></tr>
+        <tr><td><strong>Stent</strong></td><td>รุกรานน้อยกว่าผ่าตัด — พิจารณาตำแหน่งที่อุดตันว่าทำได้หรือไม่</td></tr>
+        <tr><td><strong>NG tube</strong></td><td>ไม่แนะนำทำเป็นประจำใน advanced illness — พิจารณาเพื่อ decompress upper GI ในผู้ป่วยที่มีข้อบ่งชี้ผ่าตัด หรือมี feculent vomiting ที่ไม่ตอบสนองต่อยา</td></tr>
+        <tr><td><strong>Gastrostomy</strong></td><td>พิจารณาในผู้ป่วยที่ยังแข็งแรง มีการอุดตันระดับต้น และอาเจียนมาก</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔄</span><span class="card-ttl">Ongoing management</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ul class="ul">
+        <li>ให้ <strong>review การรักษาทุกวัน</strong> เนื่องจากอาการอาจเปลี่ยนแปลงและหายได้เอง</li>
+        <li>ถ้าอาการลำไส้อุดตันไม่ดีขึ้น เป้าหมายควรเป็น:
+          <ul style="margin:4px 0 0 14px;list-style:disc">
+            <li>คุมอาการปวดและคลื่นไส้อาเจียน</li>
+            <li>ลดอาการอาเจียนให้ได้มากที่สุดเท่าที่จะเป็นไปได้</li>
+            <li>อนุญาตให้ได้รับสารน้ำอย่างเพียงพอเพื่อรักษาสภาวะ hydration ที่สูญเสียจากการอาเจียน หรือ ลำไส้อุดตัน</li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
   <div class="card">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">📚</span><span class="card-ttl">References</span><span class="card-chev">▼</span></div>
     <div class="card-body">
-      <ul class="ref-list">
-        <li>Ripamonti CI, et al. ESMO Clinical Practice Guidelines for the management of malignant bowel obstruction. Ann Oncol. 2018.</li>
-        <li>Twycross R, Wilcock A, Howard P. Palliative Care Formulary (PCF). 8th ed. 2024.</li>
-        <li>Oxford Textbook of Palliative Medicine. 6th ed. 2021.</li>
-      </ul>
+      <ol class="ref-list">
+        <li>Update Handbook of Palliative care guidelines, NHS, UK, ศูนย์การุณรักษ์ โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</li>
+        <li>NHS, Scottish Palliative Care Guidelines. Gastro-Intestinal Gut Obstruction</li>
+        <li>Tradounsky G. Palliation of gastrointestinal obstruction. Can Fam Physician. 2012;58(6):648-52, e317-21.</li>
+        <li>Ripamonti C, Mercadante S. Pathophysiology and management of malignant bowel obstruction. In: Oxford Textbook of Palliative Medicine 4th ed. Oxford University Press; 2010. p. 850-2.</li>
+        <li>Feuer DDJ, et al. Surgery for the resolution of symptoms in malignant bowel obstruction in advanced gynaecological and gastrointestinal cancer. Cochrane Library. 2000.</li>
+        <li>Symptom management in palliative care workshop มิถุนายน 2568. ศูนย์การุณรักษ์ โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</li>
+      </ol>
     </div>
   </div>
 </div>
@@ -1871,25 +1917,32 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔍</span><span class="card-ttl">สาเหตุของเลือดออก</span><span class="card-chev">▼</span></div>
     <div class="card-body">
-      <ul class="ul">
-        <li><strong>Cancer invasion</strong> เช่น tumor invade vessel, ulcerated mass</li>
-        <li><strong>Treatment-related</strong>: post-radiotherapy, chemotherapy-induced thrombocytopenia, post-surgery</li>
-        <li><strong>Thrombocytopenia</strong> (bone marrow involvement, hypersplenism, ITP)</li>
-        <li><strong>ยา</strong>: LMWH, warfarin, DOACs, ASA, NSAIDs, clopidogrel</li>
-        <li><strong>Coagulation disturbances</strong>: DIC, liver disease, vitamin K deficiency</li>
-      </ul>
+      <p style="font-size:calc(var(--fs) - 2px);color:var(--text-muted);margin-bottom:8px">ประเมินสาเหตุเลือดออกและพิจารณาแก้สาเหตุที่จะเป็นไปได้</p>
+      <ol class="ul" style="list-style:decimal;padding-left:18px">
+        <li>Cancer invasion and destruction of vessels</li>
+        <li>Treatment-related causes</li>
+        <li>Thrombocytopenia</li>
+        <li>Drugs: LMWH, warfarin, DOACs, ASA, NSAIDS</li>
+        <li>Coagulation disturbances: DIC, liver disease</li>
+      </ol>
     </div>
   </div>
+  <div class="al al-n"><span class="al-i">ℹ️</span><div><strong>การดูแลทั่วไป:</strong> ใช้ผ้าสีเข้มกดห้ามเลือดจะได้ไม่ดูแดงฉานจนเกินไป ห่มผ้าให้เพราะผู้ป่วยมักรู้สึกหนาวมากจากการเสียเลือด</div></div>
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">🚨</span><span class="card-ttl">Massive Terminal Hemorrhage</span><span class="card-chev">▼</span></div>
     <div class="card-body">
-      <div class="al al-d"><span class="al-i">🔴</span><div>สื่อสารกับผู้ป่วย/ครอบครัวล่วงหน้า — เตรียม <strong>ผ้าสีเข้ม</strong>กดห้ามเลือดและ <strong>ห่มผ้า</strong>ให้ผู้ป่วย เพื่อลดความตื่นตระหนกจากเห็นเลือด</div></div>
-      <table class="dt" style="margin-top:8px">
-        <tr><th>ยา</th><th>ขนาด</th><th>Route & Onset</th></tr>
-        <tr><td><span class="dn">Midazolam</span></td><td><span class="dd">10 mg bolus</span></td><td><span class="rt riv">IV</span> &lt;5 min / <span class="rt rsc">SC</span><span class="rt rsl">SL</span><span class="rt rpr">IM</span> 5-15 min</td></tr>
-        <tr><td><span class="dn">Diazepam</span></td><td><span class="dd">10 mg IV หรือ 10 mg rectal</span></td><td><span class="rt riv">IV</span> / <span class="rt rpr">PR</span></td></tr>
-        <tr><td><span class="dn">Ketamine</span></td><td><span class="dd">150-250 mg IV / 500 mg IM</span></td><td>NMDA antagonist</td></tr>
+      <div class="al al-d"><span class="al-i">🔴</span><div>ถ้าผู้ป่วยไม่สุขสบาย พิจารณาให้ sedative agent ที่ออกฤทธิ์เร็ว</div></div>
+      <p style="font-size:calc(var(--fs) - 2px);color:var(--text-muted);margin:8px 0">ต้องสื่อสารกับผู้ป่วยและครอบครัวล่วงหน้าก่อน เพราะปกติหลังจากให้ยาผู้ป่วยจะหลับและเสียชีวิตไปในที่สุด เพื่อไม่ให้มีการเข้าใจผิดว่าเป็นการทำการุณยฆาตให้ผู้ป่วย และเปิดโอกาสให้ผู้ป่วยและญาติได้ร่ำลากันก่อนการให้ยา</p>
+      <table class="dt">
+        <tr><th>ยา</th><th>ขนาด</th><th>Route & Onset</th><th>หมายเหตุ</th></tr>
+        <tr><td><span class="dn">Midazolam</span></td><td><span class="dd">10 mg bolus</span></td><td><span class="rt riv">IV</span> &lt;5 min / <span class="rt rsc">SC</span><span class="rt rsl">SL</span><span class="rt rpr">IM</span> 5-15 min</td><td>สามารถ repeat ได้ทุก 5 นาที สำหรับ IV, ทุก 5-15 นาที สำหรับ route อื่น<br><span class="dnote">IM: large deltoid or gluteal muscle / sublingual: ใช้ยาฉีดมาให้ใต้ลิ้น</span></td></tr>
+        <tr><td><span class="dn">Diazepam</span></td><td><span class="dd">10 mg IV หรือ 10 mg rectal suppository</span></td><td><span class="rt riv">IV</span> / <span class="rt rpr">PR</span></td><td>ประยุกต์นำยาฉีดมาใช้</td></tr>
+        <tr><td><span class="dn">Ketamine</span></td><td><span class="dd">150-250 mg IV / 500 mg IM</span></td><td><span class="rt riv">IV</span><span class="rt rpr">IM</span></td><td>NMDA receptor antagonist<br><span class="dnote">IM: large deltoid or gluteal muscle</span></td></tr>
       </table>
+      <ul class="ul" style="margin-top:8px">
+        <li>พิจารณาให้ <strong>Opioid</strong> เมื่อมีอาการปวดหรือหายใจหอบเหนื่อยร่วมด้วย</li>
+        <li>ในผู้ป่วยเปราะบาง อาจจะใช้ยาขนาดน้อยกว่านี้ได้</li>
+      </ul>
     </div>
   </div>
   <div class="card open">
@@ -1899,30 +1952,22 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
         <tr><th>วิธีการ / ยา</th><th>รายละเอียด</th></tr>
         <tr><td><span class="dn">Tranexamic acid ผ้าก๊อซ</span></td><td>แช่ TXA <span class="dd">500 mg/5 mL × 10 mL</span> วางกดบริเวณเลือดออก</td></tr>
         <tr><td><span class="dn">Tranexamic acid บ้วนปาก</span></td><td><span class="dd">5% TXA 10 mL</span> บ้วน 4 ครั้ง/วัน (oral cavity bleeding)<br>ผสมโดยใช้ <span class="dd">TXA 250 mg × 2 เม็ด</span> ผสมน้ำ 10 mL หรือ <span class="dd">500 mg/5 mL × 1 หลอด</span> ผสมน้ำจนได้ 10 mL</td></tr>
-        <tr><td><span class="dn">Tranexamic acid PO</span></td><td>เริ่ม <span class="dd">1.5 g → 1 g TID PO</span><br>ถ้าไม่ดีขึ้นใน <strong>3 วัน</strong> → เพิ่มเป็น <span class="dd">1.5 g TID</span></td></tr>
-        <tr><td><span class="dn">Tranexamic acid IV</span></td><td><span class="dd">500 mg IV TID</span><br><strong>ลด dose ใน renal impairment</strong>; หยุดยา 1 สัปดาห์หลังเลือดหยุด</td></tr>
+        <tr><td><span class="dn">Tranexamic acid PO</span><br><span class="dnote">หากผู้ป่วยไม่มี DIC</span></td><td>เริ่ม <span class="dd">1.5 g → 1 g TID PO</span><br>ถ้าไม่ดีขึ้นใน <strong>3 วัน</strong> → เพิ่มเป็น <span class="dd">1.5 g TID</span></td></tr>
+        <tr><td><span class="dn">Tranexamic acid IV</span><br><span class="dnote">หากผู้ป่วยไม่มี DIC</span></td><td><span class="dd">500 mg IV TID</span><br><strong>ลด dose ใน renal impairment</strong>; ระวังการเกิด thrombosis<br>แนะนำให้ลดหรือหยุดยา 1 สัปดาห์ หลังจากเลือดหยุดแล้ว</td></tr>
         <tr><td><span class="dn">Sucralfate</span></td><td>ละลาย <span class="dd">2 g / 10 mL</span> บ้วนปาก 2 ครั้ง/วัน หรือกินสำหรับ <strong>esophageal / rectal ulcer</strong></td></tr>
         <tr><td><span class="dn">Adrenaline 1:1000</span></td><td>ผ้าก๊อซชุบกดห้ามเลือด local</td></tr>
+        <tr><td><span class="dn">Silver nitrate</span></td><td>แปะผิวบริเวณเลือดออก สามารถใช้เพื่อหยุดเลือดออกเฉพาะจุด</td></tr>
+        <tr><td><span class="dn">Alginate dressing</span><br><span class="dnote">เช่น Kaltostat®</span></td><td>อุปกรณ์ปิดแผลห้ามเลือด สามารถนำมาช่วยได้</td></tr>
+        <tr><td><strong>Nasal tampon / Rapid Rhino®</strong></td><td>สามารถใช้สำหรับเลือดออกจากจมูก ให้ขอคำแนะนำเพิ่มเติมจาก ENT specialist</td></tr>
       </table>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-hd" onclick="tc(this)"><span class="card-ico">👃</span><span class="card-ttl">Nasal bleeding (Epistaxis)</span><span class="card-chev">▼</span></div>
-    <div class="card-body">
-      <ul class="ul">
-        <li>Pinch nose ที่ <strong>soft part</strong> (ใต้กระดูก) นาน 10-15 นาที, นั่งโน้มหน้ามาข้างหน้า</li>
-        <li>ผ้าก๊อซชุบ TXA หรือ adrenaline 1:1000 ใส่จมูก</li>
-        <li>ถ้าควบคุมไม่ได้: <strong>Rapid Rhino</strong> (nasal balloon) → ปรึกษา ENT</li>
-      </ul>
     </div>
   </div>
   <div class="card">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">💧</span><span class="card-ttl">Urinary tract bleeding</span><span class="card-chev">▼</span></div>
     <div class="card-body">
       <ul class="ul">
-        <li>Tranexamic acid PO/IV ตามขนาดข้างต้น</li>
-        <li class="al-w-text"><strong>⚠️ ระวัง TXA ใน upper urinary tract bleeding</strong> — clots อาจอุด ureter</li>
-        <li>พิจารณา XRT หรือ embolization ถ้าควบคุมไม่ได้</li>
+        <li>หาสาเหตุอื่นหรือรักษาการติดเชื้อ</li>
+        <li>พิจารณาให้ tranexamic acid แต่ควรปรึกษาผู้เชี่ยวชาญก่อนให้ เนื่องจากมีความเสี่ยงต่อการเกิดลิ่มเลือดตกค้างในระบบทางเดินปัสสาวะ <strong>โดยเฉพาะหากเลือดออกใน upper tract of KUB system</strong></li>
       </ul>
     </div>
   </div>
@@ -1933,8 +1978,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
         <li><strong>PPI</strong> ตามแนวทางการรักษา GI hemorrhage</li>
         <li><strong>Tranexamic acid</strong> PO/IV ตามขนาดข้างต้น</li>
         <li><strong>Sucralfate</strong> สำหรับ esophageal / rectal ulcer</li>
-        <li><strong>Vitamin K</strong> ถ้าสงสัย vitamin K deficiency หรือมีประวัติทาน warfarin</li>
-        <li>พิจารณา endoscopy / XRT / embolization ตามเป้าหมายการรักษา</li>
+        <li><strong>Vitamin K</strong> พิจารณาให้กรณีที่สงสัยว่าผู้ป่วยมีภาวะ Vitamin K deficiency ร่วมด้วย มีประวัติทานยา warfarin</li>
       </ul>
     </div>
   </div>
@@ -1942,10 +1986,13 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">💨</span><span class="card-ttl">Respiratory tract bleeding</span><span class="card-chev">▼</span></div>
     <div class="card-body">
       <ul class="ul">
-        <li>นอนตะแคง <strong>ข้างที่เลือดออกลง</strong> (lateral decubitus เพื่อป้องกัน aspiration ปอดข้างปกติ)</li>
-        <li><strong>Nebulized adrenaline</strong>: 1 mL 1:1000 + 4 mL 0.9%NaCl พ่น 4 ครั้ง/วัน</li>
-        <li>Tranexamic acid PO/IV ตามขนาดข้างต้น</li>
-        <li><strong>XRT</strong> ช่วยควบคุม hemoptysis ได้ ~85%</li>
+        <li>ถ้าทราบตำแหน่งที่เลือดออกในปอด ให้นอนตะแคงเอาข้างที่เลือดออกลง เพื่อลดผลกระทบกับปอดอีกข้าง หรือให้จัดท่าให้ศีรษะต่ำเพื่อช่วยในการระบายเลือด</li>
+        <li>ให้ออกซิเจนและเครื่องดูดเสมหะตามความจำเป็น</li>
+        <li>รักษาสาเหตุ เช่น การติดเชื้อ หรือ ภาวะลิ่มเลือดอุดตันในปอด</li>
+        <li>การให้ยากดการไออาจจะเป็นประโยชน์</li>
+        <li>พิจารณา <strong>Nebulized adrenaline</strong>: 1 mL of 1:1000 + 4 mL 0.9%NaCl พ่น 4 ครั้ง/วัน</li>
+        <li>พิจารณา tranexamic acid ตามข้างต้น (หัวข้อเลือดออกจากผิวหนัง)</li>
+        <li>การฉายแสงสามารถช่วยควบคุมอาการเลือดออกได้ในร้อยละ 85 ของผู้ป่วยที่มีเลือดออกในปอด</li>
       </ul>
     </div>
   </div>
@@ -1953,19 +2000,28 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">🧬</span><span class="card-ttl">Bleeding ใน Hematological cancer</span><span class="card-chev">▼</span></div>
     <div class="card-body">
       <ul class="ul">
-        <li>พิจารณาให้เลือดและส่วนประกอบของเลือดตามข้อบ่งชี้อย่างเหมาะสม</li>
-        <li>ปรึกษาแพทย์เฉพาะทางร่วมดูแล</li>
+        <li>พิจารณาให้เลือดและส่วนประกอบของเลือดตามข้อบ่งชี้อย่างเหมาะสม และปรึกษาแพทย์เฉพาะทางร่วมดูแล</li>
       </ul>
     </div>
   </div>
   <div class="card">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">📚</span><span class="card-ttl">References</span><span class="card-chev">▼</span></div>
     <div class="card-body">
-      <ul class="ref-list">
-        <li>Twycross R, Wilcock A, Howard P. Palliative Care Formulary (PCF). 8th ed. 2024.</li>
-        <li>Pereira J, Phan T. Management of bleeding in patients with advanced cancer. Oncologist. 2004;9(5):561–570.</li>
-        <li>Oxford Textbook of Palliative Medicine. 6th ed. 2021.</li>
-      </ul>
+      <ol class="ref-list">
+        <li>Update Handbook of Palliative care guidelines, NHS, UK, ศูนย์การุณรักษ์ โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</li>
+        <li>NSH, Scottish Palliative Care Guidelines. Catastrophic hemorrhage 2017</li>
+        <li>Chai E, Meier D, Morris J, Goldhirsch S. Bleeding. 2014. In: Geriatric Palliative Care. Oxford Medicine Online: Oxford University Press</li>
+        <li>Oneschuk D. Subcutaneous midazolam for acute hemorrhage in patients with advanced cancer. Can Fam Physician. 1998;44:1461-2</li>
+        <li>Harris DG, Noble SI. Management of terminal hemorrhage in patients with advanced cancer: a systematic literature review. J Pain Symptom Manage. 2009;38(6):913-27</li>
+        <li>Ubogagu E, Harris DG. Guideline for the management of terminal hemorrhage in palliative care patients with advanced cancer discharged home for end-of-life care. BMJ Supportive &amp; Palliative Care. 2012;2(4):294-300</li>
+        <li>Marcus JP, Jens Kessler, et al. Bleeding Control in Palliative Care Patients with the help of Tranexamic Acid. J Palliat Care. 2017 Apr;32(2):47-48.</li>
+        <li>Nee R, Doppenschhmidt D, Donovan DJ, Andrews TC. Intravenous versus subcutaneous vitamin K1 in reversing excessive oral anticoagulation. Am J Cardiol. 1999;83(2):286-8.</li>
+        <li>Eric Prommer (2005) Management of bleeding in the terminally ill patient, Hematology, 10:3, 167-175, DOI: 10.1080/10245330500093237</li>
+        <li>Whitling AM, Bussey HI, et al. Comparing different routes and doses of phytonadione for reversing excessive anticoagulation. Arch Intern Med 1998:158:2136-2140</li>
+        <li>Raj G, Kumar R, et al. Time course of reversal of anticoagulant effect of warfarin by intravenous and subcutaneous phytonadione. Arch Intern Med 1999; 159:2721-2724</li>
+        <li>Crowther MA, Douketis JD, et al. Oral vitamin K lowers the international normalized ratio more rapidly than subcutaneous vitamin K in the treatment of warfarin-associated coagulopathy. Ann Intern Med 2002;137:251-254</li>
+        <li>การดูแลประคับประคอง ศูนย์บริรักษ์ ศิริราช Siriraj palliative E-book</li>
+      </ol>
     </div>
   </div>
 </div>
@@ -1976,42 +2032,54 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
   <div class="sec-desc">แนวทางการให้ยารักษาอาการไอในผู้ป่วยประคับประคอง</div>
   <a class="pdf-btn" href="pdf/cough.pdf" target="_blank" rel="noopener">📄 ดาวน์โหลด PDF ต้นฉบับ</a>
   <div class="card open">
-    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">Pharmacological Treatment</span><span class="card-chev">▼</span></div>
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🎯</span><span class="card-ttl">Management of specific causes of cough</span><span class="card-chev">▼</span></div>
     <div class="card-body">
       <table class="dt">
-        <tr><th>ยา</th><th>ขนาด</th><th>หมายเหตุ</th></tr>
-        <tr><td><span class="dn">Codeine linctus</span></td><td><span class="dd">15 mg/tab; 15-30 mg 3-4 ครั้ง/วัน</span></td><td>ถ้าได้ strong opioid อยู่แล้วไม่จำเป็น</td></tr>
-        <tr><td><span class="dn">Morphine IR</span><br>Opioid-naïve</td><td><span class="dd">2.5-5 mg q 4-6 hr</span><br>fragile: q 6-8 hr</td><td>Start low, go slow</td></tr>
-        <tr><td><span class="dn">Morphine</span><br>เปลี่ยนจาก codeine</td><td><span class="dd">5-10 mg q 4 hr</span></td><td>ปรับขนาดตามอาการ</td></tr>
-        <tr><td><span class="dn">Carbocisteine</span></td><td><span class="dd">750 mg TID → 750 mg BID</span></td><td>ลด sputum viscosity; หยุด 4 สัปดาห์ถ้าไม่ได้ผล</td></tr>
-        <tr><td><span class="dn">0.9% NaCl nebulize</span></td><td><span class="dd">2.5-5 mL q 4 hr prn</span></td><td>wet cough</td></tr>
+        <tr><th>Causes</th><th>Management</th></tr>
+        <tr><td>Malignancy related</td><td>Consider referral to oncologist for radiotherapy/chemotherapy/laser therapy. Consider corticosteroid</td></tr>
+        <tr><td>Treatment related</td><td>Medication review e.g. ACEI</td></tr>
+        <tr><td>Cardiac failure and pulmonary edema</td><td>Diuretics/ACEI</td></tr>
+        <tr><td>Pneumonia</td><td>Antibiotics</td></tr>
+        <tr><td>Asthma</td><td>Bronchodilators/steroids</td></tr>
+        <tr><td>COPD</td><td>Bronchodilators/steroids. To reduce sputum viscosity: carbocisteine</td></tr>
+        <tr><td>Recurrent laryngeal nerve palsy</td><td>Consider referral to ENT specialist</td></tr>
+        <tr><td>Pleural/pericardial effusion</td><td>Drainage procedure</td></tr>
+        <tr><td>Pulmonary embolism</td><td>Anticoagulant</td></tr>
       </table>
     </div>
   </div>
-  <div class="card">
-    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🎯</span><span class="card-ttl">การรักษาตามสาเหตุ</span><span class="card-chev">▼</span></div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🩺</span><span class="card-ttl">การจัดการอาการ</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <ol class="ul" style="list-style:decimal;padding-left:18px">
+        <li>ถ้ามีอาการปวดร่วมด้วยจะทำให้ไอไม่มีประสิทธิภาพ ให้จัดการอาการปวดให้ดี</li>
+        <li>หากไอขับเสมหะเองไม่ได้ ให้ปรึกษานักกายภาพบำบัด</li>
+        <li>งดสูบบุหรี่ อยู่ในที่อากาศถ่ายเท</li>
+      </ol>
+    </div>
+  </div>
+  <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">Pharmacological management of cough</span><span class="card-chev">▼</span></div>
     <div class="card-body">
       <table class="dt">
-        <tr><th>สาเหตุ</th><th>การรักษา</th></tr>
-        <tr><td>Malignancy</td><td>XRT / Corticosteroid</td></tr>
-        <tr><td>Cardiac failure / Pulmonary edema</td><td>Diuretics / ACEI</td></tr>
-        <tr><td>Pneumonia</td><td>Antibiotics</td></tr>
-        <tr><td>Asthma / COPD</td><td>Bronchodilators / Steroids / Carbocisteine</td></tr>
-        <tr><td>Pleural / Pericardial effusion</td><td><strong>Drainage</strong> (thoracentesis / pericardiocentesis)</td></tr>
-        <tr><td>Pulmonary embolism</td><td><strong>Anticoagulant</strong> ถ้าสอดคล้องเป้าหมายการรักษา</td></tr>
-        <tr><td>Recurrent laryngeal nerve palsy</td><td>ปรึกษา <strong>ENT</strong> (vocal cord medialization)</td></tr>
-        <tr><td>ACEI-induced</td><td>หยุดยา</td></tr>
+        <tr><th>Cause</th><th>Dose</th><th>Comments</th></tr>
+        <tr><td><span class="dn">Codeine linctus</span><br><span class="dnote">15 mg/tab</span></td><td><span class="dd">15-30 mg 3-4 times a day</span></td><td>If patient is already taking strong opioid for pain there is no rationale for using codeine</td></tr>
+        <tr><td><span class="dn">Morphine oral solution or immediate release (tablet)</span></td><td><span class="dd">2.5-5 mg q 4-6 hr</span> (q 6-8 hr in fragile or elderly patients)<br><br><span class="dd">5-10 mg q 4 hr</span><br><br>Continue the same continuous dose and add prn dose up to maximal 6 doses/day<br>When symptoms are controlled, adjust new continuous &amp; prn doses</td><td>For opioid naïve (start low go slow to avoid respiratory depression)<br><br>For already been taking codeine but not effective<br><br>For already taking morphine</td></tr>
+        <tr><td><span class="dn">Carbocisteine</span></td><td><span class="dd">750 mg three times a day</span>, reduce to twice a day</td><td>Reduce sputum viscosity<br>Stop if not effective within 4 weeks</td></tr>
+        <tr><td><span class="dn">0.9% Sodium chloride</span></td><td><span class="dd">2.5-5 ml nebulized q 4 hr prn</span></td><td>Helps expectoration (ช่วยให้ไอขับเสมหะออกมา), useful if it is a wet cough</td></tr>
       </table>
     </div>
   </div>
   <div class="card">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">📚</span><span class="card-ttl">References</span><span class="card-chev">▼</span></div>
     <div class="card-body">
-      <ul class="ref-list">
-        <li>Twycross R, Wilcock A, Howard P. Palliative Care Formulary (PCF). 8th ed. 2024.</li>
-        <li>Wee B, Browning J, et al. Management of chronic cough in patients receiving palliative care. Palliat Med. 2012;26(6):780–787.</li>
-        <li>Oxford Textbook of Palliative Medicine. 6th ed. 2021.</li>
-      </ul>
+      <ol class="ref-list">
+        <li>Update Handbook of Palliative care guidelines, NHS, UK, ศูนย์การุณรักษ์ โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</li>
+        <li>NSH, Scottish Palliative Care Guidelines. Cough 2017</li>
+        <li>Cough in Cancer Patients in Palliative Care in malignant respiratory diseases. In: G. Hanks, Ni. Cherny, Na. Christakis, M. Fallon, S. Kaasa and Rk. Portenoy, E. eds. Oxford Textbook of Palliative Medicine 4th ed. Oxford University Press.</li>
+        <li>Wee, B., Browning, J., Adams, A., Benson, D., Howard, P., Klepping, G., Molassiotis, A. and Taylor, D. 2012. Management of chronic cough in patients receiving palliative care: review of evidence and recommendations by a task group of the Association for Palliative Medicine of Great Britain and Ireland. Palliative Medicine, 26(6), pp. 780-7.</li>
+        <li>Morice, A. H., Menon, M. S., Mulrennan, S. A., Everett, C. F., Wright, C., Jackson, J. and Thompson, R. 2007. Opiate therapy in chronic cough. American Journal of Respiratory &amp; Critical Care Medicine, 175(4), pp. 312-5.</li>
+      </ol>
     </div>
   </div>
 </div>
@@ -2022,50 +2090,74 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
   <div class="sec-desc">แนวทางการให้ยารักษาอาการสะอึกที่คงอยู่นานในผู้ป่วยประคับประคอง</div>
   <a class="pdf-btn" href="pdf/hiccup.pdf" target="_blank" rel="noopener">📄 ดาวน์โหลด PDF ต้นฉบับ</a>
   <div class="card open">
-    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">ยาตามสาเหตุ</span><span class="card-chev">▼</span></div>
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💡</span><span class="card-ttl">การจัดการอาการโดยไม่ใช้ยา</span><span class="card-chev">▼</span></div>
     <div class="card-body">
-      <table class="dt">
-        <tr><th>สาเหตุ</th><th>ยา</th><th>ขนาด</th></tr>
-        <tr><td><strong>Gastric stasis / GERD</strong></td><td><span class="dn">Antiflatulent (Simethicone)</span><br><span class="dn">Peppermint water</span><br><span class="dn">Metoclopramide</span><br><span class="dn">Domperidone / PPI</span></td><td>ลด gastric stasis<br><span class="dd">10 mL PO prn</span><br><span class="dd">10 mg TID</span><br><span class="dd">10 mg TID</span></td></tr>
-        <tr><td><strong>Diaphragmatic / Phrenic irritation</strong></td><td><span class="dn">Baclofen</span><br><span class="dn">Gabapentin</span><br><span class="dn">Nifedipine</span></td><td><span class="dd">5-20 mg PO prn q 8 hr</span><br>มาตรฐาน<br><span class="dd">5-20 mg PO prn q 8 hr</span> (ระวัง hypotension)</td></tr>
-        <tr><td><strong>Systemic / Metabolic</strong></td><td><span class="dn">Haloperidol</span></td><td><span class="dd">0.5-1 mg PO prn q 8 hr → 1-3 mg hs</span></td></tr>
-        <tr><td><strong>CNS / Meningeal</strong></td><td><span class="dn">Gabapentin / Baclofen</span></td><td><span class="dn">Baclofen</span> <span class="dd">5-20 mg PO prn q 8 hr</span></td></tr>
-        <tr><td><strong>Hepatic / Mediastinal</strong></td><td><span class="dn">Dexamethasone</span></td><td><span class="dd">4-8 mg PO ช่วงเช้า</span></td></tr>
-        <tr><td><strong>Refractory</strong></td><td><span class="dn">Midazolam</span></td><td>ปรึกษาผู้เชี่ยวชาญ palliative</td></tr>
-      </table>
+      <ol class="ul" style="list-style:decimal;padding-left:18px">
+        <li>จิบน้ำเย็น หรือกลืนน้ำแข็งบด</li>
+        <li>หายใจในถุงกระดาษ โดยเฉพาะผู้ที่มี hyperventilation</li>
+        <li>เขี่ยบริเวณเพดานอ่อนด้วยไม้พันสำลีเพื่อกระตุ้นบริเวณ nasopharynx</li>
+      </ol>
     </div>
   </div>
   <div class="card open">
-    <div class="card-hd" onclick="tc(this)"><span class="card-ico">⚠️</span><span class="card-ttl">ข้อควรระวัง (Precautions)</span><span class="card-chev">▼</span></div>
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">Causes &amp; Specific management</span><span class="card-chev">▼</span></div>
     <div class="card-body">
-      <ul class="ul">
-        <li><strong>Antiflatulent (simethicone)</strong>: ใช้ในกรณี gastric stasis เท่านั้น</li>
-        <li><strong>Baclofen</strong>: ห้ามหยุดยากะทันหัน — ต้องค่อย ๆ ลดขนาด (เสี่ยง withdrawal seizure, hyperthermia, rebound spasticity)</li>
-        <li><strong>Metoclopramide + Peppermint</strong>: ไม่ใช้ร่วมกันระยะยาว (ฤทธิ์ตรงข้าม — peppermint คลาย LES, metoclopramide เพิ่ม tone)</li>
-        <li><strong>Midazolam</strong>: ใช้ในกรณี refractory เท่านั้น และควร <strong>ปรึกษาผู้เชี่ยวชาญ</strong>ก่อน</li>
-        <li><strong>Dexamethasone</strong>: ถ้าให้ครบ 1 สัปดาห์แล้วไม่ดีขึ้น ให้ <strong>หยุดยา</strong> (ลดความเสี่ยง steroid SE)</li>
-      </ul>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💡</span><span class="card-ttl">Non-pharmacological</span><span class="card-chev">▼</span></div>
-    <div class="card-body">
-      <ul class="ul">
-        <li>จิบน้ำเย็นหรือกลืนน้ำแข็งบด</li>
-        <li>หายใจในถุงกระดาษ (rebreathing → hypercapnia)</li>
-        <li>เขี่ยเพดานอ่อนด้วยไม้พันสำลี (vagal stimulation)</li>
-        <li>กลั้นหายใจ / Valsalva maneuver</li>
-      </ul>
+      <table class="dt">
+        <tr><th>Causes</th><th>Specific management</th></tr>
+        <tr>
+          <td><strong>Gastric stasis and distension</strong><br><span class="dnote">(most common)</span><br><br><strong>Gastro-esophageal reflux</strong></td>
+          <td>
+            • <span class="dn">Peppermint water</span> <span class="dd">10 mL po prn</span><br>
+            • <span class="dn">Metoclopramide</span> <span class="dd">10 mg 3 times a day</span> <span class="dnote">(do not use metoclopramide concurrently with peppermint water for a long time due to against gastro-esophageal sphincter)</span><br>
+            • <span class="dn">Domperidone</span> <span class="dd">10 mg 3 times a day</span><br>
+            • Antiflatulent e.g. simethicone<br>
+            • PPI for GERD
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Diaphragmatic or phrenic nerve irritation</strong></td>
+          <td>
+            • <span class="dn">Baclofen</span> <span class="dd">5-20 mg po prn q 8 hr</span> <span class="dnote">(avoid stop drug abruptly)</span><br>
+            • Antiepileptic e.g. gabapentin<br>
+            • <span class="dn">Nifedipine</span> <span class="dd">5-20 mg po prn q 8 hr</span> <span class="dnote">(avoid in patients with hypotension)</span><br>
+            • Midazolam → consult specialist
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Systemic causes</strong><br><span class="dnote">e.g. biochemical (uremia, hypercalcemia, hypomagnesemia), infection</span></td>
+          <td>
+            • Treat underlying cause<br>
+            • <span class="dn">Haloperidol</span> <span class="dd">0.5-1 mg orally prn q 8 hr</span> and maintenance <span class="dd">1-3 mg po hs</span><br>
+            • Midazolam → consult specialist
+          </td>
+        </tr>
+        <tr>
+          <td><strong>CNS tumor meningeal:</strong> infiltration by cancer</td>
+          <td>
+            • Anti-epileptic e.g. gabapentin<br>
+            • <span class="dn">Baclofen</span> <span class="dd">5-20 mg po prn q 8 hr</span>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Hepatic, mediastinal or cerebral</strong> compression/irritation by disease/tumor</td>
+          <td>
+            • <span class="dn">Dexamethasone</span> oral <span class="dd">4-8 mg in the morning</span> may reduce compression/irritation<br>
+            • Stop if no benefit after a week<br>
+            • If beneficial gradually reduce dose
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
   <div class="card">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">📚</span><span class="card-ttl">References</span><span class="card-chev">▼</span></div>
     <div class="card-body">
-      <ul class="ref-list">
-        <li>Twycross R, Wilcock A, Howard P. Palliative Care Formulary (PCF). 8th ed. 2024.</li>
-        <li>Calsina-Berna A, et al. Treatment of chronic hiccups in cancer patients: a systematic review. J Palliat Med. 2012;15(10):1142–1150.</li>
-        <li>Oxford Textbook of Palliative Medicine. 6th ed. 2021.</li>
-      </ul>
+      <ol class="ref-list">
+        <li>Update Handbook of Palliative care guidelines, NHS, UK, ศูนย์การุณรักษ์ โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</li>
+        <li>NSH, Scottish Palliative Care Guidelines. Hiccups. 2017</li>
+        <li>Methal, N., Kelt, S. and Jordan, J. 2012. Interventions for the management of persistent and intractable hiccups in adults – a systematic review. BMJ Supportive &amp; Palliative Care, 2(Suppl 1), pp. A49-A50.</li>
+        <li>Twycross, R. and Wilcock, A. 2011. Palliative Care Formulary (PCF4). 4th ed. Nottingham; Palliativedrugs.com Ltd.</li>
+      </ol>
     </div>
   </div>
 </div>
@@ -2075,57 +2167,59 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
   <div class="sec-title">🍽️ Loss of Appetite / Anorexia</div>
   <div class="sec-desc">แนวทางการให้ยารักษาอาการเบื่ออาหารในผู้ป่วยประคับประคอง</div>
   <a class="pdf-btn" href="pdf/anorexia.pdf" target="_blank" rel="noopener">📄 ดาวน์โหลด PDF ต้นฉบับ</a>
-  <div class="al al-w"><span class="al-i">⚠️</span><div>ยาให้ประโยชน์ <strong>ชั่วระยะหนึ่ง</strong> และมีผลข้างเคียง — แจ้งผู้ป่วย/ครอบครัวก่อนสั่งยาทุกครั้ง และทบทวนเป้าหมายเป็นระยะ</div></div>
   <div class="card open">
-    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔍</span><span class="card-ttl">สาเหตุที่ควรค้นหาและแก้ไข</span><span class="card-chev">▼</span></div>
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔍</span><span class="card-ttl">การหาสาเหตุอื่นๆ ที่ทำให้ผู้ป่วยเกิดความรู้สึกเบื่ออาหารหรือไม่อยากกิน</span><span class="card-chev">▼</span></div>
     <div class="card-body">
-      <div class="g2">
-        <div>
-          <div class="sub">ปัจจัยจากผู้ป่วย</div>
-          <ul class="ul">
-            <li>แผลในปาก / oral thrush</li>
-            <li>ปัญหาฟัน / ฟันปลอมไม่พอดี</li>
-            <li>คลื่นไส้-อาเจียน, ท้องผูก</li>
-            <li>การรับรสเปลี่ยน (taste alteration)</li>
-            <li>ปวด, depression, anxiety</li>
-            <li>Early satiety จาก gastroparesis / ascites</li>
-          </ul>
-        </div>
-        <div>
-          <div class="sub">ปัจจัยจากอาหาร</div>
-          <ul class="ul">
-            <li>รสชาติไม่ถูกปาก / ไม่อร่อย</li>
-            <li>อาหารซ้ำซากจำเจ</li>
-            <li>ไม่ใช่อาหารที่ผู้ป่วยชอบ</li>
-            <li>เนื้อสัมผัสแข็ง เคี้ยว/กลืนยาก</li>
-            <li>กลิ่นแรงเกินไป</li>
-            <li>เสิร์ฟร้อน/เย็นเกินไป</li>
-          </ul>
-        </div>
-      </div>
+      <ol class="ul">
+        <li><strong>ปัจจัยจากตัวผู้ป่วย</strong> เช่น มีแผลในปาก มีฟันไม่ดี คลื่นไส้อาเจียน ไม่รู้รส เป็นต้น</li>
+        <li><strong>ปัจจัยจากอาหาร</strong> เช่น อาหารไม่อร่อย ได้รับแบบเดิมซ้า ๆ ไม่ใช่อาหารที่ผู้ป่วยชอบ แข็งเกินไป เป็นต้น</li>
+      </ol>
     </div>
   </div>
+  <div class="al al-w"><span class="al-i">⚠️</span><div>ยาในหัวข้อนี้สามารถให้ประโยชน์ได้เพียงชั่วระยะหนึ่ง แต่อาจเพิ่มคุณภาพชีวิตให้ผู้ป่วยระยะท้ายได้ มีผลข้างเคียงและความเสี่ยงที่อาจเกิดจากการใช้ยา <strong>ดังนั้นต้องแจ้งให้ผู้ป่วยทราบก่อนสั่งยา</strong></div></div>
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">Appetite Stimulants</span><span class="card-chev">▼</span></div>
     <div class="card-body">
-      <table class="dt">
-        <tr><th>ยา</th><th>ขนาด</th><th>SE / หมายเหตุ</th></tr>
-        <tr><td><span class="dn">Dexamethasone</span></td><td><span class="dd">4-8 mg/day PO ช่วงเช้า</span><br>หรือ <span class="dn">Prednisolone</span> <span class="dd">10-30 mg/day</span></td><td>ออกฤทธิ์เร็ว แต่ผลลดลงใน <strong>3-4 สัปดาห์</strong><br>ให้ PPI; ติดตาม blood sugar; ระวังกล้ามเนื้ออ่อนแรง</td></tr>
-        <tr><td><span class="dn">Megestrol acetate</span></td><td><span class="dd">160 mg/day PO</span> ประเมิน 2-3 สัปดาห์<br>Max <span class="dd">800 mg/day</span></td><td>ลดยา <strong>ช้า ๆ</strong> ถ้าใช้ &gt;3 สัปดาห์<br>SE: <strong>thromboembolism</strong>, fluid retention, adrenal suppression</td></tr>
-        <tr><td><span class="dn">Metoclopramide / Domperidone</span></td><td><span class="dd">10 mg TID ก่อนอาหาร 30 นาที</span></td><td>เลือกใช้กรณี early satiety / gastroparesis</td></tr>
-      </table>
-      <div class="al al-w" style="margin-top:8px"><span class="al-i">🌿</span><div><strong>Cannabinoids</strong>: การศึกษาในผู้ป่วยมะเร็ง <strong>ไม่พบประโยชน์ชัดเจน</strong> ในการเพิ่มน้ำหนัก/ความอยากอาหาร และมี CNS side effects (somnolence, dizziness, confusion) — <strong>ไม่แนะนำเป็น routine</strong></div></div>
+      <div class="sub">1. Corticosteroid</div>
+      <ul class="ul">
+        <li>ช่วยเพิ่มความอยากอาหารในช่วงเวลาสั้น ๆ ได้ผลเร็ว แต่ผลจากยาจะค่อย ๆ ลดลงในระยะหลัง 3-4 สัปดาห์ จึงไม่ควรใช้ยาเกินช่วงนี้</li>
+        <li>อาจช่วยลดอาการคลื่นไส้ ทำให้รู้สึกสดชื่นกระปรี้กระเปร่า อย่างไรก็ตามมักไม่เห็นผลต่อภาวะโภชนาการอย่างมีนัยสำคัญ</li>
+        <li>ขนาดยา oral <span class="dn">dexamethasone</span> <span class="dd">4-8 mg/day</span> หรือ <span class="dn">prednisolone</span> <span class="dd">10-30 mg/day</span> รับประทานช่วงเช้า</li>
+        <li>พิจารณาให้ยาป้องกันผลต่อกระเพาะอาหาร เช่น H2 blocker หรือ PPI</li>
+        <li>หากได้ผลใน 1 สัปดาห์ แล้วค่อย ๆ ลดยาลงจนถึงขนาดต่ำสุดที่ได้ผล หากไม่ได้ผลให้หยุดยาทันที</li>
+        <li>ผลข้างเคียง: ภาวะน้ำคั่งในร่างกาย (fluid retention) นอนไม่หลับ กล้ามเนื้ออ่อนแรง กระเพาะอาหารอักเสบ ภาวะน้ำตาลสูง</li>
+      </ul>
+      <div class="sub" style="margin-top:12px">2. Progestogens</div>
+      <ul class="ul">
+        <li>อาจกระตุ้นความอยากอาหารและเพิ่มน้ำหนักในกลุ่มผู้ป่วยมะเร็ง</li>
+        <li>อาจใช้เวลา 2-3 สัปดาห์จึงจะเห็นผล แต่เมื่อยาออกฤทธิ์จะเห็นผลได้นานกว่ายา steroid</li>
+        <li>เหมาะสมในผู้ป่วยที่มีการพยากรณ์โรคยาวนานมากกว่า</li>
+        <li><span class="dn">Megestrol acetate</span> <span class="dd">160 mg/day</span> ประเมินซ้ำหลังจากเริ่มยาแล้ว 2-3 สัปดาห์ สำหรับกระตุ้นความอยากอาหาร ใช้ยาขนาดน้อยหรือมากกว่าได้ผลเท่ากัน แต่หากหวังผลเพิ่มน้ำหนัก ขนาดยาที่มากขึ้นจะให้ผลลัพธ์ที่ดีขึ้น (dose response relationship) ยังไม่มีหลักฐานเรื่องขนาดยาที่เหมาะสมที่สุด แต่ขนาดยาสูงสุดคือ <span class="dd">800 mg/day</span> ลดขนาดยาลงช้า ๆ หากใช้ยานานกว่า 3 สัปดาห์ เนื่องจากมีผลกดการทำงานของต่อมหมวกไต (adrenal suppression)</li>
+        <li>ผลข้างเคียง: คลื่นไส้ ภาวะน้ำคั่งในร่างกาย (fluid retention) และเพิ่มความเสี่ยงต่อการเกิดลิ่มเลือดอุดตัน (thromboembolism)</li>
+      </ul>
+      <div class="sub" style="margin-top:12px">3. Prokinetics</div>
+      <ul class="ul">
+        <li>ใช้ในกรณีที่ผู้ป่วยรู้สึกอิ่มเร็ว delayed gastric emptying time, gastroparesis หรือคลื่นไส้</li>
+        <li><span class="dn">Metoclopramide</span> <span class="dd">10 mg</span> หรือ <span class="dn">domperidone</span> <span class="dd">10 mg</span> รับประทานวันละ 3 ครั้ง ก่อนอาหาร 30 นาที</li>
+      </ul>
+      <div class="sub" style="margin-top:12px">4. Other appetite stimulants</div>
+      <ul class="ul">
+        <li><span class="dn">Cannabinoids</span> จากการศึกษาไม่พบว่าช่วยกระตุ้นความอยากอาหารหรือเพิ่มน้ำหนักในผู้ป่วยมะเร็ง และมีผลข้างเคียงต่อระบบประสาทส่วนกลาง</li>
+        <li><span class="dn">Mirtazapine</span> (antidepressant) อาจช่วยกระตุ้นความอยากอาหาร และเพิ่มน้ำหนัก ในผู้ป่วยมะเร็ง แต่ข้อมูลยังมีไม่มาก</li>
+      </ul>
     </div>
   </div>
   <div class="card">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">📚</span><span class="card-ttl">References</span><span class="card-chev">▼</span></div>
     <div class="card-body">
-      <ul class="ref-list">
-        <li>Twycross R, Wilcock A, Howard P. Palliative Care Formulary (PCF). 8th ed. 2024.</li>
-        <li>Arends J, et al. ESPEN guidelines on nutrition in cancer patients. Clin Nutr. 2017;36(1):11–48.</li>
-        <li>Roeland EJ, et al. Management of cancer cachexia: ASCO guideline. J Clin Oncol. 2020;38(21):2438–2453.</li>
-        <li>Oxford Textbook of Palliative Medicine. 6th ed. 2021.</li>
-      </ul>
+      <ol class="ref-list">
+        <li>Update Handbook of Palliative care guidelines, NHS, UK, ศูนย์การุณรักษ์โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์มหาวิทยาลัยขอนแก่น</li>
+        <li>การดูแลประคับประคอง ศูนย์บริรักษ์ ศิริราช Siriraj palliative E-book</li>
+        <li>NSH, Scottish Palliative Care Guidelines. Anorexia. 2017</li>
+        <li>Bruera E. Pharmacological interventions in cachexia and anorexia. In: Doyle D, Hanks G, Cherny N, Calman K, editors. Oxford Textbook of Palliative Medicine. 3rd ed. Oxford: Oxford University Press; 2004.</li>
+        <li>Radbruch L., Elsner F., Trottenberg P., Strasser F. and Fearon K. 2010. Clinical practice guidelines on cancer cachexia in advanced cancer patients. Department of Palliative Medicine/European Palliative Care Research Collaborative.</li>
+        <li>Shragge JE, Wismer WV, Olson KL, Baracos VE. The management of anorexia by patients with advanced cancer: a critical review of the literature. Palliat Med. 2006;20(6):623-9.</li>
+      </ol>
     </div>
   </div>
 </div>
