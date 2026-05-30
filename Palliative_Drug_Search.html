@@ -1450,7 +1450,8 @@ function escapeHtml(s) {
 function highlight(text, q) {
   const safe = escapeHtml(text);
   if (!q || !text) return safe;
-  const parts = q.toLowerCase().split(/\s+/).filter(Boolean);
+  // Skip single-char tokens (e.g. "/" "—") — they match inside HTML tags and break markup
+  const parts = q.toLowerCase().split(/\s+/).filter(p => p.length > 1);
   let result = safe;
   parts.forEach(p => {
     if (!p) return;
@@ -1496,10 +1497,10 @@ function renderDrugGroup(group, idx) {
 
   const rows = [
     group.indication  && `<div class="occ-dose"><strong>Indication:</strong> ${highlight(group.indication, q)}</div>`,
-    group.dose        && `<div class="occ-dose"><strong>Dose:</strong><br>${highlight(group.dose.replace(/\n/g,'<br>'), q)}</div>`,
+    group.dose        && `<div class="occ-dose"><strong>Dose:</strong><br>${highlight(group.dose, q).replace(/\n/g,'<br>')}</div>`,
     group.titration   && `<div class="occ-notes"><strong>Titration/หมายเหตุ:</strong> ${highlight(group.titration, q)}</div>`,
     group.sideEffects && `<div class="occ-notes"><strong>SE:</strong> ${highlight(group.sideEffects, q)}</div>`,
-    group.notes       && `<div class="occ-context">${highlight(group.notes.replace(/\n/g,'<br>'), q)}</div>`,
+    group.notes       && `<div class="occ-context">${highlight(group.notes, q).replace(/\n/g,'<br>')}</div>`,
     group.contraindications && `<div class="occ-context" style="color:#dc2626"><strong>ข้อห้ามใช้:</strong> ${escapeHtml(group.contraindications)}</div>`,
   ].filter(Boolean).join('');
 
