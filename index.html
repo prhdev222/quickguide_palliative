@@ -839,6 +839,54 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 
 
 
+
+/* ══ OPIOID CONVERTER MODAL ══ */
+:root {
+  --conv-accent:#7a1f1f; --conv-accent-soft:rgba(122,31,31,.1);
+  --conv-result1:rgba(122,31,31,.06); --conv-result2:rgba(122,31,31,.02);
+  --conv-warn-bg:#fff7ed; --conv-warn-border:#f59e0b; --conv-warn-ink:#92400e;
+}
+[data-theme="dark"],[data-bs-theme="dark"] {
+  --conv-result1:rgba(200,80,80,.12); --conv-result2:rgba(200,80,80,.05);
+  --conv-warn-bg:#3d2900; --conv-warn-border:#b45309; --conv-warn-ink:#fcd34d;
+}
+.conv-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;animation:convFadeIn .18s ease}
+.conv-overlay.show{display:flex}
+@keyframes convFadeIn{from{opacity:0}to{opacity:1}}
+.conv-panel{background:var(--surface);border-radius:14px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 48px rgba(0,0,0,.3);animation:convSlideUp .22s ease}
+@keyframes convSlideUp{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.conv-header{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;position:sticky;top:0;background:var(--surface);z-index:1;border-radius:14px 14px 0 0}
+.conv-title{font-weight:700;font-size:18px;color:var(--text);flex:1}
+.conv-title em{color:var(--conv-accent);font-style:italic}
+.conv-close{background:var(--surface2);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:20px;transition:all .15s}
+.conv-close:hover{background:var(--conv-accent-soft);color:var(--conv-accent)}
+.conv-body{padding:18px 22px 22px}
+.conv-lbl{font-size:11px;font-weight:700;color:var(--conv-accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.conv-row{display:grid;grid-template-columns:1fr 130px;gap:10px;margin-bottom:8px}
+@media(max-width:480px){.conv-row{grid-template-columns:1fr}}
+.conv-input,.conv-select{font-family:inherit;font-size:15px;padding:10px 12px;border:1.5px solid var(--border2);background:var(--bg);border-radius:8px;outline:none;color:var(--text);width:100%;transition:border-color .15s}
+.conv-input:focus,.conv-select:focus{border-color:var(--conv-accent);box-shadow:0 0 0 3px var(--conv-accent-soft)}
+.conv-suffix{position:relative}
+.conv-suffix::after{content:attr(data-unit);position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:12px;pointer-events:none}
+.conv-suffix .conv-input{padding-right:60px}
+.conv-result{background:linear-gradient(135deg,var(--conv-result1),var(--conv-result2));border:1px solid rgba(122,31,31,.2);border-radius:10px;padding:16px 18px;margin:8px 0}
+.conv-result.empty{background:var(--surface2);border-color:var(--border)}
+.conv-result-lbl{font-size:11px;font-weight:700;color:var(--conv-accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.conv-result-val{font-size:30px;font-weight:700;color:var(--conv-accent);line-height:1.1;margin-bottom:2px}
+.conv-result.empty .conv-result-val{color:var(--text-muted);font-size:16px;font-weight:400;font-style:italic}
+.conv-result-val .unit{font-size:14px;font-weight:500;margin-left:4px}
+.conv-formula{font-size:12px;color:var(--text-muted);margin-top:6px}
+.conv-sugg{margin-top:14px;padding-top:14px;border-top:1px dashed var(--border2)}
+.conv-sugg-lbl{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.conv-sugg-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;font-size:13px;border-bottom:1px solid var(--border)}
+.conv-sugg-row:last-child{border-bottom:none}
+.conv-sugg-row .lbl{color:var(--text-muted)}
+.conv-sugg-row .val{font-weight:600;color:var(--text)}
+.conv-ratios{background:var(--surface2);border-radius:8px;padding:12px 14px;margin-top:14px;font-size:12px;color:var(--text-muted);line-height:1.7}
+.conv-ratios strong{display:block;color:var(--conv-accent);font-size:13px;margin-bottom:6px}
+.conv-ratios code{background:var(--surface);padding:1px 4px;border-radius:3px;color:var(--text);font-size:11.5px}
+.conv-warn{margin-top:14px;padding:10px 14px;background:var(--conv-warn-bg);border-left:3px solid var(--conv-warn-border);border-radius:4px;font-size:12px;color:var(--conv-warn-ink);line-height:1.6}
+
 </style>
 </head>
 <body>
@@ -868,7 +916,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 
       <!-- Opioid Converter -->
       <div class="tb-group">
-        <a class="tb-btn link-btn drug-search" href="Palliative_Drug_Search.html?calc=1" title="แปลงขนาดยา Opioid">⇄ Convert ยา</a>
+        <button class="tb-btn drug-search" onclick="openConv()" title="แปลงขนาดยา Opioid">⇄ Convert ยา</button>
       </div>
 
       <div class="tb-sep"></div>
@@ -2592,6 +2640,103 @@ function doSearch(q) {
 load();
 
 
+
+// ══ OPIOID CONVERTER ══
+const CONV_META = {
+  codeine_po:    {label:'Codeine PO',      unit:'mg/day',  toMo:x=>x/10,       fromMo:mo=>mo*10},
+  tramadol_po:   {label:'Tramadol PO',     unit:'mg/day',  toMo:x=>x/5,        fromMo:mo=>mo*5},
+  tramadol_iv:   {label:'Tramadol IV',     unit:'mg/day',  toMo:x=>x*1.5/5,    fromMo:mo=>mo*5/1.5},
+  morphine_po:   {label:'Morphine PO',     unit:'mg/day',  toMo:x=>x,          fromMo:mo=>mo},
+  morphine_iv:   {label:'Morphine IV/SC',  unit:'mg/day',  toMo:x=>x*3,        fromMo:mo=>mo/3},
+  fentanyl_iv:   {label:'Fentanyl IV/SC',  unit:'mcg/day', toMo:x=>x/100,      fromMo:mo=>mo*100},
+  fentanyl_patch:{label:'Fentanyl patch',  unit:'mcg/hr',  toMo:x=>x*(60/25),  fromMo:mo=>mo*(25/60)}
+};
+function convFmt(n){if(!isFinite(n)||isNaN(n))return'–';if(n===0)return'0';if(n<0.1)return n.toFixed(3);if(n<1)return n.toFixed(2);if(n<10)return n.toFixed(1);return Math.round(n).toString();}
+function convCalc(){
+  const fd=document.getElementById('convFromDrug'),td=document.getElementById('convToDrug');
+  const fi=document.getElementById('convFromDose'),res=document.getElementById('convResult');
+  const sugg=document.getElementById('convSugg');
+  const dose=parseFloat(fi.value);
+  if(!dose||dose<=0){res.className='conv-result empty';res.innerHTML='<div class="conv-result-lbl">Equivalent Dose</div><div class="conv-result-val">ใส่ขนาดยาเพื่อคำนวณ</div>';sugg.style.display='none';return;}
+  const fm=CONV_META[fd.value],tm=CONV_META[td.value];
+  const mo=fm.toMo(dose), result=tm.fromMo(mo);
+  res.className='conv-result';
+  res.innerHTML=`<div class="conv-result-lbl">${tm.label} (ก่อนลด 25-50%)</div><div class="conv-result-val">${convFmt(result)}<span class="unit">${tm.unit}</span></div><div class="conv-formula">${fm.label} ${convFmt(dose)} ${fm.unit} → Mo PO ${convFmt(mo)} mg/day → ${tm.label}</div>`;
+  const rows=[];
+  if(fd.value!==td.value){rows.push(`<div class="conv-sugg-row"><span class="lbl">ลด 25%</span><span class="val">${convFmt(result*.75)} ${tm.unit}</span></div>`);rows.push(`<div class="conv-sugg-row"><span class="lbl">ลด 50% (frail/renal)</span><span class="val">${convFmt(result*.5)} ${tm.unit}</span></div>`);}
+  if(td.value==='morphine_po'){const q=mo/6;rows.push(`<div class="conv-sugg-row"><span class="lbl">Mo IR q 4 hr</span><span class="val">${convFmt(q)} mg/dose</span></div>`);rows.push(`<div class="conv-sugg-row"><span class="lbl">BTP prn (15%)</span><span class="val">${convFmt(mo*.15)} mg</span></div>`);}
+  if(td.value==='morphine_iv'){rows.push(`<div class="conv-sugg-row"><span class="lbl">IV drip rate</span><span class="val">${convFmt(result/24)} mg/hr</span></div>`);rows.push(`<div class="conv-sugg-row"><span class="lbl">BTP prn (15%)</span><span class="val">${convFmt(result*.15)} mg q 15 min</span></div>`);}
+  if(td.value==='fentanyl_iv'){rows.push(`<div class="conv-sugg-row"><span class="lbl">IV drip rate</span><span class="val">${convFmt(result/24)} mcg/hr</span></div>`);rows.push(`<div class="conv-sugg-row"><span class="lbl">BTP prn (15%)</span><span class="val">${convFmt(result*.15)} mcg q 15 min</span></div>`);}
+  if(rows.length){sugg.innerHTML='<div class="conv-sugg-lbl">Clinical Reference</div>'+rows.join('');sugg.style.display='block';}else{sugg.style.display='none';}
+}
+function openConv(){document.getElementById('convOverlay').classList.add('show');setTimeout(()=>document.getElementById('convFromDose').focus(),100);}
+function closeConv(){document.getElementById('convOverlay').classList.remove('show');}
+document.getElementById('convClose').addEventListener('click',closeConv);
+document.getElementById('convOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('convOverlay'))closeConv();});
+document.getElementById('convFromDrug').addEventListener('change',()=>{document.getElementById('convFromUnit').dataset.unit=CONV_META[document.getElementById('convFromDrug').value].unit;convCalc();});
+document.getElementById('convToDrug').addEventListener('change',convCalc);
+document.getElementById('convFromDose').addEventListener('input',convCalc);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('convOverlay').classList.contains('show')){closeConv();}});
+
 </script>
+
+<!-- ══ OPIOID CONVERTER MODAL ══ -->
+<div class="conv-overlay" id="convOverlay">
+  <div class="conv-panel" role="dialog" aria-labelledby="convTitle">
+    <div class="conv-header">
+      <div class="conv-title" id="convTitle">Opioid <em>Converter</em></div>
+      <button class="conv-close" id="convClose" aria-label="Close">×</button>
+    </div>
+    <div class="conv-body">
+      <div style="margin-bottom:18px">
+        <div class="conv-lbl">From — ยาเดิม</div>
+        <div class="conv-row">
+          <select class="conv-select" id="convFromDrug">
+            <option value="codeine_po">Codeine PO</option>
+            <option value="tramadol_po">Tramadol PO</option>
+            <option value="tramadol_iv">Tramadol IV</option>
+            <option value="morphine_po" selected>Morphine PO</option>
+            <option value="morphine_iv">Morphine IV / SC</option>
+            <option value="fentanyl_iv">Fentanyl IV / SC</option>
+            <option value="fentanyl_patch">Fentanyl patch</option>
+          </select>
+          <div class="conv-suffix" id="convFromUnit" data-unit="mg/day">
+            <input type="number" class="conv-input" id="convFromDose" placeholder="0" step="any" min="0">
+          </div>
+        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <div class="conv-lbl">To — ยาใหม่</div>
+        <select class="conv-select" id="convToDrug">
+          <option value="codeine_po">Codeine PO</option>
+          <option value="tramadol_po">Tramadol PO</option>
+          <option value="tramadol_iv">Tramadol IV</option>
+          <option value="morphine_po">Morphine PO</option>
+          <option value="morphine_iv" selected>Morphine IV / SC</option>
+          <option value="fentanyl_iv">Fentanyl IV / SC</option>
+          <option value="fentanyl_patch">Fentanyl patch</option>
+        </select>
+      </div>
+      <div class="conv-result empty" id="convResult">
+        <div class="conv-result-lbl">Equivalent Dose</div>
+        <div class="conv-result-val">ใส่ขนาดยาเพื่อคำนวณ</div>
+      </div>
+      <div class="conv-sugg" id="convSugg" style="display:none"></div>
+      <div class="conv-warn">
+        <strong>หลักการปรับยา:</strong> ลด dose 25-50% เมื่อเปลี่ยนระหว่าง opioid ต่างชนิด • ผู้ป่วยเปราะบาง / สูงอายุ / ตับไตบกพร่อง ลด 50% • ESRD (GFR &lt; 15) ลดเหลือ 25% สำหรับ morphine
+      </div>
+      <div class="conv-ratios">
+        <strong>Conversion ratios (ศิริราช)</strong>
+        <code>Codeine PO : Morphine PO = 10 : 1</code><br>
+        <code>Tramadol PO : Morphine PO = 5 : 1</code><br>
+        <code>Tramadol IV : Tramadol PO = 1 : 1.5</code><br>
+        <code>Morphine PO : Morphine IV/SC = 3 : 1</code><br>
+        <code>Morphine PO : Fentanyl IV/SC = 100 : 1</code> (mg→mcg)<br>
+        <code>Morphine PO 60 mg/day = Fentanyl patch 25 µg/hr</code>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
