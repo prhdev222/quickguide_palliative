@@ -1945,6 +1945,7 @@ render(); // Show loading state immediately
   buildFilters();
   buildDrugPicker();
   render();
+  if (new URLSearchParams(location.search).get('calc') === '1') openCalc();
 })();
 </script>
 
