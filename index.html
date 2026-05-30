@@ -1091,7 +1091,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
         <div class="cf">Tramadol PO</div><div class="ca">→</div><div class="ct">Morphine PO ÷5</div>
         <div class="cf">Codeine PO</div><div class="ca">→</div><div class="ct">Morphine PO ÷10</div>
         <div class="cf">Morphine PO</div><div class="ca">→</div><div class="ct">Morphine IV/SC ÷3</div>
-        <div class="cf">Morphine PO</div><div class="ca">→</div><div class="ct">Fentanyl ÷100 (mg→µg)</div>
+        <div class="cf">Morphine PO</div><div class="ca">→</div><div class="ct">Fentanyl ÷100 (µg→mg)</div>
         <div class="cf">Morphine PO 60 mg/day</div><div class="ca">→</div><div class="ct">Fentanyl patch 25 µg/hr</div>
       </div>
       <div class="al al-w" style="margin-top:10px"><span class="al-i">⚠️</span><div>ระวัง unit mg vs µg — Morphine PO : Fentanyl = 100 : 1 (aware mg, mcg)</div></div>
@@ -1400,12 +1400,12 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
         <tr><td>Loading</td><td><span class="dn">Morphine</span> <span class="dd">2-3 mg IV push</span></td></tr>
         <tr><td>Drip เริ่มต้น</td><td><span class="dd">0.5-1 mg/hr IV drip</span></td></tr>
         <tr><td>Dyspnea ระหว่าง drip</td><td><span class="dn">Morphine</span> <span class="dd">1-2 mg IV prn q 15 min</span><br>หรือ <span class="dn">Fentanyl</span> <span class="dd">25 µg IV prn q 15 min</span></td></tr>
-        <tr><td>ปรับ rate</td><td>ทีละ <span class="dd">0.5-1 mg/hr</span> ทุก 30-60 min (หลัง purge 3 ครั้งไม่ดีขึ้น)</td></tr>
+        <tr><td>ปรับ rate</td><td>ทีละ <span class="dd">0.5-1 mg/hr</span> ทุก 30-60 min (purge ก่อน 3 ครั้ง ยังไม่ดีขึ้น)</td></tr>
       </table>
       <div class="al al-w" style="margin-top:8px"><span class="al-i">⚠️</span><div>ปรับ BTP ก่อน แล้วค่อยปรับ rate — เพิ่ม rate เร็วเสี่ยง overdose<br>
       <em>ตัวอย่าง:</em> เดิม Mo IV drip 1 mg/hr (= IV 24 mg/day = oral 72 mg/day) → เพิ่มเป็น 2 mg/hr (= IV 48 mg/day = oral 144 mg/day)</div></div>
       <div class="sub">ตับ/ไตวาย → Fentanyl</div>
-      <table class="dt"><tr><td><span class="dn">Fentanyl</span> <span class="dd">25 µg IV push → drip 10 µg/hr</span> ปรับ +5-10 µg/hr q 15-60 min <span class="dnote">(หลัง purge 3 ครั้งไม่ดีขึ้น)</span></td></tr></table>
+      <table class="dt"><tr><td><span class="dn">Fentanyl</span> <span class="dd">25 µg IV push → drip 10 µg/hr</span> ปรับ +5-10 µg/hr q 15-60 min <span class="dnote">(purge ก่อน 3 ครั้ง ยังไม่ดีขึ้น)</span></td></tr></table>
     </div>
   </div>
 
@@ -1669,6 +1669,19 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
     </div>
   </div>
   <div class="card open">
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📌</span><span class="card-ttl">ข้อควรปฏิบัติ</span><span class="card-chev">▼</span></div>
+    <div class="card-body">
+      <p style="font-weight:700;color:var(--teal);font-size:calc(var(--fs) - 2px);margin-bottom:6px">เป้าหมาย: เพื่อให้สามารถขับถ่ายได้ใกล้เคียงกับภาวะเดิม หรือขับถ่ายโดยไม่ต้องออกแรงเบ่งอย่างน้อย 1 ครั้งทุก 1-2 วัน</p>
+      <ul class="ul">
+        <li>เมื่อเริ่มใช้ opioids จำเป็นต้องใช้ยาระบายทุกวัน เมื่อมีการปรับขนาด opioids ควรทบทวนยาระบาย</li>
+        <li>Lactulose ใช้ได้ผลไม่ดีนัก หากผู้ป่วยดื่มน้ำน้อย อาจทำให้ท้องอืดหรือปวดบิดท้องบางราย</li>
+        <li>ไม่แนะนำให้ใช้กลุ่ม bulk forming เนื่องจากผู้ป่วยมักดื่มน้ำน้อย อาจทำให้อุจจาระแข็งขึ้น</li>
+        <li>ยาเหน็บและยาสวน ใช้เมื่อยากินไม่ได้ผล ระวังในผู้ป่วยที่มีความเสี่ยงเลือดออกง่าย</li>
+        <li>ถ้าอุจจาระแข็งมาก อาจต้องช่วยทำ evacuation</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">ยาระบายตามสถานการณ์</span><span class="card-chev">▼</span></div>
     <div class="card-body">
       <table class="dt">
@@ -1680,19 +1693,6 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
         <tr><td><strong>Hard faeces – full rectum, colon</strong></td><td><span class="dtag">Stimulant plus softener</span><br><span class="dn">Bisacodyl tablets</span> or <span class="dn">Senna tablets/liquid</span> plus <span class="dn">Docusate sodium</span><br>2nd line – <span class="dn">Macrogols</span> <span class="dd">2-3 sachets/day</span><br>3rd line – <span class="dn">Glycerol</span> <span class="dd">4 g suppository</span> and <span class="dn">Bisacodyl</span> <span class="dd">10 mg suppository</span><br>If ineffective – <span class="dn">Sodium citrate enema</span></td><td>Required adequate oral fluids to be effective</td></tr>
         <tr><td><strong>Fecal Impaction</strong></td><td><span class="dn">Arachis oil retention enema</span> +/- <span class="dn">Phosphate enema</span><br>2nd line – <span class="dn">Macrogols</span> <span class="dd">8 sachets ใน 1 L water ภายใน &lt;6 hr</span><br>Repeat up to 3 days (limit 2 sachets/hr in heart failure)</td><td>Warm before use<br>สวนน้ำมันถั่วลิสง (Arachis oil enema) ทิ้งไว้ข้ามคืนแล้วตามด้วย phosphate enema ในตอนเช้า<br>ถ้ามีประวัติแพ้ถั่ว ห้ามใช้น้ำมันถั่วลิสง</td></tr>
       </table>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📌</span><span class="card-ttl">ข้อควรปฏิบัติ</span><span class="card-chev">▼</span></div>
-    <div class="card-body">
-      <p style="font-weight:700;color:var(--teal);font-size:calc(var(--fs) - 2px);margin-bottom:6px">เป้าหมาย: เพื่อให้สามารถขับถ่ายได้ใกล้เคียงกับภาวะเดิม หรือขับถ่ายโดยไม่ต้องออกแรงเบ่งอย่างน้อย 1 ครั้งทุก 1-2 วัน</p>
-      <ul class="ul">
-        <li>เมื่อเริ่มใช้ opioids จำเป็นต้องใช้ยาระบายทุกวัน เมื่อมีการปรับขนาด opioids ควรทบทวนยาระบาย</li>
-        <li>Lactulose ใช้ได้ผลไม่ดีนัก หากผู้ป่วยดื่มน้ำน้อย อาจทำให้ท้องอืดหรือปวดบิดท้องบางราย</li>
-        <li>ไม่แนะนำให้ใช้กลุ่ม bulk forming เนื่องจากผู้ป่วยมักดื่มน้ำน้อย อาจทำให้อุจจาระแข็งขึ้น</li>
-        <li>ยาเหน็บและยาสวน ใช้เมื่อยากินไม่ได้ผล ระวังในผู้ป่วยที่มีความเสี่ยงเลือดออกง่าย</li>
-        <li>ถ้าอุจจาระแข็งมาก อาจต้องช่วยทำ evacuation</li>
-      </ul>
     </div>
   </div>
   <div class="card">
@@ -1841,7 +1841,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
         <tr><td><span class="dn">Octreotide</span></td><td><span class="dd">150-200 µg SC q 8 hr</span></td><td>ลด GI secretions<br><span class="dnote">ใช้ได้ดีในผู้ป่วยที่อาเจียนมากจาก obstruction ในลำไส้ส่วนล่าง</span></td></tr>
         <tr><td><span class="dn">Cyclizine</span></td><td><span class="dd">75-150 mg/24hr continuous subcutaneous infusion (CSCI) + 25-50 mg SC prn q 4-6 hr</span></td><td>Max 200 mg/24hr</td></tr>
         <tr><td><span class="dn">Haloperidol</span></td><td><span class="dd">0.5-1.5 mg SC hs/CSCI + 0.5 mg SC prn q 2 hr</span></td><td>Max 5 mg/24hr</td></tr>
-        <tr><td colspan="3" style="font-size:calc(var(--fs) - 2px);color:var(--text-muted);padding:4px 10px">• Use cyclizine &amp; haloperidol in combination</td></tr>
+        <tr><td colspan="3" style="font-size:calc(var(--fs) - 2px);color:var(--text-muted);padding:4px 10px">• Cyclizine can be combined with haloperidol</td></tr>
         <tr><td><span class="dn">Levomepromazine</span></td><td><span class="dd">5-25 mg SC hs + 5 mg SC prn q 2 hr</span></td><td>Max 25 mg/24hr<br><span class="dnote">if fail haloperidol</span></td></tr>
         <tr><td colspan="3" style="color:var(--amber);font-size:calc(var(--fs) - 3px);padding:6px 10px">⚠️ Persistent / high volume vomiting → <strong>พิจารณาปรึกษาผู้เชี่ยวชาญ</strong></td></tr>
       </table>
@@ -1876,7 +1876,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
         <tr><th>วิธี</th><th>หมายเหตุ</th></tr>
         <tr><td><strong>Parenteral nutrition</strong></td><td>การให้สารอาหารทางหลอดเลือดดำนั้นอาจไม่มีประโยชน์ในผู้ป่วยมะเร็งระยะลุกลามหรือมี poor performance status อย่างไรก็ตาม พิจารณาให้ตามความเหมาะสมในผู้ป่วยบางรายที่มีการพยากรณ์โรคนาน และควรเป็นการตัดสินใจร่วมกันระหว่าง multidisciplinary team<br><span class="dnote">พิจารณาในผู้ที่ life expectancy &gt;2 เดือน หรือมีโอกาสเสียชีวิตจาก starvation มากกว่าสาเหตุอื่น</span></td></tr>
         <tr><td><strong>Stent</strong></td><td>รุกรานน้อยกว่าผ่าตัด — พิจารณาตำแหน่งที่อุดตันว่าทำได้หรือไม่</td></tr>
-        <tr><td><strong>NG tube</strong></td><td>ไม่แนะนำทำเป็นประจำใน advanced illness — พิจารณาเพื่อ decompress upper GI ในผู้ป่วยที่มีข้อบ่งชี้ผ่าตัด หรือมี feculent vomiting ที่ไม่ตอบสนองต่อยา</td></tr>
+        <tr><td><strong>NG tube</strong></td><td>ไม่แนะนำทำเป็นประจำใน advanced illness — พิจารณาเพื่อ decompress upper GI ในผู้ป่วยที่มีข้อบ่งชี้ผ่าตัด หรือมีอาเจียนออกมาเป็นอุจจาระ (feculent vomiting) ที่ไม่ตอบสนองต่อยา</td></tr>
         <tr><td><strong>Gastrostomy</strong></td><td>พิจารณาในผู้ป่วยที่ยังแข็งแรง มีการอุดตันระดับต้น และอาเจียนมาก</td></tr>
       </table>
     </div>
