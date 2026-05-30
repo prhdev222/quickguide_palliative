@@ -850,10 +850,10 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
   --conv-result1:rgba(200,80,80,.12); --conv-result2:rgba(200,80,80,.05);
   --conv-warn-bg:#3d2900; --conv-warn-border:#b45309; --conv-warn-ink:#fcd34d;
 }
-.conv-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;animation:convFadeIn .18s ease}
+.conv-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;animation:convFadeIn .18s ease}
 .conv-overlay.show{display:flex}
 @keyframes convFadeIn{from{opacity:0}to{opacity:1}}
-.conv-panel{background:var(--surface);border-radius:14px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 48px rgba(0,0,0,.3);animation:convSlideUp .22s ease}
+.conv-panel{background:var(--surface);border-radius:14px;width:100%;max-width:580px;max-height:90vh;overflow-y:scroll;-webkit-overflow-scrolling:touch;box-shadow:0 24px 48px rgba(0,0,0,.3);animation:convSlideUp .22s ease}
 @keyframes convSlideUp{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 .conv-header{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;position:sticky;top:0;background:var(--surface);z-index:1;border-radius:14px 14px 0 0}
 .conv-title{font-weight:700;font-size:18px;color:var(--text);flex:1}
@@ -864,7 +864,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 .conv-lbl{font-size:11px;font-weight:700;color:var(--conv-accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
 .conv-row{display:grid;grid-template-columns:1fr 130px;gap:10px;margin-bottom:8px}
 @media(max-width:480px){.conv-row{grid-template-columns:1fr}}
-.conv-input,.conv-select{font-family:inherit;font-size:15px;padding:10px 12px;border:1.5px solid var(--border2);background:var(--bg);border-radius:8px;outline:none;color:var(--text);width:100%;transition:border-color .15s}
+.conv-input,.conv-select{font-family:inherit;font-size:15px;padding:10px 12px;border:1.5px solid var(--border2);background:var(--bg);border-radius:8px;outline:none;color:var(--text);width:100%;transition:border-color .15s;touch-action:manipulation;cursor:pointer;-webkit-appearance:auto}
 .conv-input:focus,.conv-select:focus{border-color:var(--conv-accent);box-shadow:0 0 0 3px var(--conv-accent-soft)}
 .conv-suffix{position:relative}
 .conv-suffix::after{content:attr(data-unit);position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:12px;pointer-events:none}
