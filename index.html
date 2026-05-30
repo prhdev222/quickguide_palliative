@@ -2652,7 +2652,7 @@ const CONV_META = {
   tramadol_iv:   {label:'Tramadol IV',     unit:'mg/day',  toMo:x=>x*1.5/5,    fromMo:mo=>mo*5/1.5},
   morphine_po:   {label:'Morphine PO',     unit:'mg/day',  toMo:x=>x,          fromMo:mo=>mo},
   morphine_iv:   {label:'Morphine IV/SC',  unit:'mg/day',  toMo:x=>x*3,        fromMo:mo=>mo/3},
-  fentanyl_iv:   {label:'Fentanyl IV/SC',  unit:'mcg/day', toMo:x=>x/100,      fromMo:mo=>mo*100},
+  fentanyl_iv:   {label:'Fentanyl IV/SC',  unit:'mcg/day', toMo:x=>x/10,       fromMo:mo=>mo*10},
   fentanyl_patch:{label:'Fentanyl patch',  unit:'mcg/hr',  toMo:x=>x*(60/25),  fromMo:mo=>mo*(25/60)}
 };
 function convFmt(n){if(!isFinite(n)||isNaN(n))return'–';if(n===0)return'0';if(n<0.1)return n.toFixed(3);if(n<1)return n.toFixed(2);if(n<10)return n.toFixed(1);return Math.round(n).toString();}
@@ -2739,7 +2739,7 @@ document.addEventListener('DOMContentLoaded',function(){
         <code>Tramadol PO : Morphine PO = 5 : 1</code><br>
         <code>Tramadol IV : Tramadol PO = 1 : 1.5</code><br>
         <code>Morphine PO : Morphine IV/SC = 3 : 1</code><br>
-        <code>Morphine PO : Fentanyl IV/SC = 100 : 1</code> (mg→mcg)<br>
+        <code>Morphine PO : Fentanyl IV/SC = 100 : 1</code> (mcg→mg)<br>
         <code>Morphine PO 60 mg/day = Fentanyl patch 25 µg/hr</code>
       </div>
       <button class="conv-close-btn" onclick="closeConv()">✕ ปิด</button>
