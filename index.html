@@ -2396,7 +2396,8 @@ const mobileMenu = document.getElementById('mobileMenu');
 if (mobileMenu) mobileMenu.addEventListener('change', () => go(mobileMenu.value));
 
 /* ── HASH / QUERY NAV: support links like index.html?goto=pain&dn=Morphine ── */
-(function() {
+/* Deferred via setTimeout so all let/const in this script are initialised first */
+setTimeout(function() {
   const params = new URLSearchParams(location.search);
   const secId  = params.get('goto');
   const dnName = params.get('dn');
@@ -2428,9 +2429,9 @@ if (mobileMenu) mobileMenu.addEventListener('change', () => go(mobileMenu.value)
           break;
         }
       }
-    }, 250);
+    }, 200);
   }
-})();
+}, 0);
 window.addEventListener('hashchange', function() {
   const h = location.hash.slice(1);
   if (h.startsWith('section-')) { go(h.slice(8)); }
