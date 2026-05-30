@@ -1279,86 +1279,62 @@ let selectedDrugIndex = null;
 let expandedSet   = new Set();
 let menuCollapsed = false;
 
-// ── Parse index.html dynamically ────────────────────────────────
-function extractEntry(dnEl, sectionId, sInfo) {
-  const name = dnEl.textContent.trim();
-  if (!name || name.length < 2) return null;
+// ── Load from Google Sheets CSV ────────────────────────────────
+const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTgAYpVn8TZ2UaY5BKT70wB5kFrNRoScewHzLE54PjQexK_DsPUp3uWpfvqzx7-XMEFerhyeeXQ6y2a/pub?output=csv';
 
-  const card      = dnEl.closest('.card');
-  const cardTitle = card?.querySelector('.card-ttl')?.textContent?.trim() || '';
-  const tr = dnEl.closest('tr');
-  const li = dnEl.closest('li');
+const SYM_LABEL_TO_KEY = {
+  'Pain':'pain','Dyspnea':'dyspnea','Delirium':'delirium',
+  'Death Rattle':'deathrattle','Constipation':'constipation',
+  'Nausea/Vomiting':'nausea','Gut Obstruction':'gutobs',
+  'Bleeding':'bleeding','Cough':'cough','Hiccup':'hiccup','Anorexia':'anorexia'
+};
 
-  let doses = [], routes = [], notes = [], contextText = '';
-
-  if (tr) {
-    tr.querySelectorAll('.dd').forEach(el    => { const t = el.textContent.trim(); if (t) doses.push(t); });
-    tr.querySelectorAll('.rt').forEach(el    => { const t = el.textContent.trim(); if (t && !routes.includes(t)) routes.push(t); });
-    tr.querySelectorAll('.dnote').forEach(el => { const t = el.textContent.trim(); if (t) notes.push(t); });
-    const cells = Array.from(tr.querySelectorAll('td'));
-    if (cells.length > 1) {
-      const last = cells[cells.length - 1];
-      if (!last.querySelector('.dn') && !last.querySelector('.dd') && !last.querySelector('.rt')) {
-        const t = last.textContent.trim().replace(/\s+/g, ' ');
-        if (t && t.length > 3) contextText = t.substring(0, 250);
-      }
-    }
-  } else if (li) {
-    li.querySelectorAll('.dd').forEach(el    => { const t = el.textContent.trim(); if (t) doses.push(t); });
-    li.querySelectorAll('.rt').forEach(el    => { const t = el.textContent.trim(); if (t && !routes.includes(t)) routes.push(t); });
-    li.querySelectorAll('.dnote').forEach(el => { const t = el.textContent.trim(); if (t) notes.push(t); });
-    const clone = li.cloneNode(true);
-    clone.querySelectorAll('.dn,.dd,.rt,.dnote,.dtag,.l1,.l2,.l3').forEach(el => el.remove());
-    const rest = clone.textContent.trim().replace(/\s+/g, ' ');
-    if (rest.length > 2) contextText = rest.substring(0, 200);
-  } else {
-    dnEl.parentElement?.querySelectorAll('.dd').forEach(el => {
-      const t = el.textContent.trim(); if (t) doses.push(t);
-    });
+function parseCSV(text) {
+  const rows = [];
+  let row = [], field = '', inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (c === '"') {
+      if (inQ && text[i+1] === '"') { field += '"'; i++; }
+      else inQ = !inQ;
+    } else if (c === ',' && !inQ) { row.push(field); field = ''; }
+    else if ((c === '\n' || c === '\r') && !inQ) {
+      if (c === '\r' && text[i+1] === '\n') i++;
+      row.push(field); rows.push(row); row = []; field = '';
+    } else field += c;
   }
-
-  return {
-    name, cardTitle, sectionId,
-    sectionLabel: sInfo.label,
-    sectionColor: sInfo.color,
-    sectionIcon:  sInfo.icon,
-    dose:         doses.join(' / '),
-    route:        routes.join(' '),
-    notes:        notes.join('; '),
-    contextText,
-    anchor: `index.html?goto=${sectionId}&dn=${encodeURIComponent(name)}#section-${sectionId}`,
-    _dedup: `${name.toLowerCase()}|${sectionId}|${cardTitle}|${(doses[0]||'').substring(0,40)}`
-  };
+  if (field || row.length) { row.push(field); if (row.some(f=>f)) rows.push(row); }
+  return rows;
 }
 
-async function loadDrugsFromIndex() {
-  const resp = await fetch('index.html');
-  const html = await resp.text();
-  const doc  = new DOMParser().parseFromString(html, 'text/html');
-  const entries  = [];
-  const seenKeys = new Set();
-
-  Object.entries(SECTION_LABELS).forEach(([sId, sInfo]) => {
-    const section = doc.getElementById(`section-${sId}`);
-    if (!section) return;
-    section.querySelectorAll('.dn').forEach(dnEl => {
-      const e = extractEntry(dnEl, sId, sInfo);
-      if (!e || seenKeys.has(e._dedup)) return;
-      seenKeys.add(e._dedup);
-      entries.push(e);
+async function loadDrugsFromSheet() {
+  const resp = await fetch(SHEET_CSV_URL);
+  const text = await resp.text();
+  const rows = parseCSV(text);
+  if (rows.length < 2) return [];
+  const headers = rows[0].map(h => h.trim().toLowerCase());
+  const drugs = [];
+  for (let i = 1; i < rows.length; i++) {
+    const row = rows[i];
+    if (!row.length || !row[0]) continue;
+    const obj = {};
+    headers.forEach((h, idx) => { obj[h] = (row[idx]||'').trim(); });
+    const symLabels = obj.symptoms ? obj.symptoms.split('|').map(s=>s.trim()) : [];
+    const symptoms  = symLabels.map(l => SYM_LABEL_TO_KEY[l]).filter(Boolean);
+    drugs.push({
+      name: obj.name||'',
+      category: obj.category||'',
+      symptoms,
+      indication: obj.indication||'',
+      dose: obj.dose||'',
+      titration: obj.titration||'',
+      sideEffects: obj.sideeffects||'',
+      notes: obj.notes||'',
+      contraindications: obj.contraindications||'',
+      route: obj.route||''
     });
-  });
-
-  const map = new Map();
-  entries.forEach(e => {
-    const key = e.name.toLowerCase();
-    if (!map.has(key)) map.set(key, { name: e.name, entries: [] });
-    map.get(key).entries.push(e);
-  });
-
-  return Array.from(map.values()).sort((a, b) =>
-    a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
-  );
+  }
+  return drugs.sort((a,b) => a.name.localeCompare(b.name, undefined, {sensitivity:'base'}));
 }
 
 // ── Menu ─────────────────────────────────────────────────────────
@@ -1380,7 +1356,7 @@ function buildFilters() {
   select.innerHTML = '';
 
   const counts = {};
-  DRUG_GROUPS.forEach(g => g.entries.forEach(e => { counts[e.sectionId] = (counts[e.sectionId]||0)+1; }));
+  DRUG_GROUPS.forEach(g => g.symptoms.forEach(s => { counts[s] = (counts[s]||0)+1; }));
 
   const allOpt = document.createElement('option');
   allOpt.value = '';
@@ -1458,11 +1434,12 @@ function normalize(s) {
 function matchesDrugGroup(group, q) {
   if (!q) return true;
   const parts = normalize(q).split(' ').filter(Boolean);
-  if (parts.every(p => normalize(group.name).includes(p))) return true;
-  return group.entries.some(e => {
-    const hay = normalize([e.dose, e.route, e.notes, e.contextText, e.cardTitle, e.sectionLabel].join(' '));
-    return parts.every(p => hay.includes(p));
-  });
+  const hay = normalize([
+    group.name, group.category, group.indication,
+    group.dose, group.sideEffects, group.notes, group.titration,
+    group.symptoms.map(s => SECTION_LABELS[s]?.label||'').join(' ')
+  ].join(' '));
+  return parts.every(p => hay.includes(p));
 }
 
 // ── Render ───────────────────────────────────────────────────────
@@ -1498,34 +1475,49 @@ function renderDrugGroup(group, idx) {
   const q        = searchQuery.toLowerCase();
   const expanded = expandedSet.has(idx) || searchQuery.length >= 2;
 
-  const entries = activeFilter
-    ? group.entries.filter(e => e.sectionId === activeFilter)
-    : group.entries;
+  const visSyms = activeFilter
+    ? group.symptoms.filter(s => s === activeFilter)
+    : group.symptoms;
 
-  const seenSecs = new Set();
-  const tags = entries.map(e => {
-    if (seenSecs.has(e.sectionId)) return '';
-    seenSecs.add(e.sectionId);
-    const info = SECTION_LABELS[e.sectionId];
-    return `<span class="drug-tag" style="background:${info.color}" title="${info.label}">${info.icon}</span>`;
+  const tags = group.symptoms.map(s => {
+    const info = SECTION_LABELS[s];
+    return info ? `<span class="drug-tag" style="background:${info.color}" title="${info.label}">${info.icon}</span>` : '';
   }).join('');
 
-  const count   = entries.length;
-  const occHtml = entries.map(e => renderOccurrence(e, q)).join('');
+  const symBadges = visSyms.map(s => {
+    const info = SECTION_LABELS[s];
+    return info ? `<span class="occ-badge" style="background:${info.color}18;color:${info.color};border:1px solid ${info.color}35">${info.icon} ${escapeHtml(info.label)}</span>` : '';
+  }).join('');
+
+  const firstSym = group.symptoms[0] || '';
+  const link = firstSym
+    ? `<a href="index.html?goto=${firstSym}&dn=${encodeURIComponent(group.name)}#section-${firstSym}" class="occ-link" target="_blank" rel="noopener">ดูในบริบท ↗</a>`
+    : '';
+
+  const rows = [
+    group.indication  && `<div class="occ-dose"><strong>Indication:</strong> ${highlight(group.indication, q)}</div>`,
+    group.dose        && `<div class="occ-dose"><strong>Dose:</strong><br>${highlight(group.dose.replace(/\n/g,'<br>'), q)}</div>`,
+    group.titration   && `<div class="occ-notes"><strong>Titration/หมายเหตุ:</strong> ${highlight(group.titration, q)}</div>`,
+    group.sideEffects && `<div class="occ-notes"><strong>SE:</strong> ${highlight(group.sideEffects, q)}</div>`,
+    group.notes       && `<div class="occ-context">${highlight(group.notes.replace(/\n/g,'<br>'), q)}</div>`,
+    group.contraindications && `<div class="occ-context" style="color:#dc2626"><strong>ข้อห้ามใช้:</strong> ${escapeHtml(group.contraindications)}</div>`,
+  ].filter(Boolean).join('');
+
+  const bodyHtml = `<div class="occurrence"><div class="occ-header">${symBadges}${link}</div>${rows}</div>`;
 
   return `
     <article class="drug-card ${expanded ? 'expanded' : ''}" data-idx="${idx}">
       <header class="drug-head" onclick="toggleCard(${idx})">
         <div style="flex:1;min-width:0">
           <div class="drug-name">${highlight(group.name, q)}</div>
-          <div class="drug-category">${count} occurrence${count !== 1 ? 's' : ''} in guide</div>
+          <div class="drug-category">${escapeHtml(group.category||'')}</div>
         </div>
         <div class="drug-tags">${tags}</div>
         <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="m6 9 6 6 6-6"></path>
         </svg>
       </header>
-      <div class="drug-body">${occHtml}</div>
+      <div class="drug-body">${bodyHtml}</div>
     </article>`;
 }
 
@@ -1545,7 +1537,7 @@ function render() {
   const stats = document.getElementById('stats');
 
   if (isLoading) {
-    list.innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--ink-muted)"><div style="font-size:36px;margin-bottom:12px">⏳</div><div>กำลังโหลดข้อมูลยาจาก Quick Guide...</div></div>';
+    list.innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--ink-muted)"><div style="font-size:36px;margin-bottom:12px">⏳</div><div>กำลังโหลดข้อมูลยา...</div></div>';
     empty.style.display = 'none';
     stats.innerHTML = '';
     return;
@@ -1553,7 +1545,7 @@ function render() {
 
   const filtered = DRUG_GROUPS.map((g, i) => ({ g, i })).filter(({ g, i }) => {
     if (selectedDrugIndex !== null && i !== selectedDrugIndex) return false;
-    if (activeFilter && !g.entries.some(e => e.sectionId === activeFilter)) return false;
+    if (activeFilter && !g.symptoms.includes(activeFilter)) return false;
     if (searchQuery && !matchesDrugGroup(g, searchQuery)) return false;
     return true;
   });
@@ -1939,13 +1931,13 @@ fontResetBtn.addEventListener('click', () => {
 
 applyFontScale();
 
-// ── Init: async load from index.html ────────────────────────────
+// ── Init: async load from Google Sheets ─────────────────────────
 render(); // Show loading state immediately
 (async () => {
   try {
-    DRUG_GROUPS = await loadDrugsFromIndex();
+    DRUG_GROUPS = await loadDrugsFromSheet();
   } catch (err) {
-    console.error('Failed to load drug data from index.html:', err);
+    console.error('Failed to load drug data from Google Sheets:', err);
     DRUG_GROUPS = [];
   }
   isLoading = false;
