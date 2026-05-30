@@ -2395,6 +2395,47 @@ document.querySelectorAll('.tab-btn').forEach(b =>
 const mobileMenu = document.getElementById('mobileMenu');
 if (mobileMenu) mobileMenu.addEventListener('change', () => go(mobileMenu.value));
 
+/* ── HASH / QUERY NAV: support links like index.html?goto=pain&dn=Morphine ── */
+(function() {
+  const params = new URLSearchParams(location.search);
+  const secId  = params.get('goto');
+  const dnName = params.get('dn');
+
+  // Also support plain hash  #section-pain  as fallback
+  const h = location.hash.slice(1);
+  const fromHash = !secId && h.startsWith('section-') ? h.slice(8) : null;
+  const target = secId || fromHash;
+
+  if (!target) return;
+  go(target);
+
+  if (dnName) {
+    setTimeout(function() {
+      const sec = document.getElementById('section-' + target);
+      if (!sec) return;
+      const allDn = sec.querySelectorAll('.dn');
+      for (const dn of allDn) {
+        if (dn.textContent.trim().toLowerCase().includes(dnName.toLowerCase())) {
+          // Open parent card if collapsed
+          const card = dn.closest('.card');
+          if (card && !card.classList.contains('open')) card.classList.add('open');
+          // Highlight briefly
+          dn.style.transition = 'background 0.3s';
+          dn.style.background = '#fef08a';
+          setTimeout(function() { dn.style.background = ''; }, 2500);
+          // Scroll into view
+          dn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          break;
+        }
+      }
+    }, 250);
+  }
+})();
+window.addEventListener('hashchange', function() {
+  const h = location.hash.slice(1);
+  if (h.startsWith('section-')) { go(h.slice(8)); }
+});
+
 /* ── CARDS ── */
 function tc(hd) { hd.parentElement.classList.toggle('open'); }
 

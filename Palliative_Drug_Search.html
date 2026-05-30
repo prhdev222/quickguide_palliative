@@ -1325,7 +1325,7 @@ function extractEntry(dnEl, sectionId, sInfo) {
     route:        routes.join(' '),
     notes:        notes.join('; '),
     contextText,
-    anchor: `index.html#section-${sectionId}`,
+    anchor: `index.html?goto=${sectionId}&dn=${encodeURIComponent(name)}#section-${sectionId}`,
     _dedup: `${name.toLowerCase()}|${sectionId}|${cardTitle}|${(doses[0]||'').substring(0,40)}`
   };
 }
