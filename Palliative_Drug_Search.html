@@ -1002,6 +1002,69 @@
     font-size: 12px;
     color: var(--ink-muted);
   }
+
+  /* ── Occurrence cards (dynamic drug search) ── */
+  .occurrence {
+    padding: 10px 18px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .occurrence:last-child { border-bottom: none; }
+  .occ-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 2px;
+  }
+  .occ-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .occ-card-tag {
+    font-size: 11.5px;
+    color: var(--ink-muted);
+    font-style: italic;
+  }
+  .occ-link {
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+    margin-left: auto;
+  }
+  .occ-link:hover { text-decoration: underline; }
+  .occ-dose {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .occ-route {
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+  .occ-notes {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .occ-context {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  @media (max-width: 600px) {
+    .occurrence { padding: 8px 14px; }
+    .occ-link { margin-left: 0; }
+  }
 </style>
 </head>
 <body>
@@ -1190,17 +1253,114 @@
 <div class="footer-spacer" style="height:80px"></div>
 
 <script>
-const DRUGS = [{"name":"Paracetamol","aliases":["paracetamol","acetaminophen","พาราเซตามอล","พารา"],"category":"Non-opioid analgesic","symptoms":["pain"],"indication":"ปวดเล็กน้อย (PS 1-3); bone pain, liver pain (เป็น adjuvant)","dose":"500 มก./ครั้ง, max 4 กรัม/วัน","titration":"พิจารณาลดขนาดยาเหลือ max 2-3 กรัม/วัน เมื่อมีสภาวะทุพโภชนาการ สูงอายุ การทำงานของตับบกพร่อง/โรคสุราเรื้อรัง"},{"name":"NSAIDs","aliases":["nsaid","nsaids","ibuprofen","diclofenac","indomethacin","naproxen","piroxicam","meloxicam","celecoxib","etoricoxib","coxib"],"category":"Non-opioid analgesic","symptoms":["pain"],"indication":"ปวดเล็กน้อย-ปานกลาง; ใช้ดีใน bone pain, liver pain (เป็น adjuvant)","dose":["Ibuprofen 200, 400, 600 มก. q 4-6 hr (max 2,400 mg/day)","Diclofenac 25, 50 มก. q 8 hr (max 150 mg/day)","Indomethacin 25 มก. q 8-12 hr (max 200 mg/day)","Naproxen 250 มก. q 12 hr (max 1,000 mg/day)","Piroxicam 10, 20 มก. q 24 hr (max 20 mg/day)","Meloxicam (preferential COX-2) 7.5 มก. q 12-24 hr (max 15 mg/day)","Celecoxib (coxib) 200, 400 มก. q 12 hr (max 400 mg/day)","Etoricoxib (coxib) 30, 60, 90, 120 มก. q 24 hr (max 120 mg/day; ขนาด 120 มก. ใช้ติดต่อกันไม่เกิน 8 วัน)"]},{"name":"Codeine","aliases":["codeine","โคเดอีน"],"category":"Weak opioid","symptoms":["pain","cough"],"indication":"ปวดเล็กน้อย-ปานกลาง (PS 1-3); cough","dose":["Pain: 15-60 มก. q 4-6 ชม. (max 240-360 mg/day)","Cough: 15-30 mg 3-4 times a day (Codeine linctus 15 mg/tab)"],"sideEffects":"มึนงง ง่วงนอน คลื่นไส้ อาเจียน ท้องผูก","notes":["Conversion: Codeine PO : Morphine PO = 10 : 1","Cough: If patient is already taking strong opioid for pain there is no rationale for using codeine"]},{"name":"Tramadol","aliases":["tramadol","ultracet","ทรามาดอล"],"category":"Weak opioid","symptoms":["pain"],"indication":"ปวดเล็กน้อย-ปานกลาง (PS 1-3)","dose":"50-100 มก. q 6-8 ชม. (max 400 mg/day)","titration":"ลดยาเหลือ max 200 mg/day ในผู้ที่อายุ > 75 ปี, CrCl < 30 ml/min, โรคตับ","sideEffects":"มึนงง ง่วงนอน คลื่นไส้ อาเจียน ท้องผูก","notes":["Conversion: Tramadol IV : Tramadol PO = 1 : 1.5","Conversion: Tramadol PO : Morphine PO = 5 : 1","Ultracet 37.5/325 = tramadol + paracetamol (ขนาดยาเหมือนข้างต้น)"]},{"name":"Morphine — Immediate Release (IR/Syrup)","aliases":["morphine","mo","mst","kapanol","มอร์ฟีน"],"category":"Strong opioid","symptoms":["pain","dyspnea","cough"],"indication":"ปวดปานกลาง-รุนแรง (PS 4-10); cancer pain ที่เป็นตลอดเวลา (around the clock); dyspnea; cough","dose":["Pain — ผู้ป่วยทั่วไป: Morphine IR/syrup 5-10 มก. ทุก 4 ชม. + prn for breakthrough pain (BTP)","Pain — ผู้สูงอายุ: 2.5-5 มก. ทุก 4-6 ชม. + prn for BTP","Morphine BTP คิดเป็น 10-20% หรือ 1/6 ของ morphine/day ให้ได้ทุก 1-2 ชม.","Dyspnea on exertion (opioid-naïve): 2.5-5 mg PO prn q 4-6 hr","Dyspnea — ผู้สูงอายุ/ไตวาย: 1-2 mg PO prn q 6-8 hr","Dyspnea at rest: ATC + prn q 2 hr (ทั่วไป) / prn q 4 hr (สูงอายุ-ไตวาย) หรือ continuous drip","Cough (opioid-naïve): 2.5-5 mg q 4-6 hr (q 6-8 hr in fragile or elderly) — start low go slow to avoid respiratory depression","Cough (already taking codeine but ineffective): 5-10 mg q 4 hr","Strengths: Mo IR 10 mg/tab, Mo syrup 2 mg/mL — Onset 15-30 min, duration 4-6 hr"],"route":"PO; กรณีไม่สามารถรับประทานทางปากได้ พิจารณาให้ทาง SC หรือ IV โดยใช้สัดส่วน oral : parenteral = 3 : 1","titration":["ใช้ขนาดยาที่ต่ำและเพิ่มขนาดอย่างช้าๆ ในผู้ป่วยอ่อนแอเปราะบาง สูงอายุ หรือมีภาวะตับไตบกพร่อง","ลด dose 50% ในกรณี renal or liver impairment, frailty, moderate pain","ลด dose 75% (เหลือ 25%) ใน ESRD (GFR < 15)","ขนาดที่น้อยสุดไม่ควรต่ำกว่า 4-8 mg/day","ถ้าใช้ BTP > 3 ครั้ง/วัน → ปรับ ATC + BTP ใหม่ (Old ATC + Old BTP = New ATC + New BTP; new BTP = 10-20% ของ new ATC)","ปวดปานกลาง (PS 4-6) → เพิ่มยาขึ้น 30-50% จากขนาดเดิม","ปวดรุนแรง (PS 7-10) → เพิ่มยาขึ้น 50-100% จากขนาดเดิม","ไม่มี maximum dose ของ strong opioids การปรับขนาดยาขึ้นกับประสิทธิภาพและผลข้างเคียงที่เกิดขึ้น","Dyspnea (เคยได้ opioid อยู่): เพิ่มช้าๆทีละ 30-50% ของขนาดที่ได้รับประจำต่อวัน"],"sideEffects":["ท้องผูก — พบตลอดการใช้ยา ควรให้ยาระบายเสมอ","ง่วงซึม — มีได้ 2-3 วันแรก อาจลดขนาดลง 25% จึงให้ประเมิน sedation score เสมอ","คลื่นไส้อาเจียน — จะดีขึ้นใน 1 สัปดาห์ อาจให้ยาแก้อาเจียนร่วม","คัน — ให้ antihistamine","Urinary retention — ลดขนาดยา","Delirium — ลดยาลง 30% หรือให้ haloperidol/risperidone ร่วมด้วย"]},{"name":"Morphine — Modified Release (MST, Kapanol)","aliases":["morphine","mst","kapanol","modified release","sustained release"],"category":"Strong opioid (long-acting)","symptoms":["pain"],"indication":"ใช้ตั้งแต่แรกเป็น oral sustained-release + prn for BTP หรือเมื่อควบคุมอาการปวดได้ 24 ชม. แล้วจึงปรับเป็น long acting","dose":["MST 10, 30, 60 mg — onset 1-2 hr, duration 8-12 hr","Kapanol 20, 50, 100 mg — onset 1-2 hr, duration 24 hr"],"route":"PO","titration":"เปลี่ยนจาก short acting เป็น morphine MR เมื่อควบคุมอาการปวดได้คงที่แล้ว","notes":["ไม่หักบดเม็ด MST เพราะจะทำให้หมดฤทธิ์ long acting","Kapanol ใส่ใน NG tube เบอร์ 14-16 ได้ (ถ้าเบอร์เล็กจะทำให้สายตัน) โดยแกะ pellet ในแคปซูลละลายในของเหลว"]},{"name":"Morphine — Subcutaneous / Intravenous","aliases":["morphine","mo iv","mo sc","morphine drip"],"category":"Strong opioid (parenteral)","symptoms":["pain","dyspnea"],"indication":"ผู้ป่วยที่ไม่สามารถรับประทานทางปากได้; refractory dyspnea","dose":["Mo subcut 10 mg/mL — onset < 5 min, duration 3-6 hr","Mo IV 10 mg/mL — onset < 5 min, duration 3-6 hr","Refractory dyspnea (opioid-naïve, intermittent): morphine 2 mg IV prn q 2 hr","Refractory dyspnea (continuous): Morphine 2-3 mg IV push then IV drip 0.5-1 mg/hr","Purge prn ระหว่าง drip: morphine 1-2 mg IV prn q 15 นาที"],"route":"SC, IV","titration":["คำนวณขนาดยาจาก oral morphine ที่ได้รับใน 24 ชม. โดยสัดส่วน oral : parenteral = 3 : 1","ปรับ Morphine drip เพิ่มทีละ 0.5-1 mg/hr ปรับได้ทุก 30-60 นาที","ถ้า purge 3 ครั้งแล้วยังไม่หายเหนื่อย จึงพิจารณาปรับเพิ่ม rate continuous drip","การ purge prn จะได้ผลเร็วกว่าการปรับ rate ยาขึ้น"],"notes":"Pitfall: เมื่อเริ่มให้ยา Morphine IV drip แล้ว ไม่ได้ monitor ผลการรักษาใกล้ชิด ซึ่งยาเริ่มต้นอาจไม่เพียงพอ ผู้ป่วยจึงยังเหนื่อยอยู่ หรือเพิ่มขนาดยา Morphine continuous IV drip มากเกินไปหรือเร็วเกินไป ทำให้ drug overdose ได้"},{"name":"Fentanyl — IV","aliases":["fentanyl","fentanyl iv","เฟนทานิล"],"category":"Strong opioid (parenteral)","symptoms":["pain","dyspnea"],"indication":"Strong opioid; ใช้ได้ใน renal, liver impairment; refractory dyspnea ในตับ/ไตวาย","dose":["Fentanyl IV 10, 50 µg/mL — onset < 1 min, duration 1-2 hr","Refractory dyspnea (intermittent): fentanyl 25 µg IV prn q 1 hr","Refractory dyspnea (continuous): fentanyl 25 µg IV push then IV drip 10 µg/hr","Purge prn ระหว่าง drip: 25 µg IV q 15 min"],"route":"IV","titration":"ปรับเพิ่มทีละ 5-10 µg/hr q 15-60 min","notes":["Conversion: Morphine PO : Fentanyl IV/SC/transdermal = 100 : 1 (aware mg vs mcg)","ผลข้างเคียงเรื่องท้องผูกน้อยกว่า morphine"]},{"name":"Fentanyl — Transdermal Patch","aliases":["fentanyl","fentanyl patch","transdermal","patch"],"category":"Strong opioid (transdermal)","symptoms":["pain","gut_obstruction"],"indication":"ผู้ที่กินยาไม่ได้ และได้ยา strong opioids อื่นที่คุมปวดได้คงที่แล้ว; abdominal pain ใน gut obstruction (ท้องผูกน้อยกว่า morphine)","dose":["Strengths: 12, 25, 50, 100 µg/hr — onset 12-24 hr, duration 48-72 hr","Conversion: Morphine PO 60 mg/day = Fentanyl transdermal 25 µg/hr"],"route":"Transdermal — แปะบริเวณที่มี subcutaneous fat (ดูดซึมดี) เช่น หน้าอกส่วนบน ต้นแขน ต้นขา เอว; อย่าแปะบนกระดูก","titration":["ออกฤทธิ์ช้า (ประเมินหลังแปะยา 48-72 ชม.) จึงไม่เหมาะในการปรับยา","หลังแปะยา ควรให้ยาระงับปวดอื่นไปก่อนช่วง 12-24 ชม.","เช่น หลังแปะยา ลดขนาด Mo ลง 50% ใน 12 ชม.แรก เมื่อครบ 12 ชม. จึง off Mo","กรณีแปะยาแผ่นใหม่ ให้เปลี่ยนตำแหน่งใหม่"],"notes":["หากแปะในผู้ที่มีไข้หรือแปะบนบริเวณที่อักเสบ จะทำให้ยาดูดซึมมากกว่าปกติ","Fentanyl patch ที่ต้องการใช้ครึ่งแผ่น สามารถตัดแบ่งครึ่งแผ่นยาและเก็บอีกครึ่งแผ่นที่เหลือไว้ใช้ในภายหลังได้"]},{"name":"Nortriptyline / Amitriptyline (TCA)","aliases":["nortriptyline","amitriptyline","tca","tricyclic"],"category":"Adjuvant analgesic (Antidepressant)","symptoms":["pain"],"indication":"ปวดเส้นประสาท (neuropathic pain)","dose":"เริ่มที่ 10 mg at night ก่อน แล้วค่อยๆ เพิ่มทีละ 10 mg ทุก 1-2 สัปดาห์ Max 75 mg/day","route":"PO","titration":"หากไม่ได้ผล/ตอบสนองบางส่วน สามารถเพิ่มยาตัวอื่นเข้าไปหรือเปลี่ยนยาเป็น gabapentin","sideEffects":"สับสน ความดันต่ำ","contraindication":"ระมัดระวังในผู้ป่วยที่มีโรคหัวใจและหลอดเลือด","notes":"นิยมใช้ nortriptyline มากกว่า เนื่องจากผลข้างเคียงน้อยกว่า amitriptyline"},{"name":"Gabapentin","aliases":["gabapentin","anti-epileptic","anticonvulsant"],"category":"Adjuvant analgesic (Anticonvulsant)","symptoms":["pain","hiccup"],"indication":"ปวดเส้นประสาท (neuropathic pain); Hiccup จาก diaphragmatic / phrenic nerve irritation; CNS tumor / meningeal infiltration","dose":["เริ่ม 300 mg daily เพิ่มยาได้ทุก 3 วัน titrated to 300 mg x 3 times a day","แล้วค่อยพิจารณาเพิ่มทีละ 300 mg ทุกๆ 3-7 วัน max 1800 mg/day","100 mg/day for elderly","100 mg/day วันเว้นวัน for ESRD (หากทำ HD แนะนำกินหลังทำ)"],"route":"PO","titration":"หากจะใช้ dose มากกว่า 1800 mg/day ไม่เพิ่มประสิทธิภาพ แนะนำเปลี่ยนเป็น Pregabalin","sideEffects":"ง่วงซึม การสั่น สับสน","contraindication":"ลดขนาดยาลงในผู้ป่วยไตบกพร่องหรือผู้สูงอายุ","notes":"Amitriptyline และ gabapentin ประสิทธิภาพไม่แตกต่าง"},{"name":"Pregabalin","aliases":["pregabalin","lyrica"],"category":"Adjuvant analgesic (Anticonvulsant)","symptoms":["pain"],"indication":"ใช้กรณีได้ gabapentin แล้วยังปวดอยู่ หรือมี side effect","dose":"75 mg twice daily. If necessary increase by 75 mg twice a day ทุก 3-7 วัน max 300 mg x 2 times a day","route":"PO","notes":"Switching from gabapentin: dose pregabalin = dose gabapentin หาร 6"},{"name":"Dexamethasone","aliases":["dexamethasone","dex","decadron","corticosteroid","steroid"],"category":"Corticosteroid","symptoms":["pain","dyspnea","delirium","nausea","gut_obstruction","hiccup","anorexia"],"indication":["Pain — ภาวะความดันในสมองเพิ่มสูงขึ้น; Neuropathic pain ที่ปวดรุนแรง; ปวดจากการยืดของ liver capsule","Dyspnea — SVC obstruction; Stridor; Lymphangitis carcinomatosis / radiation pneumonitis / bronchospasm","Delirium — Raised intracranial pressure","N/V — Increased intracranial pressure; Motility disorders (extrinsic compression); หลายปัจจัยร่วมกัน; cerebral edema; liver metastases","Gut obstruction — adjuvant","Hiccup — Hepatic, mediastinal or cerebral compression/irritation by disease/tumor","Anorexia — เพิ่มความอยากอาหารในช่วงเวลาสั้นๆ; อาจช่วยลดอาการคลื่นไส้"],"dose":["Pain (raised ICP): 16 มก./วัน","Pain (severe neuropathic): 4-8 มก./วัน ในช่วงแรก","Pain (liver capsule stretching): 4-8 มก./วัน","Dyspnea (SVC obstruction): 16 mg PO/IV/SC day","Dyspnea (stridor): 8-16 mg PO/day","Dyspnea (lymphangitis/radiation pneumonitis/bronchospasm): 8 mg PO/day","Delirium (raised ICP): 8-16 mg or 6.6-13.2 mg SC (using 3.3 mg/mL strength) for 1 week","N/V (raised ICP): 8 mg OD","N/V (motility/extrinsic compression / multifactorial): 4-8 mg OD","Gut obstruction: 8-16 mg/วัน","Hiccup: 4-8 mg in the morning","Anorexia: 4-8 mg/day (รับประทานช่วงเช้า)"],"route":"PO, IV, SC, IM","titration":["ให้ในช่วงเช้า, ลดขนาดที่น้อยที่สุดที่ได้ประสิทธิภาพ","Dyspnea: Review treatment หลังจากให้ยาไปแล้ว 5 วัน; ถ้าได้รับยา steroid ติดต่อกันนานกว่า 3 สัปดาห์ พิจารณา taper off","Delirium (raised ICP): reduce over 2-4 weeks to lowest dose; if treated with radiotherapy, continue until 1 week post treatment","N/V: ลดยาหลังให้ไป 3 วันจนหยุดยา หรือใช้ขนาดต่ำที่สุดที่คุมอาการได้","Gut obstruction: ถ้าอาการไม่ดีขึ้นหลังจากเริ่มให้ยาไป 5-7 days หรือมี adverse side effects → หยุด steroid ทันที; ถ้าอาการดีขึ้น → ค่อยๆลดขนาดยาลง","Hiccup: stop if no benefit after a week; if beneficial gradually reduce dose","Anorexia: หากได้ผลใน 1 สัปดาห์ ค่อยๆลดยาลงจนถึงขนาดต่ำสุดที่ได้ผล; หากไม่ได้ผลให้หยุดยาทันที (ไม่ควรใช้เกิน 3-4 สัปดาห์)"],"sideEffects":"ภาวะน้ำคั่งในร่างกาย (fluid retention) นอนไม่หลับ กล้ามเนื้ออ่อนแรง กระเพาะอาหารอักเสบ ภาวะน้ำตาลสูง","notes":"พิจารณา PPI และติดตาม blood sugar; พิจารณาให้ยาป้องกันผลต่อกระเพาะอาหาร เช่น H2 blocker หรือ PPI"},{"name":"Prednisolone","aliases":["prednisolone","pred","steroid"],"category":"Corticosteroid","symptoms":["anorexia"],"indication":"เพิ่มความอยากอาหาร (ทางเลือก แทน dexamethasone)","dose":"10-30 mg/day","route":"PO รับประทานช่วงเช้า","sideEffects":"เหมือน dexamethasone (fluid retention, นอนไม่หลับ, กล้ามเนื้ออ่อนแรง, gastritis, hyperglycemia)"},{"name":"0.9% NaCl (Normal saline) — Nebulized","aliases":["nacl","normal saline","sodium chloride","ns","nss"],"category":"Nebulized solution","symptoms":["dyspnea","cough"],"indication":"Dyspnea: ช่วย hydrate สารคัดหลั่งที่ข้นเหนียวได้; Cough: helps expectoration (wet cough)","dose":["Dyspnea: 5 ml prn q 4 hr","Cough: 2.5-5 ml nebulized q 4 hr prn"],"route":"Nebulization","notes":"Dyspnea: เฝ้าระวังอาการไม่พึงประสงค์ พิจารณาหยุดยาหลังจากใช้ 3 วันแล้วไม่ตอบสนอง"},{"name":"Salbutamol nebules","aliases":["salbutamol","ventolin","albuterol"],"category":"Bronchodilator (nebulized)","symptoms":["dyspnea"],"indication":"ขยายหลอดลม","dose":"2.5-5 mg prn q 4 hr","route":"Nebulization","notes":"เฝ้าระวังอาการไม่พึงประสงค์ พิจารณาหยุดยาหลังจากใช้ 3 วันแล้วไม่ตอบสนอง"},{"name":"Lorazepam","aliases":["lorazepam","ativan","benzo","benzodiazepine"],"category":"Benzodiazepine","symptoms":["dyspnea","delirium","nausea"],"indication":["Dyspnea — วิตกกังวล/panic ที่กระตุ้น dyspnea","Delirium — Consider if alcohol withdrawal is suspected","N/V — คลื่นไส้ที่สัมพันธ์กับความวิตกกังวล"],"dose":["Dyspnea: 0.5-2 mg sublingual (SL) prn q 4-6 ชม. (onset 5-10 นาที)","Delirium (alcohol withdrawal): start 0.5-1 mg PO or SC","N/V: 0.5-1 mg"],"route":"PO, SL, SC","sideEffects":"Sedation","contraindication":"Acute severe pulmonary insufficiency, untreated sleep apnea syndrome, severe hepatic impairment และ myasthenia gravis"},{"name":"Diazepam","aliases":["diazepam","valium","benzo"],"category":"Benzodiazepine","symptoms":["dyspnea","delirium","nausea","bleeding"],"indication":["Dyspnea — วิตกกังวลต่อเนื่องเป็นเวลานาน","Delirium — Alcohol withdrawal","N/V — คลื่นไส้ที่สัมพันธ์กับความวิตกกังวล","Bleeding — Massive terminal hemorrhage (alternative)"],"dose":["Dyspnea (anxiety): 2-5 mg PO hs","Delirium (alcohol withdrawal): 5 mg PO หรือ rectal suppo q 8-12 hr","N/V: 2-5 mg","Massive terminal hemorrhage: 10 mg IV หรือ 10 mg rectal suppository (ประยุกต์นำยาฉีดมาใช้)"],"route":"PO, PR, IV","sideEffects":"Sedation","contraindication":"เหมือน lorazepam (acute severe pulmonary insufficiency, untreated sleep apnea, severe hepatic impairment, myasthenia gravis)"},{"name":"Midazolam","aliases":["midazolam","dormicum","benzo"],"category":"Benzodiazepine","symptoms":["dyspnea","delirium","bleeding","hiccup"],"indication":["Dyspnea — ถ้าไม่สามารถให้ยา PO หรือ SL ได้; Palliative sedation ใน last days of life","Delirium — Alcohol withdrawal-related; Palliative sedation (first line drug, refractory delirium)","Massive terminal hemorrhage","Hiccup — refractory (consult specialist)"],"dose":["Dyspnea (anxiety): 2-5 mg SC/IV prn q 4-6 hr","Palliative sedation: Midazolam 1-2 mg IV/SC prn q 1-2 hr then 0.5 mg/hr ปรับยาเพิ่มครั้งละ 0.5 mg q 1 hr ตามอาการผู้ป่วย","Delirium (alcohol withdrawal): 2-5 mg SC q 1-2 hr","Massive terminal hemorrhage: 10 mg IV bolus หรือ SC หรือ IM (large deltoid or gluteal muscle) หรือ sublingual (ใช้ยาฉีดมาให้ใต้ลิ้น) — ให้ซ้ำได้ IV within 5 min, SC/IM/buccal within 5-15 min"],"route":"SC, IV, IM, SL/buccal","sideEffects":"Sedation","notes":["Palliative sedation: ก่อนทำให้พูดคุยกับญาติ/ผู้ป่วย ถึงข้อบ่งชี้ + การยอมรับการรักษา + ให้เซ็น informed consent","Massive hemorrhage: ในผู้ป่วยเปราะบาง อาจจะใช้ยาขนาดน้อยกว่านี้ได้"]},{"name":"Haloperidol","aliases":["haloperidol","haldol","antipsychotic"],"category":"Antipsychotic (Dopamine receptor antagonist)","symptoms":["delirium","nausea","gut_obstruction","hiccup"],"indication":["Delirium where sedation undesirable; Acute disturbed, violent, or aggressive","N/V จาก toxic/metabolic causes (acts at chemoreceptor trigger zone)","Complete gut obstruction","Hiccup — Systemic causes (biochemical, infection)"],"dose":["Delirium: 0.5-1 mg PO at night or BID — maximum 10 mg/24 hr","Delirium prn: 0.25-0.5 mg PO or SC prn q 1 hr + regular dose","Acute disturbed/violent/aggressive: 1.5-5 mg SC or IM repeat as needed after 20-30 min","N/V: 0.5-1.5 mg PO หรือ 0.5-1 mg SC OD","Complete gut obstruction: 0.5-1.5 mg SC at night or by CSCI & 0.5 mg SC prn q 2 hr (max dose 5 mg/24 hr)","Hiccup: 0.5-1 mg orally prn q 8 hr and maintenance 1-3 mg po hs"],"route":"PO, SC, IM, IV (เฉพาะ < 2 mg)","titration":"เริ่มขนาดต่ำในผู้ป่วยไตวาย แก่ เปราะบาง","sideEffects":"Extrapyramidal side effect at high dose","contraindication":["Avoid antipsychotic drugs for people with conditions such as Parkinson's disease or dementia with Lewy bodies","Haloperidol dose < 2 mg สามารถให้ทาง IV ได้ ความเสี่ยงในการเกิด arrhythmia ค่อนข้างต่ำ","หลีกเลี่ยงการให้ IV หากยาขนาดสูงกว่านี้ เพราะอาจทำให้เกิด Torsades de pointes","ยกเว้นกรณีที่จำเป็นจริงๆ ควรตรวจ EKG ก่อนและหลังให้ยา"],"notes":"Use cyclizine & haloperidol in combination (gut obstruction); May be added to cyclizine (N/V)"},{"name":"Quetiapine","aliases":["quetiapine","seroquel","antipsychotic"],"category":"Antipsychotic (Atypical)","symptoms":["delirium"],"indication":"Agitated delirium where sedation beneficial","dose":"12.5-25 mg PO prn q 6 hr","route":"PO","sideEffects":"Orthostatic hypotension","contraindication":"Avoid antipsychotic drugs for people with conditions such as Parkinson's disease or dementia with Lewy bodies"},{"name":"Olanzapine","aliases":["olanzapine","zyprexa","antipsychotic"],"category":"Antipsychotic (Atypical)","symptoms":["delirium"],"indication":"Agitated delirium where sedation beneficial (less sedating than levomepromazine)","dose":"2.5-5 mg PO หรือ SL OD หรือ BID daily","route":"PO, SL","contraindication":"Avoid antipsychotic drugs for people with conditions such as Parkinson's disease or dementia with Lewy bodies","notes":"เป็นยาที่กระตุ้น delirium ได้มากกว่ายาอื่น"},{"name":"Risperidone","aliases":["risperidone","risperdal","antipsychotic"],"category":"Antipsychotic (Atypical)","symptoms":["delirium"],"indication":"Agitated delirium where sedation beneficial","dose":"0.25-1 mg PO every 12-24 hr (max 4 mg/day)","route":"PO","sideEffects":"Extrapyramidal at doses > 6 mg/day, orthostatic hypotension","contraindication":"Avoid antipsychotic drugs for people with conditions such as Parkinson's disease or dementia with Lewy bodies"},{"name":"Levomepromazine","aliases":["levomepromazine","methotrimeprazine","antipsychotic"],"category":"Antipsychotic (Low-potency)","symptoms":["delirium","nausea","gut_obstruction"],"indication":["Agitated delirium where sedation beneficial","Refractory N/V (a low-potency antipsychotic with strong analgesic, hypnotic and antiemetic properties)","Vestibular dysfunction (2nd line)","Multifactorial N/V","Gut obstruction — if fail haloperidol"],"dose":["Delirium: 12.5-25 mg PO or SC q 6-8 hr (If > 2 doses given in 24 hr, please consult specialist)","N/V: 2.5-5 mg SC q 12 hr หรือ 5-15 mg SC/24 hr (เปลี่ยนเป็นยากินเมื่ออาการดีขึ้น)","Vestibular: 3-6 mg PO OD","Multifactorial: 3-6 mg bid PO หรือ 2.5-5 mg SC bid หรือ 5-15 mg/24 hr CSCI","Gut obstruction (refractory): 5-25 mg SC at night & 5 mg SC prn q 2 hr (max dose 25 mg/24 hr)"],"route":"PO, SC, CSCI","sideEffects":"มีอาการง่วงซึมได้","contraindication":["Avoid antipsychotic drugs for people with conditions such as Parkinson's disease or dementia with Lewy bodies","Caution: epilepsy (lowered seizure threshold)"],"notes":"Replaces previous antiemetic; usually second-line, may be used earlier if sedation is not a problem or is desirable"},{"name":"Hyoscine butylbromide (Buscopan®)","aliases":["hyoscine butylbromide","buscopan","anticholinergic","antimuscarinic"],"category":"Anticholinergic","symptoms":["death_rattle","gut_obstruction","pain"],"indication":["Death rattle (1st line); สามารถให้ได้เลยใน terminal dyspnea เพื่อป้องกันการเกิด death rattle","Abdominal colic ใน gut obstruction","Smooth muscle spasm pain (e.g. bowel colic)"],"dose":["Death rattle: 20-40 mg SC prn q 4 hr (max 300 mg/24 hr)","Abdominal colic: 40-120 mg/day IV หรือ 60-120 mg/24 hr by CSCI"],"route":"SC, IV, CSCI","contraindication":"หากให้ในผู้ที่ยังไม่ใช่ระยะสุดท้าย อาจจะทำให้เสมหะเหนียว เกิด obstruction ได้","notes":["Does not cross BBB. Less CNS side effects","หยุด prokinetic drugs; bulk-forming, osmotic or stimulant laxatives (เมื่อใช้ใน gut obstruction)"]},{"name":"Glycopyrrolate","aliases":["glycopyrrolate","glycopyrronium","anticholinergic"],"category":"Anticholinergic","symptoms":["death_rattle"],"indication":"Death rattle (2nd line)","dose":"0.2-0.4 mg SC prn q 4-6 hr","route":"SC","titration":"Suggest half dose in ESRD","notes":"Less CNS adverse effects due to does not cross BBB"},{"name":"Hyoscine hydrobromide (Scopolamine)","aliases":["hyoscine hydrobromide","scopolamine","anticholinergic"],"category":"Anticholinergic","symptoms":["death_rattle"],"indication":"Death rattle (3rd line)","dose":"0.4-0.6 mg SC q 4-6 hr","route":"SC","sideEffects":"Sedative effect","contraindication":"Avoid in ESRD due to increased risk of delirium"},{"name":"Atropine 1% Ophthalmic Drops (SL)","aliases":["atropine","anticholinergic"],"category":"Anticholinergic (off-label)","symptoms":["death_rattle"],"indication":"Death rattle (off-label indication)","dose":"1-4 drops (0.5 mg/drop) SL q 2-4 hr","route":"Sublingual (1% ophthalmic drops applying for SUBLINGUAL use)","sideEffects":"ปากแห้ง ปัสสาวะค้างในกระเพาะปัสสาวะ ตาพร่ามัว และอาจทำให้สับสนได้","notes":["Effectiveness not established","แนะนำให้หยอดตากรณีที่เยื่อบุตาแห้ง","พิจารณาหยุดให้ยาถ้าไม่ตอบสนองใดๆเลย"]},{"name":"Bisacodyl","aliases":["bisacodyl","dulcolax","stimulant laxative"],"category":"Stimulant laxative","symptoms":["constipation"],"indication":"Soft bulky stools, low colonic activity; Hard faeces (full rectum/colon)","dose":["Oral: 5-20 mg at night","Rectal suppository: 10 mg suppository (สำหรับ hard faeces)"],"route":"PO, PR","titration":"Start with low dose and titrate","sideEffects":"May cause abdominal cramp","contraindication":"Avoid stimulant laxatives in patients with gut obstruction and colicky pain"},{"name":"Senna","aliases":["senna","senokot","stimulant laxative"],"category":"Stimulant laxative","symptoms":["constipation"],"indication":"Soft bulky stools, low colonic activity","dose":"Senna (7.5 mg) 15 mg at night increasing to 30 mg twice a day","route":"PO","sideEffects":"May cause abdominal cramp","contraindication":"Avoid in gut obstruction; mechanical obstruction (หลีกเลี่ยงยาเพิ่มการบีบตัวลำไส้)","notes":"Combination: Senna + docusate sodium (stimulant + softening agent) สำหรับ colon full, no colic"},{"name":"Sodium picosulfate liquid","aliases":["sodium picosulfate","picosulfate","stimulant laxative"],"category":"Stimulant laxative","symptoms":["constipation"],"indication":"Soft bulky stools","dose":"5-10 mg at night increasing to 30 mg daily","route":"PO","sideEffects":"May cause abdominal cramp"},{"name":"Lactulose","aliases":["lactulose","duphalac","osmotic laxative"],"category":"Osmotic laxative","symptoms":["constipation","gut_obstruction"],"indication":"Osmotic laxative; constipation precipitating obstruction (มักให้ผลดี)","dose":"30-60 ml/day","route":"PO","sideEffects":"หากผู้ป่วยดื่มน้ำน้อย อาจทำให้ท้องอืดหรือปวดบิดท้องบางราย","notes":"Lactulose ใช้ได้ผลไม่ดีนัก"},{"name":"Milk of Magnesium (MOM)","aliases":["milk of magnesium","mom","magnesium hydroxide","osmotic laxative"],"category":"Osmotic laxative","symptoms":["constipation"],"indication":"Osmotic laxative","dose":"30-60 ml/day at night","route":"PO","sideEffects":"Overdose of MOM can cause hypermagnesemia"},{"name":"Macrogols / Polyethylene Glycol (PEG)","aliases":["macrogol","polyethylene glycol","peg","osmotic laxative","movicol"],"category":"Osmotic laxative","symptoms":["constipation"],"indication":["Colon full with colic","Hard faeces (2nd line)","Fecal impaction (2nd line): 8 sachets in 1 L of water taken over less than 6 hr, repeat up to 3 days"],"dose":"1 sachet in 125 mg water once daily, increase to 2-3 sachets per day","route":"PO","contraindication":"Require adequate oral fluids to be effective; ระวังการใช้ในผู้ที่ไม่สามารถดื่มน้ำอย่างเพียงพอ; limit to 2 sachets/hr in heart failure"},{"name":"Docusate sodium","aliases":["docusate","softening agent"],"category":"Stool softener","symptoms":["constipation","gut_obstruction"],"indication":["Hard dry faeces","Useful in sub-acute obstruction","Constipation precipitating obstruction (gut obstruction): maximum licensed dose is 500 mg/day, but up to 200 mg TID a day orally may be used"],"dose":"200 mg up to 500 mg/day (bid)","route":"PO","sideEffects":"Docusate sodium oral solution may cause a bitter aftertaste or burning sensation, minimized by drinking plenty of water after taking","notes":"Higher doses may stimulate peristalsis"},{"name":"Sodium citrate or phosphate enema","aliases":["sodium citrate","phosphate enema","enema"],"category":"Enema","symptoms":["constipation"],"indication":"Soft bulky stools (alternative); Hard faeces — full rectum (if other lines ineffective)","route":"PR"},{"name":"Glycerol suppository + Bisacodyl suppository","aliases":["glycerol","glycerin","suppository"],"category":"Suppository combination","symptoms":["constipation"],"indication":"Hard faeces — full rectum, colon (3rd line)","dose":"Glycerol 4 g suppository + Bisacodyl 10 mg suppository","route":"PR"},{"name":"Arachis oil retention enema (น้ำมันถั่วลิสง)","aliases":["arachis oil","peanut oil","น้ำมันถั่วลิสง","enema"],"category":"Enema","symptoms":["constipation"],"indication":"Fecal impaction (1st line) — สวนน้ำมันถั่วลิสง ทิ้งไว้ข้ามคืนแล้วตามด้วย phosphate enema ในตอนเช้า","route":"PR retention enema","contraindication":"ถ้ามีประวัติแพ้ถั่ว ห้ามใช้น้ำมันถั่วลิสง","notes":"Warm before use"},{"name":"Metoclopramide","aliases":["metoclopramide","plasil","primperan","prokinetic"],"category":"Prokinetic / Dopamine antagonist","symptoms":["nausea","gut_obstruction","hiccup","anorexia"],"indication":["N/V จาก toxic/metabolic; Motility disorders (acts at chemoreceptor trigger zone & GI tract)","Functional or partial obstruction (prokinetic drug)","Multifactorial N/V","Hiccup — Gastric stasis and distension; GERD","Anorexia — อิ่มเร็ว, delayed gastric emptying, gastroparesis, คลื่นไส้"],"dose":["N/V (toxic/metabolic): 10 mg qid PO หรือ SC","Motility disorders: 10-20 mg PO qid หรือ 30-80 mg/24 hr by CSCI","Multifactorial N/V: 30-80 mg/24 hr CSCI","Functional/partial gut obstruction: 30-120 mg/24hr by CSCI","Hiccup: 10 mg 3 times a day","Anorexia: 10 mg รับประทานวันละ 3 ครั้ง ก่อนอาหาร 30 นาที"],"route":"PO, SC, CSCI","sideEffects":"Gastric stasis, reflux. Delayed gastric emptying","contraindication":["Contraindicated in complete bowel obstruction (เพราะกระตุ้น peristalsis มากขึ้น)","หยุดยาถ้ามีอาการปวดบิด (colic)","ถ้าใช้ยาระยะเวลานาน ให้ระวัง extrapyramidal side effects","Avoid used together with cyclizine or other antimuscarinic drugs, as they inhibit its prokinetic action","Hiccup: ไม่ใช้ร่วมกับ peppermint water เป็นเวลานาน (against gastro-esophageal sphincter)"]},{"name":"Domperidone","aliases":["domperidone","motilium","prokinetic"],"category":"Prokinetic / Dopamine antagonist","symptoms":["nausea","hiccup","anorexia"],"indication":["Motility disorders (prokinetic) — อาจทำให้ esophageal spasm ได้","Hiccup — Gastric stasis and distension; GERD","Anorexia — อิ่มเร็ว, delayed gastric emptying, gastroparesis, คลื่นไส้"],"dose":["Motility/N/V: 10 mg tid PO","Hiccup: 10 mg 3 times a day","Anorexia: 10 mg รับประทานวันละ 3 ครั้ง ก่อนอาหาร 30 นาที"],"route":"PO","sideEffects":"Headache, dry mouth, abdominal cramp, diarrhea, QT prolongation (rare)"},{"name":"Cyclizine","aliases":["cyclizine","antihistamine","antimuscarinic"],"category":"Antihistamine / Antimuscarinic","symptoms":["nausea","gut_obstruction"],"indication":["Increased intracranial pressure; Cerebral irritation; Vertigo; Visceral distortion/obstruction; Oropharyngeal irritation (acts at vestibular system and vomiting centre)","Complete gut obstruction (ใช้ร่วม haloperidol)"],"dose":["N/V: 25-50 mg PO หรือ SC tid","Complete gut obstruction: 75-150 mg/24 hr by CSCI & 25-50 mg SC prn q 4-6 hr (max dose 200 mg/24 hr)"],"route":"PO, SC, CSCI","sideEffects":"Constipating; delays gastric emptying","notes":"May be added to haloperidol; Use cyclizine & haloperidol in combination (gut obstruction)"},{"name":"Cinnarizine","aliases":["cinnarizine","stugeron","antihistamine"],"category":"Antihistamine","symptoms":["nausea"],"indication":"สาเหตุจากหูชั้นใน (vestibular)","dose":"30 mg PO then 15 mg tid","route":"PO"},{"name":"Prochlorperazine","aliases":["prochlorperazine","stemetil","antipsychotic"],"category":"Antipsychotic (Dopamine receptor antagonist)","symptoms":["nausea"],"indication":"Vestibular cause (2nd line)","dose":"5-15 mg PO หรือ 3 mg ทางกระพุ้งแก้ม","route":"PO, buccal","sideEffects":"Sedation, extrapyramidal symptoms (restlessness, dystonic reaction, pseudoparkinsonism, akathisia)"},{"name":"Ondansetron","aliases":["ondansetron","zofran","5ht3 antagonist"],"category":"5HT3 antagonist","symptoms":["nausea"],"indication":"Mainly in chemotherapy, post-operatively; Adjuvant in renal failure, gastric irritation","dose":"4 mg PO/SC bid","route":"PO, SC","sideEffects":"Profoundly constipating","notes":"ADD to previous antiemetic"},{"name":"Ranitidine","aliases":["ranitidine","zantac","h2 blocker"],"category":"H2 blocker","symptoms":["nausea","anorexia"],"indication":"ลดกรดในกระเพาะอาหาร — ระคายเคืองกระเพาะ/หลอดอาหาร","dose":"150 mg bid","route":"PO"},{"name":"Proton pump inhibitor (PPI)","aliases":["ppi","omeprazole","pantoprazole","esomeprazole","lansoprazole"],"category":"Acid suppressant","symptoms":["nausea","bleeding","hiccup","anorexia"],"indication":["ลดกรดในกระเพาะอาหาร","เลือดออกทางเดินอาหาร — ตามแนวทางการรักษา GI hemorrhage","GERD-related Hiccup"],"notes":"ใช้ร่วมกับยาฆ่าเชื้อ ยาต้านเชื้อรา/ไวรัส ตามสาเหตุ"},{"name":"Octreotide","aliases":["octreotide","sandostatin","somatostatin analog"],"category":"Somatostatin analog","symptoms":["gut_obstruction"],"indication":"Complete obstruction; ช่วยเรื่องการลด GI secretions ใช้ได้ดีในผู้ป่วยที่อาเจียนเยอะจากการอุดตันในลำไส้ส่วนล่างๆ","dose":"150-200 mcg SC q 8 hr","route":"SC"},{"name":"Ketamine","aliases":["ketamine","nmda antagonist"],"category":"Anesthetic agent","symptoms":["bleeding"],"indication":"Massive terminal hemorrhage (anesthetic agent, NMDA receptor antagonist)","dose":"150-250 mg IV หรือ 500 mg IM (large deltoid or gluteal muscle)","route":"IV, IM"},{"name":"Tranexamic acid (TXA)","aliases":["tranexamic acid","txa","transamin","antifibrinolytic"],"category":"Antifibrinolytic","symptoms":["bleeding"],"indication":["เลือดออกจากผิวหนัง (รวมถึง เนื้องอกก้อนคล้ายดอกกระหล่ำ และเยื่อบุต่างๆ) — topical compress","เลือดออกในช่องปาก — mouthwash","ถ้าเลือดออกไม่เกี่ยวกับภาวะ DIC (systemic)","เลือดออกทางเดินหายใจ; เลือดออกทางเดินอาหาร","เลือดออกทางเดินปัสสาวะ (ปรึกษาผู้เชี่ยวชาญก่อน)"],"dose":["Topical: Tranexamic acid (500 mg/5 ml) 10 ml แช่ผ้ากอซกดบริเวณเลือดออก","Mouthwash: 5% ชนิดน้ำ 10 ml บ้วนปาก วันละ 4 ครั้ง — ผสมจาก tab 250 mg × 2 + น้ำ 10 ml หรือ 500 mg/5 ml × 1 หลอด + น้ำจนได้ 10 ml","Systemic PO: เริ่ม 1.5 g PO ตามด้วย 1 g PO วันละ 3 ครั้ง","ถ้าอาการไม่ดีขึ้นหลังจากให้ยา 3 วัน → เพิ่มขนาดเป็น 1.5 g PO วันละ 3 ครั้ง","Systemic IV: 500 mg IV TID"],"route":"PO, IV, Topical, Mouthwash","titration":["ปรับลดยาในผู้ที่มีไตบกพร่อง","ระวังการเกิด thrombosis","แนะนำให้ลดหรือหยุดยา 1 สัปดาห์ หลังจากเลือดหยุดแล้ว"],"contraindication":"เลือดออกทางเดินปัสสาวะ — ควรปรึกษาผู้เชี่ยวชาญก่อนให้ เนื่องจากมีความเสี่ยงต่อการเกิดลิ่มเลือดตกค้างในระบบทางเดินปัสสาวะ โดยเฉพาะหากเลือดออกใน upper tract of KUB system"},{"name":"Adrenaline (Epinephrine)","aliases":["adrenaline","epinephrine"],"category":"Vasoconstrictor","symptoms":["bleeding"],"indication":["เลือดออกจากผิวหนัง (topical)","เลือดออกทางเดินหายใจ (nebulized)"],"dose":["Topical: Adrenaline (1:1,000) แช่ผ้ากอซกดบริเวณเลือดออก","Nebulized: 1 ml of 1:1000 adrenaline with 4 mL 0.9%NaCl พ่น 4 ครั้ง/วัน"],"route":"Topical, Nebulization"},{"name":"Sucralfate","aliases":["sucralfate","carafate"],"category":"Mucosal protectant","symptoms":["bleeding"],"indication":"เลือดออกในช่องปาก; แผลที่หลอดอาหารหรือแผลที่ลำไส้ตรง","dose":"ละลาย sucralfate 2 g ในน้ำ 10 ml บ้วนปาก วันละ 2 ครั้ง หรือรับประทาน","route":"PO, mouthwash"},{"name":"Silver nitrate","aliases":["silver nitrate"],"category":"Cauterizing agent","symptoms":["bleeding"],"indication":"หยุดเลือดออกเฉพาะจุด","route":"Topical (แปะผิวบริเวณเลือดออก)"},{"name":"Vitamin K (Phytonadione)","aliases":["vitamin k","phytonadione","menadione"],"category":"Vitamin","symptoms":["bleeding"],"indication":"พิจารณาให้กรณีที่สงสัยว่าผู้ป่วยมีภาวะ Vitamin K deficiency ร่วมด้วย มีประวัติทานยา warfarin","notes":"เลือดออกทางเดินอาหาร"},{"name":"Carbocisteine","aliases":["carbocisteine","mucolytic"],"category":"Mucolytic","symptoms":["cough"],"indication":"Reduce sputum viscosity","dose":"750 mg three times a day, reduce to twice a day","route":"PO","titration":"Stop if not effective within 4 weeks"},{"name":"Peppermint water","aliases":["peppermint","peppermint water"],"category":"Carminative","symptoms":["hiccup"],"indication":"Gastric stasis and distension; gastro-esophageal reflux","dose":"10 mL po prn","route":"PO","contraindication":"Do not use metoclopramide concurrently with peppermint water for a long time due to against gastro-esophageal sphincter"},{"name":"Simethicone","aliases":["simethicone","antiflatulent"],"category":"Antiflatulent","symptoms":["hiccup"],"indication":"Gastric stasis/distension","route":"PO"},{"name":"Baclofen","aliases":["baclofen","muscle relaxant"],"category":"Muscle relaxant","symptoms":["hiccup"],"indication":"Diaphragmatic or phrenic nerve irritation; CNS tumor / meningeal infiltration","dose":"5-20 mg po prn q 8 hr","route":"PO","notes":"Avoid stop drug abruptly"},{"name":"Nifedipine","aliases":["nifedipine","calcium channel blocker"],"category":"Calcium channel blocker","symptoms":["hiccup"],"indication":"Diaphragmatic / phrenic nerve irritation","dose":"5-20 mg po prn q 8 hr","route":"PO","contraindication":"Avoid in patients with hypotension"},{"name":"Megestrol acetate","aliases":["megestrol","megace","progestogen"],"category":"Progestogen","symptoms":["anorexia"],"indication":"อาจกระตุ้นความอยากอาหารและเพิ่มน้ำหนักในกลุ่มผู้ป่วยมะเร็ง — เหมาะสมในผู้ป่วยที่มีการพยากรณ์โรคยาวนานมากกว่า","dose":["160 mg/day ประเมินซ้ำหลังจากเริ่มยาแล้ว 2-3 สัปดาห์","สำหรับกระตุ้นความอยากอาหาร ใช้ยาขนาดน้อยหรือมากกว่าได้ผลเท่ากัน","หากหวังผลเพิ่มน้ำหนัก ขนาดยาที่มากขึ้นจะให้ผลลัพธ์ที่ดีขึ้น (dose response relationship)","ขนาดยาสูงสุดคือ 800 mg/day"],"route":"PO","titration":["อาจใช้เวลา 2-3 สัปดาห์จึงจะเห็นผล แต่เมื่อยาออกฤทธิ์จะเห็นผลได้นานกว่ายา steroid","ลดขนาดยาลงช้าๆ หากใช้ยานานกว่า 3 สัปดาห์ เนื่องจากมีผลกดการทำงานของต่อมหมวกไต (adrenal suppression)"],"sideEffects":"คลื่นไส้ ภาวะน้ำคั่งในร่างกาย (fluid retention) และเพิ่มความเสี่ยงต่อการเกิดลิ่มเลือดอุดตัน (thromboembolism)"},{"name":"Mirtazapine","aliases":["mirtazapine","remeron","antidepressant"],"category":"Antidepressant","symptoms":["anorexia"],"indication":"อาจช่วยกระตุ้นความอยากอาหาร และเพิ่มน้ำหนัก ในผู้ป่วยมะเร็ง","notes":"ข้อมูลยังมีไม่มาก"}];
-const SYMPTOM_GROUPS = {"pain":{"label":"Pain — ความปวด","color":"#C2410C","icon":"P"},"dyspnea":{"label":"Dyspnea — หายใจหอบเหนื่อย","color":"#0E7490","icon":"D"},"delirium":{"label":"Delirium — สับสนเพ้อ","color":"#7C3AED","icon":"Δ"},"death_rattle":{"label":"Death rattle — เสียงครืดคราด","color":"#475569","icon":"R"},"constipation":{"label":"Constipation — ท้องผูก","color":"#92400E","icon":"C"},"nausea":{"label":"Nausea/Vomiting — คลื่นไส้อาเจียน","color":"#15803D","icon":"N"},"gut_obstruction":{"label":"Gut obstruction — ลำไส้อุดตัน","color":"#B91C1C","icon":"G"},"bleeding":{"label":"Bleeding — เลือดออก","color":"#9F1239","icon":"B"},"cough":{"label":"Cough — ไอ","color":"#1D4ED8","icon":"K"},"hiccup":{"label":"Hiccup — สะอึก","color":"#A16207","icon":"H"},"anorexia":{"label":"Anorexia — เบื่ออาหาร","color":"#65A30D","icon":"A"}};
 
-// State
-let activeFilter = null;
-let searchQuery = '';
+// ── Section definitions ──────────────────────────────────────────
+const SECTION_LABELS = {
+  pain:         { label: 'Pain — ความปวด',               color: '#C2410C', icon: 'P' },
+  dyspnea:      { label: 'Dyspnea — หายใจหอบเหนื่อย',   color: '#0E7490', icon: 'D' },
+  delirium:     { label: 'Delirium — สับสนเพ้อ',         color: '#7C3AED', icon: 'Δ' },
+  deathrattle:  { label: 'Death rattle — เสียงครืดคราด', color: '#475569', icon: 'R' },
+  constipation: { label: 'Constipation — ท้องผูก',       color: '#92400E', icon: 'C' },
+  nausea:       { label: 'Nausea/Vomiting — คลื่นไส้',   color: '#15803D', icon: 'N' },
+  gutobs:       { label: 'Gut obstruction — ลำไส้อุดตัน',color: '#B91C1C', icon: 'G' },
+  bleeding:     { label: 'Bleeding — เลือดออก',          color: '#9F1239', icon: 'B' },
+  cough:        { label: 'Cough — ไอ',                   color: '#1D4ED8', icon: 'K' },
+  hiccup:       { label: 'Hiccup — สะอึก',               color: '#A16207', icon: 'H' },
+  anorexia:     { label: 'Anorexia — เบื่ออาหาร',        color: '#65A30D', icon: 'A' }
+};
+
+// ── State ────────────────────────────────────────────────────────
+let DRUG_GROUPS   = [];
+let isLoading     = true;
+let activeFilter  = null;
+let searchQuery   = '';
 let selectedDrugIndex = null;
-let expandedSet = new Set();
+let expandedSet   = new Set();
 let menuCollapsed = false;
 
+// ── Parse index.html dynamically ────────────────────────────────
+function extractEntry(dnEl, sectionId, sInfo) {
+  const name = dnEl.textContent.trim();
+  if (!name || name.length < 2) return null;
 
+  const card      = dnEl.closest('.card');
+  const cardTitle = card?.querySelector('.card-ttl')?.textContent?.trim() || '';
+  const tr = dnEl.closest('tr');
+  const li = dnEl.closest('li');
+
+  let doses = [], routes = [], notes = [], contextText = '';
+
+  if (tr) {
+    tr.querySelectorAll('.dd').forEach(el    => { const t = el.textContent.trim(); if (t) doses.push(t); });
+    tr.querySelectorAll('.rt').forEach(el    => { const t = el.textContent.trim(); if (t && !routes.includes(t)) routes.push(t); });
+    tr.querySelectorAll('.dnote').forEach(el => { const t = el.textContent.trim(); if (t) notes.push(t); });
+    const cells = Array.from(tr.querySelectorAll('td'));
+    if (cells.length > 1) {
+      const last = cells[cells.length - 1];
+      if (!last.querySelector('.dn') && !last.querySelector('.dd') && !last.querySelector('.rt')) {
+        const t = last.textContent.trim().replace(/\s+/g, ' ');
+        if (t && t.length > 3) contextText = t.substring(0, 250);
+      }
+    }
+  } else if (li) {
+    li.querySelectorAll('.dd').forEach(el    => { const t = el.textContent.trim(); if (t) doses.push(t); });
+    li.querySelectorAll('.rt').forEach(el    => { const t = el.textContent.trim(); if (t && !routes.includes(t)) routes.push(t); });
+    li.querySelectorAll('.dnote').forEach(el => { const t = el.textContent.trim(); if (t) notes.push(t); });
+    const clone = li.cloneNode(true);
+    clone.querySelectorAll('.dn,.dd,.rt,.dnote,.dtag,.l1,.l2,.l3').forEach(el => el.remove());
+    const rest = clone.textContent.trim().replace(/\s+/g, ' ');
+    if (rest.length > 2) contextText = rest.substring(0, 200);
+  } else {
+    dnEl.parentElement?.querySelectorAll('.dd').forEach(el => {
+      const t = el.textContent.trim(); if (t) doses.push(t);
+    });
+  }
+
+  return {
+    name, cardTitle, sectionId,
+    sectionLabel: sInfo.label,
+    sectionColor: sInfo.color,
+    sectionIcon:  sInfo.icon,
+    dose:         doses.join(' / '),
+    route:        routes.join(' '),
+    notes:        notes.join('; '),
+    contextText,
+    anchor: `index.html#section-${sectionId}`,
+    _dedup: `${name.toLowerCase()}|${sectionId}|${cardTitle}|${(doses[0]||'').substring(0,40)}`
+  };
+}
+
+async function loadDrugsFromIndex() {
+  const resp = await fetch('index.html');
+  const html = await resp.text();
+  const doc  = new DOMParser().parseFromString(html, 'text/html');
+  const entries  = [];
+  const seenKeys = new Set();
+
+  Object.entries(SECTION_LABELS).forEach(([sId, sInfo]) => {
+    const section = doc.getElementById(`section-${sId}`);
+    if (!section) return;
+    section.querySelectorAll('.dn').forEach(dnEl => {
+      const e = extractEntry(dnEl, sId, sInfo);
+      if (!e || seenKeys.has(e._dedup)) return;
+      seenKeys.add(e._dedup);
+      entries.push(e);
+    });
+  });
+
+  const map = new Map();
+  entries.forEach(e => {
+    const key = e.name.toLowerCase();
+    if (!map.has(key)) map.set(key, { name: e.name, entries: [] });
+    map.get(key).entries.push(e);
+  });
+
+  return Array.from(map.values()).sort((a, b) =>
+    a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
+  );
+}
+
+// ── Menu ─────────────────────────────────────────────────────────
 function setMenuCollapsed(collapsed) {
   menuCollapsed = !!collapsed;
   document.body.classList.toggle('menu-collapsed', menuCollapsed);
@@ -1212,235 +1372,165 @@ function shouldCollapseForReading() {
   return document.querySelector('.drug-card.expanded') !== null || selectedDrugIndex !== null;
 }
 
-// Build filter dropdown
+// ── Filters & drug picker ────────────────────────────────────────
 function buildFilters() {
-  const select = document.getElementById('filterSelect');
+  const select   = document.getElementById('filterSelect');
   const clearBtn = document.getElementById('filterClearBtn');
-  const counts = {};
-  DRUGS.forEach(d => {
-    (d.symptoms || []).forEach(s => { counts[s] = (counts[s] || 0) + 1; });
-  });
+  select.innerHTML = '';
 
-  // "All" option
+  const counts = {};
+  DRUG_GROUPS.forEach(g => g.entries.forEach(e => { counts[e.sectionId] = (counts[e.sectionId]||0)+1; }));
+
   const allOpt = document.createElement('option');
   allOpt.value = '';
-  allOpt.textContent = `★ ทุกกลุ่มอาการ — All (${DRUGS.length} ยา)`;
+  allOpt.textContent = `★ ทุกกลุ่มอาการ — All (${DRUG_GROUPS.length} ยา)`;
   select.appendChild(allOpt);
 
-  Object.entries(SYMPTOM_GROUPS).forEach(([key, info]) => {
+  Object.entries(SECTION_LABELS).forEach(([key, info]) => {
     const opt = document.createElement('option');
     opt.value = key;
-    opt.textContent = `${info.icon}  ${info.label}  (${counts[key] || 0})`;
+    opt.textContent = `${info.icon}  ${info.label}  (${counts[key]||0})`;
     select.appendChild(opt);
   });
 
-  select.addEventListener('change', (e) => {
-    setFilter(e.target.value || null);
-  });
-  clearBtn.addEventListener('click', () => {
-    select.value = '';
-    setFilter(null);
-  });
+  select.addEventListener('change', e => setFilter(e.target.value || null));
+  clearBtn.addEventListener('click', () => { select.value = ''; setFilter(null); });
 }
 
-
-// Build drug dropdown + datalist for searching individual medicines
 function buildDrugPicker() {
-  const select = document.getElementById('drugSelect');
+  const select   = document.getElementById('drugSelect');
   const clearBtn = document.getElementById('drugClearBtn');
   const datalist = document.getElementById('drugSuggestions');
+  select.innerHTML = '';
+  datalist.innerHTML = '';
 
   const allOpt = document.createElement('option');
   allOpt.value = '';
-  allOpt.textContent = `★ เลือกยารายตัว — All medicines (${DRUGS.length} รายการ)`;
+  allOpt.textContent = `★ เลือกยารายตัว — All medicines (${DRUG_GROUPS.length} รายการ)`;
   select.appendChild(allOpt);
 
-  DRUGS.forEach((drug, idx) => {
+  DRUG_GROUPS.forEach((g, idx) => {
     const opt = document.createElement('option');
     opt.value = String(idx);
-    opt.textContent = drug.name;
+    opt.textContent = g.name;
     select.appendChild(opt);
-
-    const dlName = document.createElement('option');
-    dlName.value = drug.name;
-    datalist.appendChild(dlName);
-    (drug.aliases || []).forEach(alias => {
-      const dlAlias = document.createElement('option');
-      dlAlias.value = alias;
-      datalist.appendChild(dlAlias);
-    });
+    const dl = document.createElement('option');
+    dl.value = g.name;
+    datalist.appendChild(dl);
   });
 
-  select.addEventListener('change', (e) => {
-    setDrug(e.target.value === '' ? null : Number(e.target.value));
-  });
+  select.addEventListener('change', e => setDrug(e.target.value === '' ? null : Number(e.target.value)));
   clearBtn.addEventListener('click', () => setDrug(null));
 }
 
 function setDrug(idx) {
   selectedDrugIndex = Number.isInteger(idx) ? idx : null;
-  const select = document.getElementById('drugSelect');
-  const drugClearBtn = document.getElementById('drugClearBtn');
+  const select   = document.getElementById('drugSelect');
+  const clearBtn = document.getElementById('drugClearBtn');
   select.value = selectedDrugIndex === null ? '' : String(selectedDrugIndex);
   select.classList.toggle('active', selectedDrugIndex !== null);
-  drugClearBtn.classList.toggle('show', selectedDrugIndex !== null);
-
+  clearBtn.classList.toggle('show', selectedDrugIndex !== null);
   if (selectedDrugIndex !== null) {
-    searchInput.value = '';
-    searchQuery = '';
-    clearBtn.classList.remove('show');
-    expandedSet.clear();
-    expandedSet.add(selectedDrugIndex);
+    searchInput.value = ''; searchQuery = '';
+    document.getElementById('clearBtn').classList.remove('show');
+    expandedSet.clear(); expandedSet.add(selectedDrugIndex);
   }
   render();
   if (selectedDrugIndex !== null) setMenuCollapsed(true);
 }
 
 function setFilter(symptom) {
-  activeFilter = symptom;
-  const select = document.getElementById('filterSelect');
+  activeFilter = symptom || null;
+  const select   = document.getElementById('filterSelect');
   const clearBtn = document.getElementById('filterClearBtn');
-  if (select.value !== (symptom || '')) {
-    select.value = symptom || '';
-  }
+  if (select.value !== (symptom || '')) select.value = symptom || '';
   select.classList.toggle('active', !!symptom);
   clearBtn.classList.toggle('show', !!symptom);
   render();
 }
 
-// Search matching
-function normalizeSearchText(value) {
-  return String(value || '')
-    .toLowerCase()
-    .replace(/[—–-]/g, ' ')
-    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
+// ── Search ───────────────────────────────────────────────────────
+function normalize(s) {
+  return String(s||'').toLowerCase().replace(/\s+/g,' ').trim();
 }
 
-function getDrugNameHaystack(drug) {
-  return normalizeSearchText([drug.name, ...(drug.aliases || [])].join(' '));
-}
-
-function queryLooksLikeDrugName(q) {
-  const qn = normalizeSearchText(q);
-  if (!qn) return false;
-  return DRUGS.some(d => {
-    const names = [d.name, ...(d.aliases || [])].map(normalizeSearchText).filter(Boolean);
-    return names.some(name => name.includes(qn) || qn.includes(name));
+function matchesDrugGroup(group, q) {
+  if (!q) return true;
+  const parts = normalize(q).split(' ').filter(Boolean);
+  if (parts.every(p => normalize(group.name).includes(p))) return true;
+  return group.entries.some(e => {
+    const hay = normalize([e.dose, e.route, e.notes, e.contextText, e.cardTitle, e.sectionLabel].join(' '));
+    return parts.every(p => hay.includes(p));
   });
 }
 
-function matchesSearch(drug, q) {
-  if (!q) return true;
-  const qn = normalizeSearchText(q);
-  const parts = qn.split(/\s+/).filter(Boolean);
-
-  // If the typed text looks like a medicine name/alias, search only in drug name + aliases.
-  // This prevents e.g. searching "morphine" from showing Codeine/Fentanyl only because
-  // their conversion notes mention morphine.
-  if (queryLooksLikeDrugName(q)) {
-    const nameHaystack = getDrugNameHaystack(drug);
-    return parts.every(p => nameHaystack.includes(p));
-  }
-
-  // Otherwise allow broader clinical search by indication, dose, notes, symptom group, etc.
-  const haystack = normalizeSearchText([
-    drug.name,
-    drug.category,
-    ...(drug.aliases || []),
-    Array.isArray(drug.indication) ? drug.indication.join(' ') : (drug.indication || ''),
-    Array.isArray(drug.dose) ? drug.dose.join(' ') : (drug.dose || ''),
-    drug.route || '',
-    Array.isArray(drug.titration) ? drug.titration.join(' ') : (drug.titration || ''),
-    Array.isArray(drug.sideEffects) ? drug.sideEffects.join(' ') : (drug.sideEffects || ''),
-    Array.isArray(drug.contraindication) ? drug.contraindication.join(' ') : (drug.contraindication || ''),
-    Array.isArray(drug.notes) ? drug.notes.join(' ') : (drug.notes || ''),
-    (drug.symptoms || []).map(s => SYMPTOM_GROUPS[s]?.label || '').join(' ')
-  ].join(' '));
-
-  return parts.every(p => haystack.includes(p));
+// ── Render ───────────────────────────────────────────────────────
+function escapeHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 function highlight(text, q) {
-  if (!q || !text) return escapeHtml(text);
-  const escapedText = escapeHtml(text);
-  const parts = q.split(/\\s+/).filter(Boolean);
-  let result = escapedText;
+  const safe = escapeHtml(text);
+  if (!q || !text) return safe;
+  const parts = q.toLowerCase().split(/\s+/).filter(Boolean);
+  let result = safe;
   parts.forEach(p => {
     if (!p) return;
-    const re = new RegExp('(' + p.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&') + ')', 'gi');
+    const re = new RegExp('(' + p.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi');
     result = result.replace(re, '<mark>$1</mark>');
   });
   return result;
 }
 
-function escapeHtml(str) {
-  if (str === undefined || str === null) return '';
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+function renderOccurrence(e, q) {
+  const badge   = `<span class="occ-badge" style="background:${e.sectionColor}18;color:${e.sectionColor};border:1px solid ${e.sectionColor}35">${e.sectionIcon} ${escapeHtml(e.sectionLabel)}</span>`;
+  const cardTag = e.cardTitle ? `<span class="occ-card-tag">${escapeHtml(e.cardTitle)}</span>` : '';
+  const link    = `<a href="${e.anchor}" class="occ-link" target="_blank" rel="noopener">ดูในบริบท ↗</a>`;
+  const dose    = e.dose        ? `<div class="occ-dose">${highlight(e.dose, q)}</div>`        : '';
+  const route   = e.route       ? `<div class="occ-route">${escapeHtml(e.route)}</div>`        : '';
+  const notes   = e.notes       ? `<div class="occ-notes">${highlight(e.notes, q)}</div>`      : '';
+  const ctx     = e.contextText ? `<div class="occ-context">${highlight(e.contextText, q)}</div>` : '';
+  return `<div class="occurrence"><div class="occ-header">${badge}${cardTag}${link}</div>${dose}${route}${notes}${ctx}</div>`;
 }
 
-function renderField(label, value, q) {
-  if (!value) return '';
-  let valueHtml;
-  if (Array.isArray(value)) {
-    valueHtml = '<ul>' + value.map(v => '<li>' + highlight(v, q) + '</li>').join('') + '</ul>';
-  } else {
-    valueHtml = highlight(value, q);
-  }
-  return `
-    <div class="field">
-      <div class="field-label">${label}</div>
-      <div class="field-value">${valueHtml}</div>
-    </div>
-  `;
-}
+function renderDrugGroup(group, idx) {
+  const q        = searchQuery.toLowerCase();
+  const expanded = expandedSet.has(idx) || searchQuery.length >= 2;
 
-function renderDrug(drug, q, idx) {
-  const expanded = expandedSet.has(idx) || (q && q.length >= 2);
-  const tags = (drug.symptoms || []).map(s => {
-    const info = SYMPTOM_GROUPS[s];
-    if (!info) return '';
-    return `<span class="drug-tag" style="background:${info.color};" title="${info.label}">${info.icon}</span>`;
+  const entries = activeFilter
+    ? group.entries.filter(e => e.sectionId === activeFilter)
+    : group.entries;
+
+  const seenSecs = new Set();
+  const tags = entries.map(e => {
+    if (seenSecs.has(e.sectionId)) return '';
+    seenSecs.add(e.sectionId);
+    const info = SECTION_LABELS[e.sectionId];
+    return `<span class="drug-tag" style="background:${info.color}" title="${info.label}">${info.icon}</span>`;
   }).join('');
 
-  const fields = [
-    renderField('Indication', drug.indication, q),
-    renderField('Dose', drug.dose, q),
-    renderField('Route', drug.route, q),
-    renderField('การปรับยา', drug.titration, q),
-    renderField('ผลข้างเคียง', drug.sideEffects, q),
-    renderField('ข้อห้าม / ข้อควรระวัง', drug.contraindication, q),
-    renderField('หมายเหตุ', drug.notes, q)
-  ].filter(Boolean).join('');
+  const count   = entries.length;
+  const occHtml = entries.map(e => renderOccurrence(e, q)).join('');
 
   return `
     <article class="drug-card ${expanded ? 'expanded' : ''}" data-idx="${idx}">
       <header class="drug-head" onclick="toggleCard(${idx})">
-        <div style="flex:1; min-width:0;">
-          <div class="drug-name">${highlight(drug.name, q)}</div>
-          ${drug.category ? '<div class="drug-category">' + highlight(drug.category, q) + '</div>' : ''}
+        <div style="flex:1;min-width:0">
+          <div class="drug-name">${highlight(group.name, q)}</div>
+          <div class="drug-category">${count} occurrence${count !== 1 ? 's' : ''} in guide</div>
         </div>
         <div class="drug-tags">${tags}</div>
         <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="m6 9 6 6 6-6"></path>
         </svg>
       </header>
-      <div class="drug-body">${fields}</div>
-    </article>
-  `;
+      <div class="drug-body">${occHtml}</div>
+    </article>`;
 }
 
 function toggleCard(idx) {
-  if (expandedSet.has(idx)) {
-    expandedSet.delete(idx);
-  } else {
-    expandedSet.add(idx);
-  }
-  // Just toggle class, don't re-render whole list
+  if (expandedSet.has(idx)) expandedSet.delete(idx);
+  else expandedSet.add(idx);
   const card = document.querySelector(`.drug-card[data-idx="${idx}"]`);
   if (card) {
     card.classList.toggle('expanded');
@@ -1449,36 +1539,37 @@ function toggleCard(idx) {
 }
 
 function render() {
-  const list = document.getElementById('drugList');
+  const list  = document.getElementById('drugList');
   const empty = document.getElementById('empty');
   const stats = document.getElementById('stats');
 
-  // Filter drugs
-  const filtered = DRUGS.map((d, i) => ({ d, i }))
-    .filter(({ d, i }) => {
-      if (selectedDrugIndex !== null && i !== selectedDrugIndex) return false;
-      if (activeFilter && !(d.symptoms || []).includes(activeFilter)) return false;
-      if (searchQuery && !matchesSearch(d, searchQuery)) return false;
-      return true;
-    });
+  if (isLoading) {
+    list.innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--ink-muted)"><div style="font-size:36px;margin-bottom:12px">⏳</div><div>กำลังโหลดข้อมูลยาจาก Quick Guide...</div></div>';
+    empty.style.display = 'none';
+    stats.innerHTML = '';
+    return;
+  }
 
-  // Auto-expand when searching
+  const filtered = DRUG_GROUPS.map((g, i) => ({ g, i })).filter(({ g, i }) => {
+    if (selectedDrugIndex !== null && i !== selectedDrugIndex) return false;
+    if (activeFilter && !g.entries.some(e => e.sectionId === activeFilter)) return false;
+    if (searchQuery && !matchesDrugGroup(g, searchQuery)) return false;
+    return true;
+  });
+
   if (searchQuery && searchQuery.length >= 2) {
     filtered.forEach(({ i }) => expandedSet.add(i));
   }
 
-  // Stats
   let statsHtml = `<strong>${filtered.length}</strong> ${filtered.length === 1 ? 'drug' : 'drugs'}`;
   if (selectedDrugIndex !== null) {
-    statsHtml += ` <span class="active-filter-pill">ยา: ${escapeHtml(DRUGS[selectedDrugIndex]?.name || '')}<button onclick="setDrug(null)" aria-label="Clear selected drug">×</button></span>`;
+    statsHtml += ` <span class="active-filter-pill">${escapeHtml(DRUG_GROUPS[selectedDrugIndex]?.name||'')}<button onclick="setDrug(null)" aria-label="clear">×</button></span>`;
   }
   if (activeFilter) {
-    const info = SYMPTOM_GROUPS[activeFilter];
-    statsHtml += ` <span class="active-filter-pill"><span style="background:${info.color}; width:8px; height:8px; border-radius:2px; display:inline-block;"></span>${info.label}<button onclick="setFilter(null)" aria-label="Clear filter">×</button></span>`;
+    const info = SECTION_LABELS[activeFilter];
+    statsHtml += ` <span class="active-filter-pill"><span style="background:${info.color};width:8px;height:8px;border-radius:2px;display:inline-block"></span> ${info.label}<button onclick="setFilter(null)" aria-label="clear">×</button></span>`;
   }
-  if (searchQuery) {
-    statsHtml += ` matching <strong>"${escapeHtml(searchQuery)}"</strong>`;
-  }
+  if (searchQuery) statsHtml += ` matching <strong>"${escapeHtml(searchQuery)}"</strong>`;
   stats.innerHTML = statsHtml;
 
   if (filtered.length === 0) {
@@ -1486,68 +1577,45 @@ function render() {
     empty.style.display = 'block';
   } else {
     empty.style.display = 'none';
-    list.innerHTML = filtered.map(({ d, i }) => renderDrug(d, searchQuery, i)).join('');
+    list.innerHTML = filtered.map(({ g, i }) => renderDrugGroup(g, i)).join('');
   }
 }
 
-// Search input
+// ── Search input ─────────────────────────────────────────────────
 const searchInput = document.getElementById('searchInput');
-const clearBtn = document.getElementById('clearBtn');
-const menuToggle = document.getElementById('menuToggle');
+const clearBtn    = document.getElementById('clearBtn');
+const menuToggle  = document.getElementById('menuToggle');
 menuToggle.addEventListener('click', () => setMenuCollapsed(!menuCollapsed));
 
-searchInput.addEventListener('input', (e) => {
+searchInput.addEventListener('input', e => {
   searchQuery = e.target.value.trim();
-  if (searchQuery.length > 0 && selectedDrugIndex !== null) {
-    setDrug(null);
-  }
+  if (searchQuery.length > 0 && selectedDrugIndex !== null) setDrug(null);
   clearBtn.classList.toggle('show', searchQuery.length > 0);
   render();
 });
-
 clearBtn.addEventListener('click', () => {
-  searchInput.value = '';
-  searchQuery = '';
-  clearBtn.classList.remove('show');
-  searchInput.focus();
-  render();
+  searchInput.value = ''; searchQuery = '';
+  clearBtn.classList.remove('show'); searchInput.focus(); render();
 });
 
-// Keyboard shortcuts
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', e => {
   if (e.key === '/' && document.activeElement !== searchInput) {
-    e.preventDefault();
-    searchInput.focus();
+    e.preventDefault(); searchInput.focus();
   }
   if (e.key === 'Escape') {
-    if (calcOverlay.classList.contains('show')) {
-      closeCalc();
-      return;
-    }
+    if (typeof calcOverlay !== 'undefined' && calcOverlay.classList.contains('show')) { closeCalc(); return; }
     if (document.activeElement === searchInput) {
-      searchInput.value = '';
-      searchQuery = '';
-      clearBtn.classList.remove('show');
-      searchInput.blur();
-      render();
+      searchInput.value = ''; searchQuery = '';
+      clearBtn.classList.remove('show'); searchInput.blur(); render();
     }
   }
-  // 'm' to hide/show search menu (only when not typing)
   if ((e.key === 'm' || e.key === 'M') &&
-      document.activeElement.tagName !== 'INPUT' &&
-      document.activeElement.tagName !== 'SELECT' &&
-      document.activeElement.tagName !== 'TEXTAREA') {
-    e.preventDefault();
-    setMenuCollapsed(!menuCollapsed);
+      !['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)) {
+    e.preventDefault(); setMenuCollapsed(!menuCollapsed);
   }
-
-  // 'c' to open converter (only when not typing)
   if ((e.key === 'c' || e.key === 'C') &&
-      document.activeElement.tagName !== 'INPUT' &&
-      document.activeElement.tagName !== 'SELECT' &&
-      document.activeElement.tagName !== 'TEXTAREA') {
-    e.preventDefault();
-    openCalc();
+      !['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)) {
+    e.preventDefault(); if (typeof openCalc !== 'undefined') openCalc();
   }
 });
 
@@ -1870,10 +1938,20 @@ fontResetBtn.addEventListener('click', () => {
 
 applyFontScale();
 
-// Init
-buildDrugPicker();
-buildFilters();
-render();
+// ── Init: async load from index.html ────────────────────────────
+render(); // Show loading state immediately
+(async () => {
+  try {
+    DRUG_GROUPS = await loadDrugsFromIndex();
+  } catch (err) {
+    console.error('Failed to load drug data from index.html:', err);
+    DRUG_GROUPS = [];
+  }
+  isLoading = false;
+  buildFilters();
+  buildDrugPicker();
+  render();
+})();
 </script>
 
 </body>
