@@ -283,6 +283,8 @@ body{
 .banner-title-logo{width:38px;height:38px;object-fit:contain;flex-shrink:0;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.12)}
 .banner h2{font-size:calc(var(--fs) - 3px);font-weight:700;color:var(--teal);letter-spacing:.07em;text-transform:uppercase;margin-bottom:0}
 .banner p{font-size:calc(var(--fs) - 1px);color:var(--text-muted);line-height:1.65}
+.banner-guidance{margin:10px 0 12px;padding:9px 12px;border-left:3px solid var(--amber);border-radius:5px;background:var(--amber-dim);color:var(--text-muted);font-size:calc(var(--fs) - 2px);line-height:1.65}
+.banner-guidance strong{color:var(--text)}
 
 /* Search */
 #search-results{display:none}
@@ -1011,8 +1013,8 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
       <img class="banner-title-logo" src="siriraj_no_bg.png" alt="Siriraj logo">
       <h2>Quick Guide for Symptomatic Management in Palliative Care</h2>
     </div>
-    <p>จัดทำโดย <strong>ภาควิชาอายุรศาสตร์ คณะแพทยศาสตร์ศิริราชพยาบาล มหาวิทยาลัยมหิดล พ.ศ. 2568</strong><br>
-    เอกสารอ้างอิงสำหรับแพทย์ผู้ดูแลผู้ป่วยแบบประคับประคอง ใช้ค้นหาขนาดยาและวิธีการรักษาอาการทางกายที่พบบ่อย ทั้งโดยใช้ยาและไม่ใช้ยาให้เป็นไปในทิศทางเดียวกัน</p>
+    <p>จัดทำโดย <strong>ภาควิชาอายุรศาสตร์ คณะแพทยศาสตร์ศิริราชพยาบาล มหาวิทยาลัยมหิดล พ.ศ. 2568</strong></p>
+    <div class="banner-guidance"><strong>หมายเหตุการใช้แนวทาง:</strong> เอกสารนี้เป็นเพียงแนวทางเวชปฏิบัติ ไม่ใช่ข้อบังคับของการปฏิบัติ แพทย์สามารถปรับใช้ในการดูแลผู้ป่วยแบบประคับประคอง โดยยังคงมีดุลยพินิจโดยอิสระในการให้ยาและกำหนดแนวทางการรักษาให้กับผู้ป่วยแต่ละรายตามความเหมาะสม</div>
     <button class="credit-link" onclick="go('credits')">👥 ดูรายนามผู้จัดทำ →</button>
   </div>
   <div class="home-grid">
@@ -1049,7 +1051,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 <div class="section" id="section-pain">
   <div class="sec-title">💊 Pain Management <span class="sec-badge" style="background:var(--teal-glow);color:var(--teal)">WHO Ladder</span></div>
   <div class="sec-desc">แนวทางการจัดการความปวดในผู้ป่วยประคับประคองที่อยู่ในโรงพยาบาล — ประเมินความปวดให้ครบถ้วน, มีปัญหาทางจิตใจร่วมด้วยไหม, หาสาเหตุที่สามารถแก้ไขได้, หากกินได้ให้เริ่มด้วยยากินก่อน, อาการปวดจากมะเร็งที่เป็นตลอดเวลาควรให้ยา around the clock, ประเมินหลังให้ยาและปรับยาให้เหมาะสม</div>
-  <a class="pdf-btn" href="pdf/pain.pdf" target="_blank" rel="noopener">📄 ดาวน์โหลด PDF ต้นฉบับ</a>
+  <a class="pdf-btn" href="pdf/pain_updated_reference7.pdf" target="_blank" rel="noopener">📄 ดาวน์โหลด PDF ต้นฉบับ</a>
 
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">🪜</span><span class="card-ttl">WHO Analgesic Ladder — แนวทางตามระดับความปวด</span><span class="card-chev">▼</span></div>
@@ -1154,7 +1156,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">🩺</span><span class="card-ttl">Renal Dose Adjustment</span><span class="card-chev">▼</span></div>
     <div class="card-body">
       <table class="dt">
-        <tr><th>GFR (mL/min)</th><th>Morphine</th><th>Fentanyl</th></tr>
+        <tr><th>GFR (mL/min)<br><span style="color:var(--amber);font-weight:600;text-transform:none;letter-spacing:0">(by Cockcroft-Gault equation)</span></th><th>Morphine</th><th>Fentanyl</th></tr>
         <tr><td>&gt; 50</td><td style="color:var(--green)">100%</td><td style="color:var(--green)">100%</td></tr>
         <tr><td>10–50</td><td style="color:var(--amber)">50-75%</td><td style="color:var(--amber)">75-100%</td></tr>
         <tr><td>&lt; 10</td><td style="color:var(--rose)">Not recommended</td><td style="color:var(--amber)">50%</td></tr>
@@ -1308,9 +1310,11 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
       <ol class="ref-list">
         <li>WHO Guidelines for the Pharmacological and Radiotherapeutic Management of Cancer Pain in Adults and Adolescents, 2018</li>
         <li>Update Handbook of Palliative care guidelines, NHS, UK, ศูนย์การุณรักษ์ โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</li>
-        <li>Davies AN, Dickman A, Reid C, Stevens AM, Zeppetella G. The management of cancer-related breakthrough pain: Recommendations of a task group of the Science Committee of the Association for Palliative Medicine of Great Britain and Ireland. Eur J Pain. 2009;13(4):331-338</li>
-        <li>Maltoni M, Scarpi E, Modonesi C, et al. A validation study of the WHO analgesic ladder: A two-step vs three-step strategy. Support Care Cancer. 2005;13(11):888-894</li>
+        <li>Davies, A. N., Dickman, A., Reid, C., Stevens, A. M. and Zeppetella, G. 2009. The management of cancer-related breakthrough pain: Recommendations of a task group of the Science Committee of the Association for Palliative Medicine of Great Britain and Ireland. European Journal of Pain, 13(4), pp. 331-338</li>
+        <li>Maltoni, M., Scarpi, E., Modonesi, C., Passardi, A., Calpona, S., Turriziani, A., Speranza, R., Tassinari, D., Magnani, P., Saccani, D., Montanari, L., Roudnas, B. and Amadori, D. 2005. A validation study of the WHO analgesic ladder: A two-step vs three-step strategy. Supportive Care in Cancer, 13(11), pp. 888-894</li>
+        <li><a href="https://www.yumpu.com/en/document/read/43592925/opioid-analgesic-comparison-table" target="_blank" rel="noopener">https://www.yumpu.com/en/document/read/43592925/opioid-analgesic-comparison-table</a></li>
         <li>Symptom management in palliative care workshop มิถุนายน 2568. ศูนย์การุณรักษ์ โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</li>
+        <li>Gelot, S., Nakhla, E. Opioid Dosing in Renal and Hepatic Impairment. These comorbid conditions can complicate the treatment of pain with opioid analgesics. US Pharm. 2014;39(8):34-38.</li>
       </ol>
     </div>
   </div>
@@ -2400,6 +2404,8 @@ function load() {
   setTheme(localStorage.getItem('pc_th') || 'dark', 1);
   setFs(localStorage.getItem('pc_fs') || 'md', 1);
   setLayout(localStorage.getItem('pc_ly') || 'auto', 1);
+  document.querySelectorAll('.section:not(#section-home):not(#section-credits) .card')
+    .forEach(card => card.classList.remove('open'));
 }
 
 /* ── THEME ── */
@@ -2731,7 +2737,7 @@ document.addEventListener('DOMContentLoaded',function(){
       </div>
       <div class="conv-sugg" id="convSugg" style="display:none"></div>
       <div class="conv-warn">
-        <strong>หลักการปรับยา:</strong> ลด dose 25-50% เมื่อเปลี่ยนระหว่าง opioid ต่างชนิด • ผู้ป่วยเปราะบาง / สูงอายุ / ตับไตบกพร่อง ลด 50% • ESRD (GFR &lt; 15) ลดเหลือ 25% สำหรับ morphine
+        ควรปรับลดขนาดยา opioids ในผู้ป่วยตับ/ไตบกพร่อง/ผู้สูงอายุ/ผู้ป่วยเปราะบาง (ดูคำแนะนำในเอกสารหลัก)
       </div>
       <div class="conv-ratios">
         <strong>Conversion ratios (ศิริราช)</strong>

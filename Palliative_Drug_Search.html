@@ -1234,7 +1234,7 @@
       </div>
 
       <div class="calc-warning">
-        <strong>หลักการปรับยา:</strong> ลด dose 25-50% เมื่อเปลี่ยนระหว่าง opioid ต่างชนิด (incomplete cross-tolerance) • ในผู้ป่วยเปราะบาง / สูงอายุ / ตับไตบกพร่อง ลด 50% • ESRD (GFR &lt; 15) ลดเหลือ 25% สำหรับ morphine • ขนาดที่น้อยสุดของ Mo ไม่ควรต่ำกว่า 4-8 mg/day
+        ควรปรับลดขนาดยา opioids ในผู้ป่วยตับ/ไตบกพร่อง/ผู้สูงอายุ/ผู้ป่วยเปราะบาง (ดูคำแนะนำในเอกสารหลัก)
       </div>
 
       <div class="calc-ratios">
@@ -1621,7 +1621,7 @@ document.addEventListener('keydown', e => {
 //   Tramadol PO : Morphine PO = 5 : 1
 //   Codeine PO : Morphine PO = 10 : 1
 //   Morphine PO : Morphine IV/SC = 3 : 1
-//   Morphine PO : Fentanyl IV/SC/transdermal = 100 : 1 (aware mg vs mcg)
+//   Morphine PO 60 mg/day = Fentanyl IV/SC 600 mcg/day
 //   Morphine PO 60 mg/day = Fentanyl patch 25 µg/hr
 
 const DRUG_META = {
@@ -1630,7 +1630,7 @@ const DRUG_META = {
   tramadol_iv:    { label: "Tramadol IV",      unit: "mg/day", toMoPo: (x) => (x * 1.5) / 5, fromMoPo: (mo) => (mo * 5) / 1.5 },
   morphine_po:    { label: "Morphine PO",      unit: "mg/day", toMoPo: (x) => x,         fromMoPo: (mo) => mo },
   morphine_iv:    { label: "Morphine IV/SC",   unit: "mg/day", toMoPo: (x) => x * 3,     fromMoPo: (mo) => mo / 3 },
-  fentanyl_iv:    { label: "Fentanyl IV/SC",   unit: "mcg/day",toMoPo: (x) => x / 100,   fromMoPo: (mo) => mo * 100 },
+  fentanyl_iv:    { label: "Fentanyl IV/SC",   unit: "mcg/day",toMoPo: (x) => x / 10,    fromMoPo: (mo) => mo * 10 },
   fentanyl_patch: { label: "Fentanyl patch",   unit: "mcg/hr", toMoPo: (x) => x * (60/25), fromMoPo: (mo) => mo * (25/60) }
 };
 
