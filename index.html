@@ -2677,7 +2677,7 @@ function convCalc(scroll){
   if(td.value==='morphine_po'){const q=mo/6;rows.push(`<div class="conv-sugg-row"><span class="lbl">Mo IR q 4 hr</span><span class="val">${convFmt(q)} mg/dose</span></div>`);rows.push(`<div class="conv-sugg-row"><span class="lbl">BTP prn (15%)</span><span class="val">${convFmt(mo*.15)} mg</span></div>`);}
   if(td.value==='morphine_iv'){rows.push(`<div class="conv-sugg-row"><span class="lbl">IV drip rate</span><span class="val">${convFmt(result/24)} mg/hr</span></div>`);rows.push(`<div class="conv-sugg-row"><span class="lbl">BTP prn (15%)</span><span class="val">${convFmt(result*.15)} mg q 15 min</span></div>`);}
   if(td.value==='fentanyl_iv'){rows.push(`<div class="conv-sugg-row"><span class="lbl">IV drip rate</span><span class="val">${convFmt(result/24)} mcg/hr</span></div>`);rows.push(`<div class="conv-sugg-row"><span class="lbl">BTP prn (15%)</span><span class="val">${convFmt(result*.15)} mcg q 15 min</span></div>`);}
-  if(rows.length){sugg.innerHTML='<div class="conv-sugg-lbl">Clinical Reference</div>'+rows.join('');sugg.style.display='block';}else{sugg.style.display='none';}
+  sugg.style.display='none';
   if(scroll)res.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 function openConv(){document.getElementById('convOverlay').classList.add('show');setTimeout(()=>document.getElementById('convFromDose').focus(),100);}
