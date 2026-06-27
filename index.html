@@ -1215,7 +1215,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
         <li>ESRD GFR &lt; 15 → <strong>ลด dose 75%</strong> (เหลือ 25%)</li>
         <li>ขนาดที่น้อยสุด <strong>ไม่ควรต่ำกว่า 4-8 mg/day</strong></li>
         <li>BTP ≥ 3 ครั้ง/วัน → <strong>Old ATC + Old BTP = New ATC + New BTP (10-20% ของ New ATC)</strong></li>
-        <li>กรณีผู้ป่วยไม่ขอยา prn:
+        <li>กรณีผู้ป่วยไม่ขอยา prn และแพทย์ประเมินว่ายังคุมปวดได้ไม่ดี:
           <ul style="margin:4px 0 0 14px;list-style:disc">
             <li>ปวดปานกลาง PS 4-6 → <strong>เพิ่ม 30-50%</strong></li>
             <li>ปวดรุนแรง PS 7-10 → <strong>เพิ่ม 50-100%</strong></li>
@@ -1348,79 +1348,28 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💨</span><span class="card-ttl">Nebulized Medications</span><span class="card-chev">▼</span></div>
-    <div class="card-body">
-      <table class="dt">
-        <tr><th>ยา</th><th>ขนาด</th><th>หมายเหตุ</th></tr>
-        <tr><td><span class="dn">0.9% NaCl</span></td><td><span class="dd">5 mL prn q 4 hr</span></td><td>Hydrate สารคัดหลั่งที่ข้นเหนียว</td></tr>
-        <tr><td><span class="dn">Salbutamol nebules</span></td><td><span class="dd">2.5-5 mg prn q 4 hr</span></td><td>ขยายหลอดลม</td></tr>
-      </table>
-      <div class="al al-w" style="margin-top:8px"><span class="al-i">⚠️</span><div>เฝ้าระวังอาการไม่พึงประสงค์ พิจารณาหยุดยาหลังจากใช้ <strong>3 วัน</strong> แล้วไม่ตอบสนอง</div></div>
-    </div>
-  </div>
-
   <div class="card open">
-    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">Opioids — ยาตัวแรกที่แนะนำ</span><span class="card-chev">▼</span></div>
+    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">Pharmacological management</span><span class="card-chev">▼</span></div>
     <div class="card-body">
-      <div class="al al-n"><span class="al-i">ℹ️</span><div><strong>ขนาดยาเริ่มต้น = ครึ่งหนึ่ง</strong> ของขนาดลดปวด (กรณีไม่เคยได้ opioid มาก่อน)</div></div>
-
-      <div class="sub">1. Dyspnea on exertion (Opioid-naïve)</div>
       <table class="dt">
-        <tr><th>กลุ่มผู้ป่วย</th><th>ขนาด</th></tr>
-        <tr><td>ผู้ป่วยทั่วไป</td><td><span class="dn">Morphine IR/syrup</span> <span class="dd">2.5-5 mg PO prn q 4-6 hr</span></td></tr>
-        <tr><td>สูงอายุ / ไตวาย</td><td><span class="dn">Morphine IR/syrup</span> <span class="dd">1-2 mg PO prn q 6-8 hr</span></td></tr>
+        <tr><th>หัวข้อย่อย</th><th>รายละเอียด</th></tr>
+        <tr>
+          <td><strong>Nebulized Medications</strong></td>
+          <td><span class="dn">0.9% NaCl nebulized solution</span> <span class="dd">5 mL prn q 4 hr</span> - ช่วย hydrate สารคัดหลั่งที่ข้นเหนียวได้<br><span class="dn">Salbutamol nebules</span> <span class="dd">2.5-5 mg prn q 4 hr</span> - ขยายหลอดลม<br><span class="dnote">เฝ้าระวังอาการไม่พึงประสงค์ พิจารณาหยุดยาหลังจากใช้ 3 วันแล้วไม่ตอบสนอง</span></td>
+        </tr>
+        <tr>
+          <td><strong>Opioids เป็นยาตัวแรกที่แนะนำให้ใช้</strong></td>
+          <td><strong>ไม่เคยได้รับ opioid มาก่อน</strong> (ขนาดยาเป็นครึ่งหนึ่งของขนาดลดปวด)<br><strong>1. กรณี dyspnea on exertion</strong><br><span class="dn">Oral morphine immediate release (IR)/syrup</span> <span class="dd">2.5-5 mg PO prn q 4-6 hr</span> และพิจารณาปรับขนาดตามการตอบสนอง<br>ในผู้สูงอายุ/ไตวาย เริ่มให้ <span class="dn">Morphine IR/syrup</span> <span class="dd">1-2 mg PO prn q 6-8 hr</span><br>ถ้าผู้ป่วยต้องการ <strong>&gt;= 3 doses</strong> ขึ้นไป ให้พิจารณาปรับเป็น <strong>around the clock (ATC) + prn</strong> โดยขนาด prn คือ 10-20% หรือ 1/6 ของ total dose/day<br><strong>2. กรณี dyspnea at rest</strong> ให้เป็น <strong>ATC + prn q 2 hr</strong> กรณีทั่วไป / <strong>prn q 4 hr</strong> กรณีสูงอายุหรือไตวาย หรือ continuous drip<br><strong>เคยได้รับ หรือ กำลังได้ opioid อยู่:</strong> ถ้ายังมีอาการหอบเหนื่อย ให้พิจารณาเพิ่มช้า ๆ ทีละ <strong>30-50%</strong> ของขนาดที่ได้รับประจำต่อวัน ปรับเหมือนใน pain control</td>
+        </tr>
+        <tr>
+          <td><strong>Benzodiazepines การให้เพียงตัวเดียวไม่ช่วยลดอาการหอบเหนื่อย</strong></td>
+          <td>ให้ในผู้ที่วิตกกังวล กลัว หรือมี <strong>panic attack</strong> ที่อาจกระตุ้นให้อาการหอบเหนื่อยมากขึ้นได้<br><span class="dn">Lorazepam</span> <span class="dd">0.5-2 mg sublingual (SL) prn q 4-6 ชม.</span> (onset 5-10 นาที)<br><span class="dn">Diazepam</span> <span class="dd">2-5 mg PO hs</span> ถ้ามีอาการวิตกกังวลต่อเนื่องเป็นเวลานาน<br><span class="dn">Midazolam</span> <span class="dd">2-5 mg subcutaneous (SC)/IV prn q 4-6 hr</span> ถ้าไม่สามารถให้ยา PO หรือ SL ได้<br><strong>ผลข้างเคียง:</strong> sedation<br><strong>Contraindication:</strong> acute severe pulmonary insufficiency, untreated sleep apnea syndrome, severe hepatic impairment และ myasthenia gravis</td>
+        </tr>
+        <tr>
+          <td><strong>Corticosteroids เลือกให้ยาช่วงเช้า/บ่าย</strong></td>
+          <td>เลือกให้ยาช่วงเช้า/บ่าย เพื่อหลีกเลี่ยงผลข้างเคียงเรื่องนอนไม่หลับ<br><strong>SVC obstruction:</strong> <span class="dn">Dexamethasone</span> <span class="dd">16 mg PO/IV/SC day</span><br><strong>Stridor:</strong> <span class="dn">Dexamethasone</span> <span class="dd">8-16 mg PO/day</span><br><strong>Lymphangitis carcinomatosis / radiation pneumonitis / bronchospasm:</strong> <span class="dn">Dexamethasone</span> <span class="dd">8 mg PO/day</span><br><strong>Review treatment</strong> หลังจากให้ยาไปแล้ว <strong>5 วัน</strong> ว่าตอบสนองดีหรือไม่<br>ถ้าอาการดีขึ้น พิจารณาปรับขนาดยาลงช้า ๆ จนได้ขนาดต่ำสุดที่สามารถคุมอาการได้<br>ถ้าไม่ดีขึ้น พิจารณาหยุดยา หรือ maintenance ต่อที่ขนาดยาเดิมที่ผู้ป่วยได้รับก่อนหน้า<br>ถ้าผู้ป่วยได้รับยา steroid ติดต่อกันนานกว่า <strong>3 สัปดาห์</strong> พิจารณา <strong>taper off</strong></td>
+        </tr>
       </table>
-      <p style="font-size:calc(var(--fs) - 2px);color:var(--text-muted);margin-top:6px">
-        ถ้าผู้ป่วยต้องการ &gt;= 3 doses → ปรับเป็น <strong>around the clock (ATC) + prn</strong> (ขนาด prn = 10-20% หรือ 1/6 ของ total dose/day)
-      </p>
-
-      <div class="sub">2. Dyspnea at rest (Opioid-naïve)</div>
-      <ul class="ul">
-        <li>ATC + prn q 2 hr (ทั่วไป) / prn q 4 hr (สูงอายุ/ไตวาย)</li>
-        <li>หรือ continuous drip</li>
-      </ul>
-
-      <div class="sub">เคยได้รับ / กำลังได้ Opioid</div>
-      <ul class="ul">
-        <li>ยังเหนื่อยอยู่ → เพิ่มช้าๆ ทีละ <strong>30-50%</strong> ของขนาด opioid ที่ผู้ป่วยได้รับก่อนหน้าต่อวัน (ปรับเหมือน pain control)</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="card open">
-    <div class="card-hd" onclick="tc(this)"><span class="card-ico">😌</span><span class="card-ttl">Benzodiazepines — ใช้เมื่อมีวิตกกังวล/Panic เท่านั้น</span><span class="card-chev">▼</span></div>
-    <div class="card-body">
-      <div class="al al-w"><span class="al-i">⚠️</span><div><strong>การให้ BZD เพียงตัวเดียว ไม่ช่วยลดอาการหอบเหนื่อย</strong> — ใช้เมื่อมีวิตกกังวล/panic attack ที่กระตุ้นอาการหอบเหนื่อย</div></div>
-      <table class="dt" style="margin-top:8px">
-        <tr><th>ยา</th><th>ขนาด</th><th>หมายเหตุ</th></tr>
-        <tr><td><span class="dn">Lorazepam</span></td><td><span class="dd">0.5-2 mg SL prn q 4-6 hr</span></td><td>Onset 5-10 นาที</td></tr>
-        <tr><td><span class="dn">Diazepam</span></td><td><span class="dd">2-5 mg PO hs</span></td><td>วิตกกังวลต่อเนื่องนาน</td></tr>
-        <tr><td><span class="dn">Midazolam</span></td><td><span class="dd">2-5 mg SC/IV prn q 4-6 hr</span></td><td>กรณีให้ PO/SL ไม่ได้</td></tr>
-      </table>
-      <div class="al al-d" style="margin-top:8px"><span class="al-i">🚫</span><div>
-        <strong>SE:</strong> sedation<br>
-        <strong>Contraindications:</strong> Acute severe pulmonary insufficiency, untreated sleep apnea syndrome, severe hepatic impairment, myasthenia gravis
-      </div></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">Corticosteroids</span><span class="card-chev">▼</span></div>
-    <div class="card-body">
-      <p style="font-size:calc(var(--fs) - 2px);color:var(--text-muted);margin-bottom:8px">เลือกให้ช่วงเช้า/บ่าย เพื่อหลีกเลี่ยงนอนไม่หลับ</p>
-      <table class="dt">
-        <tr><th>ข้อบ่งชี้</th><th>Dexamethasone</th></tr>
-        <tr><td><strong>SVC obstruction</strong></td><td><span class="dd">16 mg PO/IV/SC day</span></td></tr>
-        <tr><td><strong>Stridor</strong></td><td><span class="dd">8-16 mg PO/day</span></td></tr>
-        <tr><td><strong>Lymphangitis carcinomatosis / Radiation pneumonitis / Bronchospasm</strong></td><td><span class="dd">8 mg PO/day</span></td></tr>
-      </table>
-      <ul class="ul" style="margin-top:8px">
-        <li>Review หลังให้ยาไป <strong>5 วัน</strong> ว่าตอบสนองดีหรือไม่</li>
-        <li>ดีขึ้น → ปรับขนาดยาลงช้าๆ จนได้ขนาดต่ำสุดที่คุมอาการได้</li>
-        <li>ไม่ดีขึ้น → หยุดยา หรือ maintenance ขนาดเดิมที่ผู้ป่วยได้รับก่อนหน้า</li>
-        <li>ใช้ติดต่อกัน &gt; 3 สัปดาห์ → <strong>taper off</strong></li>
-      </ul>
     </div>
   </div>
 
@@ -1428,10 +1377,10 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">👨‍👩‍👧</span><span class="card-ttl">ข้อแนะนำผู้ป่วยและผู้ดูแล</span><span class="card-chev">▼</span></div>
     <div class="card-body">
       <ul class="ul">
-        <li>หอบเหนื่อยเมื่อออกแรง <strong>ไม่ใช่อันตราย</strong> หายไปไม่นานหลังพัก</li>
-        <li>รักษาระดับกิจกรรมในชีวิตประจำวัน เพื่อลดอาการหอบ</li>
-        <li>อยู่ในที่อากาศถ่ายเท เปิดหน้าต่าง พัดลมพัดผ่านใบหน้า</li>
-        <li>ค่อยๆอธิบายว่า ความกังวล/กลัว ขณะหอบ ไม่ทำให้อันตรายหรืออาการทรุด</li>
+        <li>อาการหอบเหนื่อยเมื่อออกแรง <strong>ไม่ใช่สิ่งอันตราย</strong> อาการจะหายไปในเวลาไม่นานหลังจากผู้ป่วยได้พัก</li>
+        <li>รักษาระดับกิจกรรมที่ทำในชีวิตประจำวัน เพื่อให้ลดอาการหอบเหนื่อย</li>
+        <li>อยู่ในบริเวณที่อากาศถ่ายเท เปิดหน้าต่าง เปิดพัดลม ให้ลมพัดผ่านใบหน้า จะช่วยลดอาการหอบเหนื่อยได้</li>
+        <li>ค่อย ๆ อธิบายว่า หากผู้ป่วยมีความกังวล กลัว ขณะที่หอบ สิ่งเหล่านี้ไม่ได้ทำให้เกิดอันตรายหรือทำให้อาการทรุดลง</li>
       </ul>
     </div>
   </div>
@@ -1775,13 +1724,14 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">🌿</span><span class="card-ttl">Non-pharmacological & สิ่งแวดล้อม</span><span class="card-chev">▼</span></div>
     <div class="card-body">
       <ul class="ul">
-        <li>กินอาหาร <strong>ปริมาณน้อย ๆ บ่อย ๆ</strong> เลือกอาหารเย็น/รสเปรี้ยว</li>
-        <li>อาหาร <strong>โปรตีนสูง ไขมันต่ำ กากใยต่ำ</strong></li>
-        <li>หลีกเลี่ยง <strong>กลิ่นแรง</strong> เช่น น้ำหอม กลิ่นอาหารปรุง กลิ่นบุหรี่</li>
-        <li>เฝ้าระวังและรักษา <strong>ท้องผูก</strong> ซึ่งกระตุ้นคลื่นไส้</li>
-        <li>จัดสิ่งแวดล้อมสงบ ห้องอากาศถ่ายเท ลดสิ่งรบกวน</li>
-        <li>ดูแล <strong>สุขภาพช่องปาก</strong> ระวัง oral thrush และฟันผุ</li>
-        <li>ประเมินและดูแล <strong>สภาพจิตใจ</strong> (anxiety, anticipatory nausea)</li>
+        <li>ทานอาหารครั้งละน้อย ๆ แต่ทานบ่อย ๆ อาหารเย็น ๆ รสเปรี้ยว ๆ ช่วยลดอาการคลื่นไส้</li>
+        <li>แนะนำรับประทานอาหารโปรตีนสูง ไขมันต่ำ ไฟเบอร์ต่ำ</li>
+        <li>หลีกเลี่ยงอาหารที่มีกลิ่นแรง อาหารที่เย็นมีกลิ่นน้อยกว่าอาหารที่ร้อน</li>
+        <li>อาการท้องผูก ทำให้คลื่นไส้อาเจียนได้</li>
+        <li>อยู่ในสิ่งแวดล้อมที่สงบ ไม่วุ่นวาย ได้รับอากาศสดชื่น</li>
+        <li>ทำกิจกรรมผ่อนคลายเพื่อลดความวิตกกังวลและอาการคลื่นไส้</li>
+        <li>ดูแลสุขภาพช่องปาก ระวังเชื้อราในปาก</li>
+        <li>การจัดการด้านจิตใจ</li>
       </ul>
     </div>
   </div>
@@ -1800,12 +1750,27 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">💊</span><span class="card-ttl">ยาตามสาเหตุ</span><span class="card-chev">▼</span></div>
     <div class="card-body">
       <table class="dt">
-        <tr><th>สาเหตุ</th><th>ยาที่เลือก</th></tr>
-        <tr><td><strong>Chemical / Metabolic</strong><br><span class="dnote">Opioids, uremia, chemo</span></td><td><span class="dn">Haloperidol</span> <span class="dd">0.5-1.5 mg PO / 0.5-1 mg SC OD</span><br><span class="dn">Metoclopramide</span> <span class="dd">10 mg QID PO/SC</span><br><span class="dn">Levomepromazine</span> <span class="dd">2.5-5 mg SC q 12 hr หรือ 5-15 mg SC/24 hr</span><br><span class="dn">Ondansetron</span> <span class="dd">4 mg PO/SC BID</span></td></tr>
-        <tr><td><strong>Motility disorder</strong><br><span class="dnote">Partial obs, gastroparesis</span></td><td><span class="dn">Domperidone</span> <span class="dd">10 mg TID PO</span><br><span class="dn">Metoclopramide</span> <span class="dd">10-20 mg QID / 30-80 mg continuous subcutaneous infusion (CSCI)</span><br><span class="dn">Dexamethasone</span> <span class="dd">4-8 mg OD</span> <span class="dnote">(ลดยาหลังให้ไป 3 วันจนหยุดยา หรือใช้ขนาดต่ำที่สุดที่คุมอาการได้)</span></td></tr>
-        <tr><td><strong>Raised ICP / Vestibular</strong><br><span class="dnote">Headache, vertigo</span></td><td><span class="dn">Cyclizine</span> <span class="dd">25-50 mg PO/SC TID</span><br><span class="dn">Dexamethasone</span> <span class="dd">8 mg OD</span> <span class="dnote">(ลดยาหลังให้ไป 3 วันจนหยุดยา หรือใช้ขนาดต่ำที่สุดที่คุมอาการได้)</span><br>หูชั้นใน: <span class="dn">Cinnarizine</span> <span class="dd">30 mg → 15 mg TID</span><br>2nd line: <span class="dn">Levomepromazine</span> <span class="dd">3-6 mg PO OD</span> หรือ <span class="dn">Prochlorperazine</span> <span class="dd">5-15 mg PO / 3 mg buccal</span></td></tr>
-        <tr><td><strong>Gastric irritation</strong></td><td><span class="dn">Ranitidine</span> <span class="dd">150 mg BID</span> / <span class="dn">PPI</span></td></tr>
-        <tr><td><strong>Mixed / Unclear</strong></td><td><span class="dn">Metoclopramide</span> <span class="dd">30-80 mg/24hr CSCI</span><br><span class="dn">Levomepromazine</span> <span class="dd">3-6 mg BID PO / 2.5-5 mg SC BID / 5-15 mg/24hr CSCI</span><br><span class="dn">Dexamethasone</span> <span class="dd">8 mg OD</span> <span class="dnote">(ลดยาหลังให้ไป 3 วันจนหยุดยา หรือใช้ขนาดต่ำที่สุดที่คุมอาการได้)</span><br>+ วิตกกังวล: <span class="dn">Lorazepam</span> <span class="dd">0.5-1 mg</span> / <span class="dn">Diazepam</span> <span class="dd">2-5 mg</span></td></tr>
+        <tr><th>สาเหตุ</th><th>กลุ่มยา</th></tr>
+        <tr>
+          <td><strong>ถูกสารพิษ หรือ ยา</strong> (ยาเคมีบำบัด, opioids, ยาฆ่าเชื้อ, ยากันชัก etc.), <strong>metabolic/biochemical ผิดปกติ</strong> (uremia, hypercalcemia, hyponatremia, ketoacidosis, infection, circulating toxins)<br><span class="dnote">อาการ: อาเจียนต่อเนื่องรุนแรง หลังอาเจียนดีขึ้นเล็กน้อย</span></td>
+          <td><strong>Dopamine receptor antagonist:</strong><br><span class="dn">Haloperidol</span> <span class="dd">0.5-1.5 mg PO หรือ 0.5-1 mg SC OD</span> <span class="dnote">(เริ่มขนาดต่ำในผู้ป่วยไตวาย แก่ เปราะบาง)</span><br><span class="dn">Metoclopramide</span> <span class="dd">10 mg QID PO หรือ SC</span><br><strong>Antipsychotic:</strong><br><span class="dn">Levomepromazine</span> <span class="dd">2.5-5 mg SC q 12 hr หรือ 5-15 mg SC/24 hr</span> <span class="dnote">(เปลี่ยนเป็นยากินเมื่ออาการดีขึ้น)</span><br><strong>5HT3 antagonist:</strong> <span class="dn">Ondansetron</span> <span class="dd">4 mg PO/SC BID</span></td>
+        </tr>
+        <tr>
+          <td><strong>Motility disorders</strong> (opioid, anticholinergic drugs, hypercalcemia, partial gut obstruction และ paraneoplastic gastroparesis) - ไม่รวมภาวะ complete gut obstruction<br><span class="dnote">อาการ: มีอาการคลื่นไส้เล็กน้อยก่อนอาเจียน อาเจียนปริมาณมาก เป็น ๆ หาย ๆ อิ่มเร็ว มีการไหลย้อน สะอึก</span></td>
+          <td><strong>Prokinetic</strong> (อาจทำให้ esophageal spasm ได้):<br><span class="dn">Domperidone</span> <span class="dd">10 mg TID PO</span><br><span class="dn">Metoclopramide</span> <span class="dd">10-20 mg PO QID หรือ 30-80 mg/24hr by CSCI</span> <span class="dnote">(พึงระวังการใช้ยาขนาดสูงเป็นเวลานาน เฝ้าระวัง extrapyramidal side effects)</span><br><span class="dn">Dexamethasone</span> <span class="dd">4-8 mg OD</span> <span class="dnote">(หากมีการกดเบียดจากภายนอก) ลดยาหลังให้ไป 3 วันจนหยุดยา หรือใช้ขนาดต่ำที่สุดที่คุมอาการได้</span><br><span class="dnote">ผู้ป่วยที่มี gut obstruction อาจไม่ดีขึ้นแม้ได้รับการบรรเทาอาการ พิจารณาใส่ stent, NG tube, gastrostomy เพื่อระบาย</span></td>
+        </tr>
+        <tr>
+          <td><strong>พยาธิสภาพในศีรษะ</strong> เช่น ความดันในโพรงกะโหลกสูง, vestibular dysfunction, motion disorders<br><span class="dnote">อาการ: ปวดหัว เวียนหัวบ้านหมุน คลื่นไส้สัมพันธ์กับการเคลื่อนไหว ซึมลง</span></td>
+          <td><strong>Increased intracranial pressure:</strong><br><span class="dn">Cyclizine</span> <span class="dd">25-50 mg PO หรือ SC TID</span><br><span class="dn">Dexamethasone</span> <span class="dd">8 mg OD</span> <span class="dnote">ลดยาหลังให้ไป 3 วันจนหยุดยา หรือใช้ขนาดต่ำที่สุดที่คุมอาการได้</span><br><strong>สาเหตุจากหูชั้นใน</strong><br><span class="dn">Cinnarizine</span> <span class="dd">30 mg PO then 15 mg TID</span><br><span class="dnote">2<sup>nd</sup> line</span><br><span class="dn">Levomepromazine</span> <span class="dd">3-6 mg PO OD</span><br><span class="dn">Prochlorperazine</span> <span class="dd">5-15 mg PO หรือ 3 mg ทางกระพุ้งแก้ม</span></td>
+        </tr>
+        <tr>
+          <td><strong>มีการระคายเคืองกระเพาะอาหาร หรือ หลอดอาหาร</strong><br><span class="dnote">(จากมะเร็ง การอักเสบ การติดเชื้อ สิ่งแปลกปลอม เช่น stent)</span><br><strong>อาการ:</strong> คลื่นไส้ตลอดเวลา แย่ลงหลังกินอาหาร มีอาการขย้อน ปวดกระเพาะอาหาร</td>
+          <td><strong>ยาฆ่าเชื้อ ยาต้านเชื้อรา/ไวรัส</strong><br><strong>ยาลดกรดในกระเพาะอาหาร:</strong><br><span class="dn">Ranitidine</span> <span class="dd">150 mg BID</span><br><span class="dn">Proton pump inhibitor</span></td>
+        </tr>
+        <tr>
+          <td><strong>มีหลายปัจจัยร่วมกัน/สาเหตุไม่แน่ชัด/รักษาแล้วเป็น ๆ หาย ๆ</strong> รวมถึงสาเหตุจากระบบสมอง เช่น ปวด กลัว วิตกกังวล</td>
+          <td><span class="dn">Metoclopramide</span> <span class="dd">30-80 mg/24 hr CSCI</span><br><span class="dn">Levomepromazine</span> <span class="dd">3-6 mg BID PO หรือ 2.5-5 mg SC BID หรือ 5-15 mg/24 hr CSCI</span> <span class="dnote">(มีอาการง่วงซึมได้)</span><br><span class="dn">Dexamethasone</span> <span class="dd">8 mg OD</span> <span class="dnote">ลดยาหลังให้ไป 3 วันจนหยุดยา หรือใช้ขนาดต่ำที่สุดที่คุมอาการได้</span><br><strong>พิจารณาเพิ่มยา benzodiazepine</strong> <span class="dnote">(คลื่นไส้ที่สัมพันธ์กับความวิตกกังวล):</span><br><span class="dn">Lorazepam</span> <span class="dd">0.5-1 mg</span><br><span class="dn">Diazepam</span> <span class="dd">2-5 mg</span></td>
+        </tr>
       </table>
       <div class="al al-d" style="margin-top:8px"><span class="al-i">🚫</span><div><strong>Metoclopramide</strong> ห้ามใน mechanical bowel obstruction / colic, ห้ามใช้ร่วม cyclizine/antimuscarinic (ฤทธิ์หักล้างกัน)</div></div>
     </div>
@@ -1814,15 +1779,35 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">⚡</span><span class="card-ttl">Side effects ของยาแก้คลื่นไส้</span><span class="card-chev">▼</span></div>
     <div class="card-body">
       <table class="dt">
-        <tr><th>ยา</th><th>กลไก / กลุ่ม</th><th>SE สำคัญ</th></tr>
-        <tr><td><span class="dn">Cyclizine</span></td><td>H1 + antimuscarinic</td><td>Dry mouth, drowsy, urinary retention, constipation, blurred vision</td></tr>
-        <tr><td><span class="dn">Haloperidol</span></td><td>D2 antagonist</td><td>EPS, akathisia, <strong>QT prolongation</strong>, NMS (rare)</td></tr>
-        <tr><td><span class="dn">Metoclopramide</span></td><td>D2 + 5HT4 agonist</td><td>EPS, akathisia, dystonia (โดยเฉพาะหนุ่มสาว); <strong>ห้าม mech obs</strong></td></tr>
-        <tr><td><span class="dn">Domperidone</span></td><td>peripheral D2</td><td>QT prolongation; ระวังในผู้สูงอายุ/หัวใจ</td></tr>
-        <tr><td><span class="dn">Levomepromazine</span></td><td>broad spectrum</td><td>Sedation, hypotension, dry mouth, EPS</td></tr>
-        <tr><td><span class="dn">Prochlorperazine</span></td><td>D2 antagonist</td><td>EPS, sedation, hypotension</td></tr>
-        <tr><td><span class="dn">Ondansetron</span></td><td>5HT3 antagonist</td><td><strong>Constipation</strong>, headache, QT prolongation</td></tr>
-        <tr><td><span class="dn">Dexamethasone</span></td><td>corticosteroid</td><td>Hyperglycemia, insomnia, agitation, GI upset → ให้ PPI</td></tr>
+        <tr><th>Drug</th><th>Side effect/recommended use</th></tr>
+        <tr>
+          <td><span class="dn">Cyclizine</span><br><span class="dnote">(Antihistamine, Antimuscarinic action at vestibular system and vomiting centre)</span></td>
+          <td>Cerebral irritation; vertigo; visceral distortion/obstruction; oropharyngeal irritation<br>May be added to haloperidol<br>Constipating; delays gastric emptying</td>
+        </tr>
+        <tr>
+          <td><span class="dn">Haloperidol</span><br><span class="dnote">(Dopamine antagonist acts at chemoreceptor trigger zone)</span></td>
+          <td>May be added to cyclizine</td>
+        </tr>
+        <tr>
+          <td><span class="dn">Metoclopramide</span><br><span class="dnote">(Dopamine antagonist &amp; prokinetic act at chemoreceptor trigger zone &amp; GI tract)</span></td>
+          <td>Gastric stasis, reflux. Delayed gastric emptying<br>Avoid in mechanical bowel obstruction, colic<br>Avoid used together with cyclizine or other antimuscarinic drugs, as they inhibit its prokinetic action</td>
+        </tr>
+        <tr>
+          <td><span class="dn">Domperidone</span> <span class="dnote">(Dopamine receptor antagonist)</span></td>
+          <td>Headache, dry mouth, abdominal cramp, diarrhea, QT prolongation (rare)</td>
+        </tr>
+        <tr>
+          <td><span class="dn">Levomepromazine</span> <span class="dnote">(a low-potency antipsychotic with strong analgesic, hypnotic and antiemetic properties)</span></td>
+          <td>Replaces previous antiemetic<br>Usually second-line may be used earlier if sedation is not a problem or is desirable<br>Caution: epilepsy (lowered seizure threshold)</td>
+        </tr>
+        <tr>
+          <td><span class="dn">Prochlorperazine</span> <span class="dnote">(antipsychotic, dopamine receptor antagonist)</span></td>
+          <td>Sedation, extrapyramidal symptoms (restlessness, dystonic reaction, pseudoparkinsonism, akathisia)</td>
+        </tr>
+        <tr>
+          <td><span class="dn">Ondansetron</span></td>
+          <td>Mainly in chemotherapy, post-operatively</td>
+        </tr>
       </table>
     </div>
   </div>
@@ -1994,7 +1979,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
       <table class="dt">
         <tr><th>ยา</th><th>ขนาด</th><th>Route & Onset</th><th>หมายเหตุ</th></tr>
         <tr><td><span class="dn">Midazolam</span></td><td><span class="dd">10 mg bolus</span></td><td><span class="rt riv">IV</span> &lt;5 min / <span class="rt rsc">SC</span><span class="rt rsl">SL</span><span class="rt rpr">IM</span> 5-15 min</td><td>สามารถ repeat ได้ทุก 5 นาที สำหรับ IV, ทุก 5-15 นาที สำหรับ route อื่น<br><span class="dnote">IM: large deltoid or gluteal muscle / sublingual: ใช้ยาฉีดมาให้ใต้ลิ้น</span></td></tr>
-        <tr><td><span class="dn">Diazepam</span></td><td><span class="dd">10 mg IV หรือ 10 mg rectal suppository</span></td><td><span class="rt riv">IV</span> / <span class="rt rpr">PR</span></td><td>ประยุกต์นำยาฉีดมาใช้</td></tr>
+        <tr><td><span class="dn">Diazepam</span></td><td><span class="dd">10 mg IV หรือ 10 mg rectal suppository</span></td><td><span class="rt riv">IV</span> / <span class="rt rpr">PR</span></td><td>rectal suppository (ประยุกต์นำยาฉีดมาใช้)</td></tr>
         <tr><td><span class="dn">Ketamine</span></td><td><span class="dd">150-250 mg IV / 500 mg IM</span></td><td><span class="rt riv">IV</span><span class="rt rpr">IM</span></td><td>NMDA receptor antagonist<br><span class="dnote">IM: large deltoid or gluteal muscle</span></td></tr>
       </table>
       <ul class="ul" style="margin-top:8px">
@@ -2289,15 +2274,6 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
   ภาควิชาอายุรศาสตร์ คณะแพทยศาสตร์ศิริราชพยาบาล มหาวิทยาลัยมหิดล · ปีที่จัดทำ พ.ศ. 2568</div>
 
   <div class="card open">
-    <div class="card-hd" onclick="tc(this)"><span class="card-ico">📋</span><span class="card-ttl">เนื้อหา กลุ่มเป้าหมาย และวัตถุประสงค์</span><span class="card-chev">▼</span></div>
-    <div class="card-body">
-      <p style="line-height:1.75;color:var(--text-muted)">
-        แนวทางนี้จัดทำขึ้นเพื่อให้แพทย์ผู้ให้การดูแลผู้ป่วยแบบประคับประคอง มีเอกสารอ้างอิงเพื่อใช้ในการดูแลอาการทางกายที่พบบ่อย ทั้งโดยการใช้ยาและไม่ใช้ยาให้เป็นไปในทิศทางเดียวกัน และสามารถใช้เปิดศึกษาขนาดยาหรือวิธีการรักษาได้ง่ายและรวดเร็ว
-      </p>
-    </div>
-  </div>
-
-  <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">✍️</span><span class="card-ttl">คณะผู้จัดทำ</span><span class="card-chev">▼</span></div>
     <div class="card-body">
       <div class="author-list">
@@ -2351,6 +2327,7 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
             <div class="author-name">พญ.ลฎาภา มงคลเสริมพร</div>
             <div class="author-spec">อายุรแพทย์โรคเลือด</div>
             <div class="author-role">ช่วยรวบรวมและเรียบเรียงข้อมูล</div>
+            <div class="author-role">ช่วยทบทวนการสรุปเนื้อหาจากปัญญาประดิษฐ์</div>
           </div>
         </div>
         <div class="author-row">
