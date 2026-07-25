@@ -264,6 +264,12 @@ body{
 .cf{text-align:right;font-family:'IBM Plex Mono',monospace;color:var(--blue);background:var(--blue-dim);padding:5px 8px;border-radius:4px}
 .ca{color:var(--text-dim);text-align:center;font-size:16px}
 .ct{font-family:'IBM Plex Mono',monospace;color:var(--teal);background:var(--teal-glow);padding:5px 8px;border-radius:4px}
+.opioid-ratio-table{width:100%;border-collapse:collapse;table-layout:fixed;background:#f8fafc;border:1px solid #475569;font-size:calc(var(--fs) - 1px);line-height:1.45}
+.opioid-ratio-table th{background:#28c5e8;color:#0f172a;text-align:left;font-weight:700;padding:8px 10px;border:1px solid #475569}
+.opioid-ratio-table td{background:#f8fafc;padding:8px 10px;border:1px solid #475569;color:#111827;vertical-align:top}
+.opioid-ratio-table th:nth-child(1),.opioid-ratio-table td:nth-child(1){width:31%}
+.opioid-ratio-table th:nth-child(2),.opioid-ratio-table td:nth-child(2){width:39%}
+.opioid-ratio-table th:nth-child(3),.opioid-ratio-table td:nth-child(3){width:30%}
 
 /* Line tags */
 .l1{background:rgba(74,222,128,.14);color:var(--green);border:1px solid rgba(74,222,128,.3);padding:1px 6px;border-radius:9px;font-size:calc(var(--fs) - 6px);font-weight:700;margin-left:5px}
@@ -887,6 +893,8 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
 .conv-ratios{background:var(--surface2);border-radius:8px;padding:12px 14px;margin-top:14px;font-size:12px;color:var(--text-muted);line-height:1.7}
 .conv-ratios strong{display:block;color:var(--conv-accent);font-size:13px;margin-bottom:6px}
 .conv-ratios code{background:var(--surface);padding:1px 4px;border-radius:3px;color:var(--text);font-size:11.5px}
+.conv-ratios .opioid-ratio-table{font-size:12px;line-height:1.35}
+.conv-ratios .opioid-ratio-table th,.conv-ratios .opioid-ratio-table td{padding:6px 7px}
 .conv-warn{margin-top:14px;padding:10px 14px;background:var(--conv-warn-bg);border-left:3px solid var(--conv-warn-border);border-radius:4px;font-size:12px;color:var(--conv-warn-ink);line-height:1.6}
 .conv-calc-btn{width:100%;padding:13px;background:var(--conv-accent);color:#fff;border:none;border-radius:9px;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:14px;transition:opacity .15s;letter-spacing:.02em}
 .conv-calc-btn:hover{opacity:.82}
@@ -1140,15 +1148,19 @@ mark{background:rgba(20,184,166,.22);color:var(--teal);border-radius:2px;padding
   <div class="card open">
     <div class="card-hd" onclick="tc(this)"><span class="card-ico">🔄</span><span class="card-ttl">Opioid Conversion Ratios</span><span class="card-chev">▼</span></div>
     <div class="card-body">
-      <div class="conv-g">
-        <div class="cf">Tramadol IV</div><div class="ca">→</div><div class="ct">Tramadol PO ×1.5</div>
-        <div class="cf">Tramadol PO</div><div class="ca">→</div><div class="ct">Morphine PO ÷5</div>
-        <div class="cf">Codeine PO</div><div class="ca">→</div><div class="ct">Morphine PO ÷10</div>
-        <div class="cf">Morphine PO</div><div class="ca">→</div><div class="ct">Morphine IV/SC ÷3</div>
-        <div class="cf">Morphine PO</div><div class="ca">→</div><div class="ct">Fentanyl ÷100 (µg→mg)</div>
-        <div class="cf">Morphine PO 60 mg/day</div><div class="ca">→</div><div class="ct">Fentanyl patch 25 µg/hr</div>
-      </div>
-      <div class="al al-w" style="margin-top:10px"><span class="al-i">⚠️</span><div>ระวัง unit mg vs µg — Morphine PO : Fentanyl = 100 : 1 (aware mg, mcg)</div></div>
+      <table class="opioid-ratio-table" aria-label="Opioid conversion ratios">
+        <thead>
+          <tr><th>First opioid</th><th>Second opioid</th><th>Conversion ratio</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Tramadol IV</td><td>Tramadol O</td><td>1:1.5</td></tr>
+          <tr><td>Tramadol O</td><td>Morphine O</td><td>5:1</td></tr>
+          <tr><td>Codeine O</td><td>Morphine O</td><td>10:1</td></tr>
+          <tr><td>Morphine O</td><td>Morphine IV, SC</td><td>3:1</td></tr>
+          <tr><td>Morphine O</td><td>Fentanyl IV, SC, transdermal</td><td>100:1 (aware mg, mcg)</td></tr>
+          <tr><td>Morphine O</td><td>Fentanyl transdermal</td><td>60 mg/day = 25 µg/hour</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -2726,12 +2738,19 @@ document.addEventListener('DOMContentLoaded',function(){
       </div>
       <div class="conv-ratios">
         <strong>Conversion ratios (ศิริราช)</strong>
-        <code>Codeine PO : Morphine PO = 10 : 1</code><br>
-        <code>Tramadol PO : Morphine PO = 5 : 1</code><br>
-        <code>Tramadol IV : Tramadol PO = 1 : 1.5</code><br>
-        <code>Morphine PO : Morphine IV/SC = 3 : 1</code><br>
-        <code>Morphine PO : Fentanyl IV/SC = 100 : 1</code> (ระวัง mcg กับ mg)<br>
-        <code>Morphine PO 60 mg/day = Fentanyl patch 25 µg/hr</code>
+        <table class="opioid-ratio-table" aria-label="Opioid conversion ratios">
+          <thead>
+            <tr><th>First opioid</th><th>Second opioid</th><th>Conversion ratio</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Tramadol IV</td><td>Tramadol O</td><td>1:1.5</td></tr>
+            <tr><td>Tramadol O</td><td>Morphine O</td><td>5:1</td></tr>
+            <tr><td>Codeine O</td><td>Morphine O</td><td>10:1</td></tr>
+            <tr><td>Morphine O</td><td>Morphine IV, SC</td><td>3:1</td></tr>
+            <tr><td>Morphine O</td><td>Fentanyl IV, SC, transdermal</td><td>100:1 (aware mg, mcg)</td></tr>
+            <tr><td>Morphine O</td><td>Fentanyl transdermal</td><td>60 mg/day = 25 µg/hour</td></tr>
+          </tbody>
+        </table>
       </div>
       <button class="conv-close-btn" onclick="closeConv()">✕ ปิด</button>
     </div>

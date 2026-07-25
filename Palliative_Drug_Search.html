@@ -980,6 +980,36 @@
     border-radius: 3px;
     color: var(--ink);
   }
+  .opioid-ratio-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    background: #f8fafc;
+    border: 1px solid #475569;
+    font-size: 12px;
+    line-height: 1.35;
+  }
+  .opioid-ratio-table th {
+    background: #28c5e8;
+    color: #0f172a;
+    text-align: left;
+    font-weight: 700;
+    padding: 6px 7px;
+    border: 1px solid #475569;
+  }
+  .opioid-ratio-table td {
+    background: #f8fafc;
+    color: #111827;
+    padding: 6px 7px;
+    border: 1px solid #475569;
+    vertical-align: top;
+  }
+  .opioid-ratio-table th:nth-child(1),
+  .opioid-ratio-table td:nth-child(1) { width: 31%; }
+  .opioid-ratio-table th:nth-child(2),
+  .opioid-ratio-table td:nth-child(2) { width: 39%; }
+  .opioid-ratio-table th:nth-child(3),
+  .opioid-ratio-table td:nth-child(3) { width: 30%; }
 
   .calc-warning {
     margin-top: 14px;
@@ -1239,12 +1269,19 @@
 
       <div class="calc-ratios">
         <div class="calc-ratios-title">Conversion ratios (จากต้นฉบับศิริราช)</div>
-        <code>Tramadol IV : Tramadol PO = 1 : 1.5</code><br>
-        <code>Tramadol PO : Morphine PO = 5 : 1</code><br>
-        <code>Codeine PO : Morphine PO = 10 : 1</code><br>
-        <code>Morphine PO : Morphine IV/SC = 3 : 1</code><br>
-        <code>Morphine PO : Fentanyl IV/SC/transdermal = 100 : 1</code> (mg→mcg)<br>
-        <code>Morphine PO 60 mg/day = Fentanyl patch 25 µg/hr</code>
+        <table class="opioid-ratio-table" aria-label="Opioid conversion ratios">
+          <thead>
+            <tr><th>First opioid</th><th>Second opioid</th><th>Conversion ratio</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Tramadol IV</td><td>Tramadol O</td><td>1:1.5</td></tr>
+            <tr><td>Tramadol O</td><td>Morphine O</td><td>5:1</td></tr>
+            <tr><td>Codeine O</td><td>Morphine O</td><td>10:1</td></tr>
+            <tr><td>Morphine O</td><td>Morphine IV, SC</td><td>3:1</td></tr>
+            <tr><td>Morphine O</td><td>Fentanyl IV, SC, transdermal</td><td>100:1 (aware mg, mcg)</td></tr>
+            <tr><td>Morphine O</td><td>Fentanyl transdermal</td><td>60 mg/day = 25 µg/hour</td></tr>
+          </tbody>
+        </table>
       </div>
 
     </div>
